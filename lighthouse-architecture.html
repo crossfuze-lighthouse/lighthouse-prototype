@@ -3,485 +3,512 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lighthouse Backend Architecture</title>
+  <title>Project Lighthouse | Backend Architecture Map</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="lighthouse-brand.css">
+  <link rel="stylesheet" href="lighthouse-brand.css" />
   <style>
     :root {
-      --lh-border: rgba(113,241,247,0.18);
-      --lh-text: #ffffff;
-      --lh-sub: rgba(242,242,244,0.72);
-      --lh-panel: rgba(255,255,255,0.05);
-      --lh-panel-soft: rgba(255,255,255,0.04);
+      --bg: #040E3D;
+      --surface: #08144A;
+      --text: #F2F2F4;
+      --sub: rgba(242,242,244,0.68);
+      --line: rgba(255,255,255,0.10);
+
+      --guide-bg: rgba(255,255,255,0.04);
+      --guide-border: rgba(255,255,255,0.18);
+
+      --intake-bg: rgba(242,242,244,0.06);
+      --intake-border: rgba(242,242,244,0.22);
+
+      --record-bg: rgba(143,255,219,0.09);
+      --record-border: rgba(143,255,219,0.38);
+
+      --library-bg: rgba(113,241,247,0.08);
+      --library-border: rgba(113,241,247,0.30);
+
+      --governance-bg: rgba(192,166,255,0.12);
+      --governance-border: rgba(192,166,255,0.40);
+
+      --workflow-bg: rgba(246,82,117,0.09);
+      --workflow-border: rgba(246,82,117,0.34);
+
+      --output-bg: rgba(113,241,247,0.09);
+      --output-border: rgba(113,241,247,0.34);
+
+      --mvp-bg: rgba(44,176,205,0.10);
+      --mvp-border: rgba(44,176,205,0.34);
+
+      --green: #8FFFDB;
+      --teal: #71F1F7;
+      --blue: #2CB0CD;
+      --purple: #6400EC;
+      --lavender: #C0A6FF;
+      --red: #F65275;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Source Sans 3", system-ui, sans-serif;
     }
 
     .lh-wrap {
-      max-width: 1280px;
+      max-width: 1500px;
       margin: 0 auto;
+      padding: 12px;
     }
 
-    .lh-panel {
-      border-radius: 28px;
-      border: 1px solid var(--lh-border);
-      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02));
-      box-shadow: 0 24px 60px rgba(0,0,0,0.28);
+    .lh-header {
+      border: 1px solid var(--line);
+      padding: 16px 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      box-shadow: 0 18px 44px rgba(0,0,0,0.18);
     }
 
-    .lh-hero {
-      border-radius: 30px;
-      border: 1px solid var(--lh-border);
-      background:
-        radial-gradient(circle at top left, rgba(113,241,247,0.10), transparent 30%),
-        linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
-      box-shadow: 0 28px 70px rgba(0,0,0,0.34);
-    }
-
-    .lh-chip {
-      display: inline-flex;
-      align-items: center;
-      border-radius: 999px;
-      padding: 0.38rem 0.8rem;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      border: 1px solid;
-      white-space: nowrap;
-    }
-
-    .lh-item {
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.03);
-      padding: 0.9rem 1rem;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #fff;
-    }
-
-    .lh-arrow-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      border: 1px solid var(--lh-border);
-      background: rgba(255,255,255,0.03);
-      color: var(--lh-sub);
-      border-radius: 999px;
-      padding: 0.4rem 0.8rem;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      white-space: nowrap;
-    }
-
-    .lh-connector {
+    .lh-legend {
+      margin-top: 12px;
       display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin: 1rem 0;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      border: 1px solid var(--line);
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.025);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
     }
 
-    .lh-connector-line {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(143,255,219,0), rgba(143,255,219,0.65), rgba(143,255,219,0));
+    .lh-band {
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.10);
     }
 
-    .lh-connector-label {
-      border: 1px solid var(--lh-border);
-      background: rgba(255,255,255,0.03);
-      color: var(--lh-sub);
-      border-radius: 999px;
-      padding: 0.35rem 0.8rem;
+    .lh-band-title {
+      border-bottom: 1px solid var(--line);
+      padding: 8px 16px;
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.18em;
+      color: var(--sub);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .lh-band-body {
+      padding: 16px;
+    }
+
+    .lh-section-label {
+      margin-bottom: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--sub);
+    }
+
+    .lh-box {
+      border: 1px solid;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--text);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+    }
+
+    .lh-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 0;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(242,242,244,0.56);
+      gap: 10px;
       text-align: center;
     }
 
-    .lh-mini-flow {
-      border-radius: 20px;
-      border: 1px solid var(--lh-border);
-      background: rgba(10,29,41,0.55);
-      padding: 1rem;
+    .lh-flow .arrow {
+      color: var(--teal);
+      font-size: 16px;
+      line-height: 1;
     }
 
-    .lh-top-grid,
-    .lh-main-grid,
-    .lh-bottom-grid,
-    .lh-mvp-grid {
-      display: grid;
-      gap: 24px;
-    }
-
-    .lh-top-grid,
-    .lh-main-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .lh-bottom-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .lh-mvp-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .lh-meta-grid,
-    .lh-item-grid,
-    .lh-output-grid {
-      display: grid;
-      gap: 12px;
-    }
-
-    .lh-item-grid,
-    .lh-output-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .lh-meta-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .lh-flow-legend {
-      display: grid;
-      gap: 12px;
+    .lh-note {
       margin-top: 12px;
-      grid-template-columns: 1fr;
+      border: 1px solid;
+      padding: 12px;
+      font-size: 13px;
+      line-height: 1.4;
+      color: var(--sub);
+      background: rgba(255,255,255,0.03);
     }
 
-    .lh-arrow-row {
-      display: grid;
-      gap: 12px;
-      margin: 16px 0;
-      grid-template-columns: 1fr;
+    .lh-summary-card {
+      border: 1px solid var(--line);
+      padding: 12px;
+      background: rgba(255,255,255,0.035);
     }
 
     @media (min-width: 768px) {
-      .lh-item-grid,
-      .lh-output-grid,
-      .lh-mvp-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .lh-flow-legend {
-        grid-template-columns: 1fr 1fr 1fr;
-      }
-    }
-
-    @media (min-width: 1280px) {
-      .lh-top-grid {
-        grid-template-columns: 0.8fr auto 1fr auto 1fr;
-        align-items: stretch;
-      }
-
-      .lh-main-grid {
-        grid-template-columns: 1.1fr 1.2fr 1fr;
-      }
-
-      .lh-bottom-grid {
-        grid-template-columns: 1.2fr 1fr;
-      }
-
-      .lh-mvp-grid {
-        grid-template-columns: 1fr 1fr 1fr;
-      }
-
-      .lh-arrow-row {
-        grid-template-columns: 1.1fr 1.2fr 1fr;
-      }
-    }
-
-    .lh-hide-xl {
-      display: none;
-    }
-
-    @media (min-width: 1280px) {
-      .lh-hide-xl {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      .lh-wrap {
+        padding: 16px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="cx-page-bg">
-    <div class="lh-wrap">
-      <div class="lh-hero p-6 md:p-8">
-        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+  <div class="lh-wrap">
+    <!-- Header -->
+    <div class="lh-header">
+      <div class="grid gap-4 xl:grid-cols-[1.25fr_0.75fr] xl:items-start">
+        <div class="min-w-0">
+          <div class="flex items-center gap-3">
+            <img
+              src="https://cdn.prod.website-files.com/66f7a9d0051c2479948b2667/6930bea01a665531afb73e42_Crossfuze%20Logo_Cool%20Navy%20Gradient-p-500.png"
+              alt="Crossfuze logo"
+              class="h-8 w-auto shrink-0 brightness-0 invert md:h-9"
+            />
+            <div class="text-[10px] font-bold uppercase tracking-[0.22em]" style="color: var(--sub);">
+              Project Lighthouse
+            </div>
+          </div>
+
+          <h1 class="mt-3 text-[28px] font-bold leading-[1.02] tracking-[-0.03em] md:text-[40px]">
+            Backend Architecture Map
+          </h1>
+
+          <p class="mt-2 max-w-3xl text-[14px] leading-6" style="color: var(--sub);">
+            Flattened operating model showing how workbook guidance, inputs, trackers, scoring logic, actions, and outputs connect into the MVP portal experience.
+          </p>
+        </div>
+
+        <div class="grid gap-2 md:grid-cols-3 xl:grid-cols-3">
+          <div class="lh-summary-card">
+            <div class="text-[10px] font-bold uppercase tracking-[0.16em]" style="color: var(--sub);">Input</div>
+            <div class="mt-1 text-[14px] font-semibold">Guidance + evidence</div>
+          </div>
+          <div class="lh-summary-card">
+            <div class="text-[10px] font-bold uppercase tracking-[0.16em]" style="color: var(--sub);">Engine</div>
+            <div class="mt-1 text-[14px] font-semibold">Scoring + must-haves</div>
+          </div>
+          <div class="lh-summary-card">
+            <div class="text-[10px] font-bold uppercase tracking-[0.16em]" style="color: var(--sub);">Output</div>
+            <div class="mt-1 text-[14px] font-semibold">Trackers + portal views</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legend -->
+    <div class="lh-legend">
+      <div class="inline-flex items-center gap-2 text-[11px] font-semibold" style="color: var(--sub);">
+        <span class="h-3 w-3 rounded-sm" style="background: var(--guide-border);"></span>
+        <span>Reference &amp; guidance</span>
+      </div>
+      <div class="inline-flex items-center gap-2 text-[11px] font-semibold" style="color: var(--sub);">
+        <span class="h-3 w-3 rounded-sm" style="background: var(--intake-border);"></span>
+        <span>Assessment intake</span>
+      </div>
+      <div class="inline-flex items-center gap-2 text-[11px] font-semibold" style="color: var(--sub);">
+        <span class="h-3 w-3 rounded-sm" style="background: var(--record-border);"></span>
+        <span>Governed records</span>
+      </div>
+      <div class="inline-flex items-center gap-2 text-[11px] font-semibold" style="color: var(--sub);">
+        <span class="h-3 w-3 rounded-sm" style="background: var(--library-border);"></span>
+        <span>Checklist &amp; stage library</span>
+      </div>
+      <div class="inline-flex items-center gap-2 text-[11px] font-semibold" style="color: var(--sub);">
+        <span class="h-3 w-3 rounded-sm" style="background: var(--governance-border);"></span>
+        <span>Scoring &amp; governance</span>
+      </div>
+      <div class="inline-flex items-center gap-2 text-[11px] font-semibold" style="color: var(--sub);">
+        <span class="h-3 w-3 rounded-sm" style="background: var(--workflow-border);"></span>
+        <span>Workflow &amp; controls</span>
+      </div>
+      <div class="inline-flex items-center gap-2 text-[11px] font-semibold" style="color: var(--sub);">
+        <span class="h-3 w-3 rounded-sm" style="background: var(--output-border);"></span>
+        <span>Portfolio outputs</span>
+      </div>
+      <div class="inline-flex items-center gap-2 text-[11px] font-semibold" style="color: var(--sub);">
+        <span class="h-3 w-3 rounded-sm" style="background: var(--mvp-border);"></span>
+        <span>MVP delivery</span>
+      </div>
+    </div>
+
+    <!-- Reference & Guidance -->
+    <section class="lh-band" style="background: var(--guide-bg);">
+      <div class="lh-band-title">Reference &amp; Guidance Layer</div>
+      <div class="lh-band-body">
+        <div class="grid gap-2 md:grid-cols-3 xl:grid-cols-3">
+          <div class="lh-box" style="background: rgba(255,255,255,0.03); border-color: var(--guide-border);">README</div>
+          <div class="lh-box" style="background: rgba(255,255,255,0.03); border-color: var(--guide-border);">Overview</div>
+          <div class="lh-box" style="background: rgba(255,255,255,0.03); border-color: var(--guide-border);">Scoring Process</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="lh-flow">
+      <span>Guidance and process framing set the operating context for intake and scoring</span>
+      <span class="arrow">↓</span>
+    </div>
+
+    <!-- Intake -->
+    <section class="lh-band" style="background: var(--intake-bg);">
+      <div class="lh-band-title">Assessment Intake Layer</div>
+      <div class="lh-band-body">
+        <div class="grid gap-3 xl:grid-cols-[0.95fr_1fr_1.2fr]">
           <div>
-            <div class="cx-pill cx-pill--blue">Project Lighthouse</div>
-            <h1 class="cx-hero-heading mt-4">Backend Architecture Map</h1>
-            <p class="cx-body mt-4 max-w-3xl">
-              Box-by-box view of how Lighthouse portal intake, stakeholder submissions, governed objects, scoring logic, controls, workflow, and portfolio outcomes fit together behind the maturity framework.
-            </p>
-          </div>
-
-          <div class="lh-meta-grid md:w-[360px]">
-            <div class="cx-card p-4">
-              <div class="cx-eyebrow">Role</div>
-              <div class="mt-2 text-sm font-semibold text-white">Operating backbone</div>
-            </div>
-            <div class="cx-card p-4">
-              <div class="cx-eyebrow">Focus</div>
-              <div class="mt-2 text-sm font-semibold text-white">Maturity, readiness, prioritisation</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="lh-top-grid mt-8">
-        <div class="lh-panel p-5" style="border-color: rgba(44,176,205,0.35);">
-          <div class="lh-chip" style="background: rgba(44,176,205,0.12); color: var(--cx-utility-blue); border-color: rgba(44,176,205,0.35);">Assessment Portal</div>
-          <p class="cx-body mt-3">The front-door intake point where Lighthouse assessments are launched and collected.</p>
-          <div class="lh-item-grid mt-4">
-            <div class="lh-item">Assessment Portal</div>
-          </div>
-        </div>
-
-        <div class="lh-hide-xl">
-          <div class="lh-arrow-pill">Routes To <span style="color: var(--cx-green);">→</span></div>
-        </div>
-
-        <div class="lh-panel p-5" style="border-color: rgba(143,255,219,0.35);">
-          <div class="lh-chip" style="background: rgba(143,255,219,0.12); color: var(--cx-green); border-color: rgba(143,255,219,0.35);">Respondents</div>
-          <p class="cx-body mt-3">The stakeholder groups responsible for completing and validating assessments.</p>
-          <div class="lh-item-grid mt-4">
-            <div class="lh-item">Offering Owners</div>
-            <div class="lh-item">Sales &amp; GTM Leaders</div>
-            <div class="lh-item">Practice Leads</div>
-            <div class="lh-item">Executive Sponsors</div>
-          </div>
-        </div>
-
-        <div class="lh-hide-xl">
-          <div class="lh-arrow-pill">Submit <span style="color: var(--cx-green);">→</span></div>
-        </div>
-
-        <div class="lh-panel p-5" style="border-color: rgba(100,0,236,0.35);">
-          <div class="lh-chip" style="background: rgba(100,0,236,0.12); color: var(--cx-purple); border-color: rgba(100,0,236,0.35);">Submission Types</div>
-          <p class="cx-body mt-3">The structured inputs captured through the portal and passed into Lighthouse records.</p>
-          <div class="lh-item-grid mt-4">
-            <div class="lh-item">Structured Scores</div>
-            <div class="lh-item">Evidence Links</div>
-            <div class="lh-item">Comments / Context</div>
-            <div class="lh-item">Gap Flags</div>
-            <div class="lh-item">Readiness Inputs</div>
-            <div class="lh-item">Dependencies / Risks</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="lh-arrow-row">
-        <div class="flex justify-center xl:justify-end">
-          <div class="lh-arrow-pill">Creates Records For <span style="color: var(--cx-green);">→</span></div>
-        </div>
-        <div class="flex justify-center">
-          <div class="lh-arrow-pill">Feeds <span style="color: var(--cx-green);">→</span></div>
-        </div>
-        <div></div>
-      </div>
-
-      <div class="lh-connector">
-        <div class="lh-connector-line"></div>
-        <div class="lh-connector-label">Portal Submissions Flow Into Governed Model And Scoring Engine</div>
-        <div class="lh-connector-line"></div>
-      </div>
-
-      <div class="lh-main-grid">
-        <div class="lh-panel p-5" style="border-color: rgba(143,255,219,0.35);">
-          <div class="lh-chip" style="background: rgba(143,255,219,0.12); color: var(--cx-green); border-color: rgba(143,255,219,0.35);">Governed Objects</div>
-          <p class="cx-body mt-3">
-            The core entities Lighthouse manages and the relationship path that turns raw submissions into scored records.
-          </p>
-
-          <div class="lh-item-grid mt-4">
-            <div class="lh-item">Offering</div>
-            <div class="lh-item">Vertical / Specialisation</div>
-            <div class="lh-item">Technical Capability</div>
-            <div class="lh-item">Asset / Accelerator</div>
-            <div class="lh-item">Evidence Item</div>
-            <div class="lh-item">Criterion</div>
-            <div class="lh-item">Owner</div>
-            <div class="lh-item">Dependency / Risk</div>
-          </div>
-
-          <div class="lh-mini-flow mt-5">
-            <div class="cx-eyebrow">Relationship Hub</div>
-
-            <div class="mt-4 space-y-3">
-              <div class="flex items-center gap-3">
-                <div class="min-w-0 flex-1 rounded-2xl border px-4 py-3" style="border-color: rgba(143,255,219,0.35); background: rgba(143,255,219,0.08);">
-                  <div class="text-sm font-semibold text-white">Offering</div>
-                  <div class="mt-1 text-[11px] uppercase tracking-[0.16em]" style="color: rgba(242,242,244,0.65);">targets verticals • uses assets</div>
-                </div>
-                <div class="lh-arrow-pill">Links To <span style="color: var(--cx-green);">→</span></div>
-              </div>
-
-              <div class="flex items-center gap-3">
-                <div class="min-w-0 flex-1 rounded-2xl border px-4 py-3" style="border-color: rgba(100,0,236,0.35); background: rgba(100,0,236,0.08);">
-                  <div class="text-sm font-semibold text-white">Technical Capability</div>
-                  <div class="mt-1 text-[11px] uppercase tracking-[0.16em]" style="color: rgba(242,242,244,0.65);">supports offering delivery</div>
-                </div>
-                <div class="lh-arrow-pill">Links To <span style="color: var(--cx-green);">→</span></div>
-              </div>
-
-              <div class="flex items-center gap-3">
-                <div class="min-w-0 flex-1 rounded-2xl border px-4 py-3" style="border-color: rgba(246,82,117,0.35); background: rgba(246,82,117,0.08);">
-                  <div class="text-sm font-semibold text-white">Evidence Item</div>
-                  <div class="mt-1 text-[11px] uppercase tracking-[0.16em]" style="color: rgba(242,242,244,0.65);">proves readiness and claims</div>
-                </div>
-                <div class="lh-arrow-pill">Links To <span style="color: var(--cx-green);">→</span></div>
-              </div>
-
-              <div class="flex items-center gap-3">
-                <div class="min-w-0 flex-1 rounded-2xl border px-4 py-3" style="border-color: rgba(192,166,255,0.35); background: rgba(192,166,255,0.08);">
-                  <div class="text-sm font-semibold text-white">Criterion</div>
-                  <div class="mt-1 text-[11px] uppercase tracking-[0.16em]" style="color: rgba(242,242,244,0.65);">scores maturity dimensions</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="lh-panel p-6" style="border-color: rgba(192,166,255,0.35); background: linear-gradient(180deg, rgba(192,166,255,0.10), rgba(255,255,255,0.02));">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <div class="lh-chip" style="background: rgba(192,166,255,0.12); color: var(--cx-lavender); border-color: rgba(192,166,255,0.35);">Central Engine</div>
-              <h2 class="cx-section-heading mt-4">Lighthouse Scoring &amp; Governance Engine</h2>
-              <p class="cx-body mt-3">
-                Converts connected Lighthouse records, evidence, criteria, and dependencies into credible maturity outputs, authority thresholds, and decision-ready status.
-              </p>
+            <div class="lh-section-label">Entry Points</div>
+            <div class="grid gap-2">
+              <div class="lh-box" style="background: rgba(255,255,255,0.03); border-color: var(--intake-border);">Assessment Portal</div>
+              <div class="lh-box" style="background: rgba(255,255,255,0.03); border-color: var(--intake-border);">Evidence Collection</div>
+              <div class="lh-box" style="background: rgba(255,255,255,0.03); border-color: var(--intake-border);">Scoring Session</div>
             </div>
           </div>
 
-          <div class="lh-item-grid mt-5">
-            <div class="lh-item">Weighted Scoring</div>
-            <div class="lh-item">Must-Have Rules</div>
-            <div class="lh-item">Authority Thresholds</div>
-            <div class="lh-item">Strength / Confidence</div>
-            <div class="lh-item">Composite Score</div>
-            <div class="lh-item">Maturity Level Assignment</div>
+          <div>
+            <div class="lh-section-label">Respondents</div>
+            <div class="grid gap-2">
+              <div class="lh-box" style="background: rgba(255,255,255,0.03); border-color: var(--intake-border);">Offering Owners</div>
+              <div class="lh-box" style="background: rgba(255,255,255,0.03); border-color: var(--intake-border);">Sales &amp; GTM Leaders</div>
+              <div class="lh-box" style="background: rgba(255,255,255,0.03); border-color: var(--intake-border);">Practice Leads</div>
+              <div class="lh-box" style="background: rgba(255,255,255,0.03); border-color: var(--intake-border);">Executive Sponsors</div>
+            </div>
           </div>
 
-          <div class="lh-mini-flow mt-6">
-            <div class="cx-eyebrow">Engine Logic</div>
-            <p class="cx-body mt-3">
-              Portal submissions from offering owners, GTM leaders, practice leads, and sponsors are translated into Lighthouse records. Structured scores, evidence links, comments, readiness inputs, and dependency flags are assessed against Lighthouse criteria, adjusted by must-have rules, evidence strength, and dependencies, then converted into maturity levels and next actions.
-            </p>
-          </div>
-        </div>
-
-        <div class="lh-panel p-5" style="border-color: rgba(192,166,255,0.35);">
-          <div class="lh-chip" style="background: rgba(192,166,255,0.12); color: var(--cx-lavender); border-color: rgba(192,166,255,0.35);">Portfolio Outputs</div>
-          <p class="cx-body mt-3">
-            Decision-ready outcomes produced for leadership, GTM, enablement, and a structured assets experience for Sales and Marketing.
-          </p>
-
-          <div class="lh-output-grid mt-4">
-            <div class="lh-item">Readiness Decision</div>
-            <div class="lh-item">Investment Priority</div>
-            <div class="lh-item">Portfolio Ranking</div>
-            <div class="lh-item">Structured GTM Assets Portal</div>
-            <div class="lh-item">Maturity Heatmap</div>
-            <div class="lh-item">Revenue / Adoption Tracking</div>
+          <div>
+            <div class="lh-section-label">Captured Inputs</div>
+            <div class="grid gap-2 md:grid-cols-2">
+              <div class="lh-box" style="background: rgba(255,255,255,0.03); border-color: var(--intake-border);">Current Score (1–5)</div>
+              <div class="lh-box" style="background: rgba(255,255,255,0.03); border-color: var(--intake-border);">Target Score (1–5)</div>
+              <div class="lh-box" style="background: rgba(255,255,255,0.03); border-color: var(--intake-border);">Confidence (H / M / L)</div>
+              <div class="lh-box" style="background: rgba(255,255,255,0.03); border-color: var(--intake-border);">Evidence / Justification</div>
+              <div class="lh-box" style="background: rgba(255,255,255,0.03); border-color: var(--intake-border);">Data Gaps to Close</div>
+              <div class="lh-box" style="background: rgba(255,255,255,0.03); border-color: var(--intake-border);">Dependencies / Risks</div>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="lh-flow-legend">
-        <div class="flex justify-center xl:justify-end">
-          <div class="lh-connector-label">Entities Feed Scoring</div>
-        </div>
-        <div class="flex justify-center">
-          <div class="lh-connector-label">Scoring Drives Decisions</div>
-        </div>
-        <div class="flex justify-center xl:justify-start">
-          <div class="lh-connector-label">Outputs Inform Action</div>
-        </div>
-      </div>
+    <div class="lh-flow">
+      <span>Evidence and scoring inputs update Lighthouse trackers and assessed records</span>
+      <span class="arrow">↓</span>
+    </div>
 
-      <div class="my-4 grid gap-3 xl:grid-cols-[1.2fr_auto_1fr] xl:items-center">
-        <div class="flex justify-center xl:justify-end">
-          <div class="lh-arrow-pill">Drives <span style="color: var(--cx-green);">→</span></div>
-        </div>
-        <div class="hidden xl:flex items-center justify-center text-xl" style="color: var(--cx-green);">↓</div>
-        <div class="flex justify-center xl:justify-start">
-          <div class="lh-arrow-pill">Governed By <span style="color: var(--cx-green);">→</span></div>
-        </div>
-      </div>
-
-      <div class="lh-connector">
-        <div class="lh-connector-line"></div>
-        <div class="lh-connector-label">Operationalised Through Workflow And Controls</div>
-        <div class="lh-connector-line"></div>
-      </div>
-
-      <div class="my-4 flex justify-center">
-        <div class="lh-arrow-pill">Translates Into MVP <span style="color: var(--cx-green);">→</span></div>
-      </div>
-
-      <div class="lh-bottom-grid">
-        <div class="lh-panel p-5" style="border-color: rgba(246,82,117,0.35);">
-          <div class="lh-chip" style="background: rgba(246,82,117,0.12); color: var(--cx-red); border-color: rgba(246,82,117,0.35);">Lifecycle Workflow</div>
-          <p class="cx-body mt-3">The operational path for moving an offering or capability from idea to scaled readiness.</p>
-
-          <div class="lh-item-grid mt-4">
-            <div class="lh-item">Intake</div>
-            <div class="lh-item">Assess</div>
-            <div class="lh-item">Shape</div>
-            <div class="lh-item">Enable</div>
-            <div class="lh-item">Launch</div>
-            <div class="lh-item">Scale</div>
+    <!-- Governed Records -->
+    <section class="lh-band" style="background: var(--record-bg);">
+      <div class="lh-band-title">Governed Record Model</div>
+      <div class="lh-band-body">
+        <div class="grid gap-3 xl:grid-cols-[0.9fr_1fr_1.1fr]">
+          <div>
+            <div class="lh-section-label" style="color: var(--green);">Core Workbook Trackers</div>
+            <div class="grid gap-2">
+              <div class="lh-box" style="background: rgba(143,255,219,0.05); border-color: var(--record-border);">Commercial Tracker</div>
+              <div class="lh-box" style="background: rgba(143,255,219,0.05); border-color: var(--record-border);">Specialisation Tracker</div>
+              <div class="lh-box" style="background: rgba(143,255,219,0.05); border-color: var(--record-border);">Technical Tracker</div>
+            </div>
           </div>
-        </div>
 
-        <div class="lh-panel p-5" style="border-color: rgba(100,0,236,0.35);">
-          <div class="lh-chip" style="background: rgba(100,0,236,0.12); color: var(--cx-purple); border-color: rgba(100,0,236,0.35);">Controls &amp; Action Layer</div>
-          <p class="cx-body mt-3">The control system that closes gaps, manages blockers, and maintains review discipline.</p>
+          <div>
+            <div class="lh-section-label" style="color: var(--green);">Assessed Objects</div>
+            <div class="grid gap-2">
+              <div class="lh-box" style="background: rgba(143,255,219,0.05); border-color: var(--record-border);">Offering</div>
+              <div class="lh-box" style="background: rgba(143,255,219,0.05); border-color: var(--record-border);">Vertical</div>
+              <div class="lh-box" style="background: rgba(143,255,219,0.05); border-color: var(--record-border);">Capability / Module</div>
+              <div class="lh-box" style="background: rgba(143,255,219,0.05); border-color: var(--record-border);">Evidence Item</div>
+              <div class="lh-box" style="background: rgba(143,255,219,0.05); border-color: var(--record-border);">Owner</div>
+              <div class="lh-box" style="background: rgba(143,255,219,0.05); border-color: var(--record-border);">Dependency / Risk</div>
+            </div>
+          </div>
 
-          <div class="lh-item-grid mt-4">
-            <div class="lh-item">Actions</div>
-            <div class="lh-item">Milestones</div>
-            <div class="lh-item">Reviews</div>
-            <div class="lh-item">Blockers</div>
-            <div class="lh-item">Approvals</div>
-            <div class="lh-item">Priority Gaps</div>
+          <div>
+            <div class="lh-section-label" style="color: var(--green);">Key Relationships</div>
+            <div class="grid gap-2">
+              <div class="lh-box" style="background: rgba(143,255,219,0.05); border-color: var(--record-border);">Commercial Tracker → offering maturity</div>
+              <div class="lh-box" style="background: rgba(143,255,219,0.05); border-color: var(--record-border);">Specialisation Tracker → vertical maturity</div>
+              <div class="lh-box" style="background: rgba(143,255,219,0.05); border-color: var(--record-border);">Technical Tracker → technical / authority evidence</div>
+              <div class="lh-box" style="background: rgba(143,255,219,0.05); border-color: var(--record-border);">Evidence Item → validates criterion score</div>
+              <div class="lh-box" style="background: rgba(143,255,219,0.05); border-color: var(--record-border);">Owner → accountable for collection and update</div>
+              <div class="lh-box" style="background: rgba(143,255,219,0.05); border-color: var(--record-border);">Dependencies / Risks → create blockers and actions</div>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="lh-panel mt-6 p-6" style="border-color: rgba(143,255,219,0.35);">
-        <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
-          <div class="md:max-w-sm">
-            <div class="lh-chip" style="background: rgba(143,255,219,0.12); color: var(--cx-green); border-color: rgba(143,255,219,0.35);">MVP Delivery Layer</div>
-            <h3 class="cx-section-heading mt-4">How Lighthouse Produces The MVP</h3>
-            <p class="cx-body mt-3">
-              The backend does not stop at scoring. It feeds a first live Lighthouse experience by turning structured records and outputs into a SharePoint-based portfolio view, standardised offering pages, and linked GTM collateral for Sales and Marketing.
-            </p>
+    <div class="lh-flow">
+      <span>Tracker records are evaluated against checklist sources and stage definitions</span>
+      <span class="arrow">↓</span>
+    </div>
+
+    <!-- Library -->
+    <section class="lh-band" style="background: var(--library-bg);">
+      <div class="lh-band-title">Checklist &amp; Stage Library</div>
+      <div class="lh-band-body">
+        <div class="grid gap-3 xl:grid-cols-[0.85fr_1.15fr]">
+          <div>
+            <div class="lh-section-label" style="color: var(--teal);">Source Libraries</div>
+            <div class="grid gap-2">
+              <div class="lh-box" style="background: rgba(113,241,247,0.04); border-color: var(--library-border);">Milestone Checklist</div>
+              <div class="lh-box" style="background: rgba(113,241,247,0.04); border-color: var(--library-border);">Master Checklist</div>
+              <div class="lh-box" style="background: rgba(113,241,247,0.04); border-color: var(--library-border);">GTM Milestone Map</div>
+            </div>
           </div>
 
-          <div class="lh-mvp-grid flex-1">
-            <div class="lh-item">Live SharePoint Offerings Site</div>
-            <div class="lh-item">Portfolio Overview View</div>
-            <div class="lh-item">Standardised Offering Page</div>
-            <div class="lh-item">Maturity Stage &amp; Ownership</div>
-            <div class="lh-item">Links To Core GTM Collateral</div>
-            <div class="lh-item">Consistent Source Of Truth</div>
+          <div>
+            <div class="lh-section-label" style="color: var(--teal);">Stage Views</div>
+            <div class="grid gap-2 md:grid-cols-2 xl:grid-cols-5">
+              <div class="lh-box" style="background: rgba(113,241,247,0.04); border-color: var(--library-border);">L1 Ad Hoc</div>
+              <div class="lh-box" style="background: rgba(113,241,247,0.04); border-color: var(--library-border);">L2 Developing</div>
+              <div class="lh-box" style="background: rgba(113,241,247,0.04); border-color: var(--library-border);">L3 Standardized</div>
+              <div class="lh-box" style="background: rgba(113,241,247,0.04); border-color: var(--library-border);">L4 Advanced</div>
+              <div class="lh-box" style="background: rgba(113,241,247,0.04); border-color: var(--library-border);">L5 Best-In-Class</div>
+            </div>
+
+            <div class="lh-note" style="border-color: var(--library-border);">
+              Stage progression and checklist completion should align to the workbook scoring logic thresholds: 60% / 70% / 80% / 90%.
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="lh-panel mt-6 p-6">
-        <div class="cx-eyebrow">Positioning</div>
-        <h3 class="cx-section-heading mt-3">What This Backend Model Says</h3>
-        <p class="cx-body mt-4 max-w-5xl">
-          Project Lighthouse is not just a scorecard. It is the backend operating model for managing offering maturity — connecting portal intake, stakeholder submissions, governed entities, relationship logic, evidence-based scoring, workflow control, and portfolio decisions, then translating those outputs into the MVP SharePoint experience, including portfolio visibility, standardised offering pages, and a structured GTM assets portal for Sales and Marketing.
-        </p>
+    <div class="lh-flow">
+      <span>Tracker values, checklist completion, and config rules feed the scoring engine</span>
+      <span class="arrow">↓</span>
+    </div>
+
+    <!-- Governance -->
+    <section class="lh-band" style="background: var(--governance-bg);">
+      <div class="lh-band-title">Scoring &amp; Governance Engine</div>
+      <div class="lh-band-body">
+        <div class="grid gap-3 xl:grid-cols-[1fr_1.05fr]">
+          <div>
+            <div class="lh-section-label" style="color: var(--lavender);">Workbook Logic Sources</div>
+            <div class="grid gap-2 md:grid-cols-2">
+              <div class="lh-box" style="background: rgba(192,166,255,0.06); border-color: var(--governance-border);">Framework Config</div>
+              <div class="lh-box" style="background: rgba(192,166,255,0.06); border-color: var(--governance-border);">Criterion Crosswalk</div>
+              <div class="lh-box" style="background: rgba(192,166,255,0.06); border-color: var(--governance-border);">Scoring Logic</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="lh-section-label" style="color: var(--lavender);">Calculated Outputs</div>
+            <div class="grid gap-2 md:grid-cols-2">
+              <div class="lh-box" style="background: rgba(192,166,255,0.06); border-color: var(--governance-border);">Score (1–5)</div>
+              <div class="lh-box" style="background: rgba(192,166,255,0.06); border-color: var(--governance-border);">Target (1–5)</div>
+              <div class="lh-box" style="background: rgba(192,166,255,0.06); border-color: var(--governance-border);">Gap</div>
+              <div class="lh-box" style="background: rgba(192,166,255,0.06); border-color: var(--governance-border);">Level</div>
+              <div class="lh-box" style="background: rgba(192,166,255,0.06); border-color: var(--governance-border);">Band</div>
+              <div class="lh-box" style="background: rgba(192,166,255,0.06); border-color: var(--governance-border);">Progress %</div>
+              <div class="lh-box" style="background: rgba(192,166,255,0.06); border-color: var(--governance-border);">Authority Level</div>
+              <div class="lh-box" style="background: rgba(192,166,255,0.06); border-color: var(--governance-border);">Must-Have Gaps</div>
+            </div>
+
+            <div class="lh-note" style="border-color: var(--governance-border);">
+              This layer applies thresholds, must-haves, criterion weights, checklist completion, and authority rules to determine claimed level, readiness band, progress, and must-have gaps.
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
+
+    <div class="lh-flow">
+      <span>Scores, gaps, and authority outputs drive actions, review cadence, and progression</span>
+      <span class="arrow">↓</span>
+    </div>
+
+    <!-- Workflow -->
+    <section class="lh-band" style="background: var(--workflow-bg);">
+      <div class="lh-band-title">Workflow &amp; Controls</div>
+      <div class="lh-band-body">
+        <div class="grid gap-3 xl:grid-cols-[1fr_1fr]">
+          <div>
+            <div class="lh-section-label" style="color: var(--red);">Lifecycle Workflow</div>
+            <div class="grid gap-2 md:grid-cols-3">
+              <div class="lh-box" style="background: rgba(246,82,117,0.04); border-color: var(--workflow-border);">Intake</div>
+              <div class="lh-box" style="background: rgba(246,82,117,0.04); border-color: var(--workflow-border);">Assess</div>
+              <div class="lh-box" style="background: rgba(246,82,117,0.04); border-color: var(--workflow-border);">Shape</div>
+              <div class="lh-box" style="background: rgba(246,82,117,0.04); border-color: var(--workflow-border);">Enable</div>
+              <div class="lh-box" style="background: rgba(246,82,117,0.04); border-color: var(--workflow-border);">Launch</div>
+              <div class="lh-box" style="background: rgba(246,82,117,0.04); border-color: var(--workflow-border);">Scale</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="lh-section-label" style="color: var(--red);">Control Layer</div>
+            <div class="grid gap-2 md:grid-cols-3">
+              <div class="lh-box" style="background: rgba(246,82,117,0.04); border-color: var(--workflow-border);">Evidence Collection</div>
+              <div class="lh-box" style="background: rgba(246,82,117,0.04); border-color: var(--workflow-border);">Scoring Session</div>
+              <div class="lh-box" style="background: rgba(246,82,117,0.04); border-color: var(--workflow-border);">Action Log</div>
+              <div class="lh-box" style="background: rgba(246,82,117,0.04); border-color: var(--workflow-border);">Reviews</div>
+              <div class="lh-box" style="background: rgba(246,82,117,0.04); border-color: var(--workflow-border);">Approvals</div>
+              <div class="lh-box" style="background: rgba(246,82,117,0.04); border-color: var(--workflow-border);">Priority Gaps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="lh-flow">
+      <span>Controlled outputs roll up into portfolio visibility and prioritisation</span>
+      <span class="arrow">↓</span>
+    </div>
+
+    <!-- Outputs -->
+    <section class="lh-band" style="background: var(--output-bg);">
+      <div class="lh-band-title">Portfolio Outputs</div>
+      <div class="lh-band-body">
+        <div class="grid gap-2 md:grid-cols-2 xl:grid-cols-3">
+          <div class="lh-box" style="background: rgba(113,241,247,0.04); border-color: var(--output-border);">Readiness Decision</div>
+          <div class="lh-box" style="background: rgba(113,241,247,0.04); border-color: var(--output-border);">Investment Priority</div>
+          <div class="lh-box" style="background: rgba(113,241,247,0.04); border-color: var(--output-border);">Portfolio Ranking</div>
+          <div class="lh-box" style="background: rgba(113,241,247,0.04); border-color: var(--output-border);">Structured GTM Assets Portal</div>
+          <div class="lh-box" style="background: rgba(113,241,247,0.04); border-color: var(--output-border);">Maturity Heatmap</div>
+          <div class="lh-box" style="background: rgba(113,241,247,0.04); border-color: var(--output-border);">Revenue / Adoption Tracking</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="lh-flow">
+      <span>Portfolio outputs translate into the MVP portal experience</span>
+      <span class="arrow">↓</span>
+    </div>
+
+    <!-- MVP -->
+    <section class="lh-band" style="background: var(--mvp-bg);">
+      <div class="lh-band-title">MVP Delivery Layer</div>
+      <div class="lh-band-body">
+        <div class="grid gap-2 md:grid-cols-2 xl:grid-cols-3">
+          <div class="lh-box" style="background: rgba(44,176,205,0.05); border-color: var(--mvp-border);">Live SharePoint Offerings Site</div>
+          <div class="lh-box" style="background: rgba(44,176,205,0.05); border-color: var(--mvp-border);">Portfolio Overview View</div>
+          <div class="lh-box" style="background: rgba(44,176,205,0.05); border-color: var(--mvp-border);">Standardised Offering Page</div>
+          <div class="lh-box" style="background: rgba(44,176,205,0.05); border-color: var(--mvp-border);">Maturity Stage &amp; Ownership</div>
+          <div class="lh-box" style="background: rgba(44,176,205,0.05); border-color: var(--mvp-border);">Links to Core GTM Collateral</div>
+          <div class="lh-box" style="background: rgba(44,176,205,0.05); border-color: var(--mvp-border);">Consistent Source of Truth</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Positioning -->
+    <div
+      class="mt-4 border px-4 py-4"
+      style="
+        border-color: var(--line);
+        background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02));
+        box-shadow: 0 12px 26px rgba(0,0,0,0.10);
+      "
+    >
+      <div class="text-[11px] font-bold uppercase tracking-[0.16em]" style="color: var(--sub);">
+        Positioning
+      </div>
+      <p class="mt-2 max-w-5xl text-[14px] leading-6" style="color: var(--sub);">
+        Lighthouse is the operating model behind the portal: workbook guidance frames collection, evidence and scoring inputs feed the three core trackers, checklist and stage libraries provide maturity rules, scoring logic converts tracker data into score, level, band, progress, authority, and must-have outputs, workflow turns gaps into Action Log priorities, and the resulting portfolio data powers the MVP Sales and Marketing experience.
+      </p>
     </div>
   </div>
 </body>
