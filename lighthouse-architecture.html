@@ -1,1 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lighthouse Backend Architecture</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --midnight: #040E3D;
+      --bright-green: #8FFFDB;
+      --bright-blue: #71F1F7;
+      --utility-blue: #2CB0CD;
+      --purple: #6400EC;
+      --lavender: #C0A6FF;
+      --callout-red: #F65275;
+      --crisp-grey: #F2F2F4;
 
+      --bg: #040E3D;
+      --panel: rgba(255,255,255,0.05);
+      --panel2: rgba(255,255,255,0.04);
+      --border: rgba(113, 241, 247, 0.18);
+      --text: #ffffff;
+      --sub: rgba(255,255,255,0.72);
+
+      --teal: #8FFFDB;
+      --tealSoft: #71F1F7;
+      --blue: #2CB0CD;
+      --amber: #C0A6FF;
+      --coral: #F65275;
+      --violet: #6400EC;
+      --pink: #C0A6FF;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(113, 241, 247, 0.14), transparent 24%),
+        radial-gradient(circle at top right, rgba(143, 255, 219, 0.10), transparent 18%),
+        linear-gradient(180deg, #0a1652 0%, #040E3D 42%, #040E3D 100%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02));
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.28);
+    }
+
+    .chip {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      border: 1px solid;
+    }
+
+    .item {
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+      padding: 0.9rem 1rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .arrow-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--sub);
+      border-radius: 999px;
+      padding: 0.4rem 0.8rem;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .connector {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+
+    .connector-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(143,255,219,0), rgba(143,255,219,0.65), rgba(143,255,219,0));
+    }
+
+    .connector-label {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--sub);
+      border-radius: 999px;
+      padding: 0.35rem 0.8rem;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .mini-flow {
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: rgba(10,29,41,0.72);
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="mx-auto max-w-7xl px-6 py-8 md:px-10 md:py-10">
+    <div class="mb-8 rounded-[30px] border p-6 shadow-2xl" style="background:linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%); border-color: var(--border);">
+      <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div>
+          <div class="mb-2 inline-flex rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em]" style="border-color:rgba(113,241,247,0.24); color:var(--sub);">
+            Project Lighthouse
+          </div>
+          <h1 class="text-3xl font-semibold tracking-tight md:text-5xl">Backend Architecture Map</h1>
+          <p class="mt-3 max-w-3xl text-sm leading-6 md:text-base" style="color:var(--sub);">
+            Box-by-box view of how Lighthouse portal intake, stakeholder submissions, governed objects, scoring logic, controls, workflow, and portfolio outcomes fit together behind the maturity framework.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 gap-3 md:w-[360px]">
+          <div class="rounded-2xl border p-4" style="border-color:var(--border); background:var(--panel2);">
+            <div class="text-xs uppercase tracking-[0.18em]" style="color:var(--sub);">Role</div>
+            <div class="mt-2 text-sm font-medium">Operating backbone</div>
+          </div>
+          <div class="rounded-2xl border p-4" style="border-color:var(--border); background:var(--panel2);">
+            <div class="text-xs uppercase tracking-[0.18em]" style="color:var(--sub);">Focus</div>
+            <div class="mt-2 text-sm font-medium">Maturity, readiness, prioritisation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid gap-6 xl:grid-cols-[0.8fr_auto_1fr_auto_1fr] xl:items-stretch">
+      <div class="panel p-5" style="border-color:rgba(44,176,205,0.35);">
+        <div class="chip" style="background:rgba(44,176,205,0.12); color:var(--blue); border-color:rgba(44,176,205,0.35);">Assessment Portal</div>
+        <p class="mt-3 text-xs leading-6" style="color:var(--sub);">The front-door intake point where Lighthouse assessments are launched and collected.</p>
+        <div class="mt-4 grid gap-3">
+          <div class="item">Assessment Portal</div>
+        </div>
+      </div>
+
+      <div class="hidden xl:flex items-center justify-center">
+        <div class="arrow-pill">Routes To <span style="color:var(--teal);">→</span></div>
+      </div>
+
+      <div class="panel p-5" style="border-color:rgba(143,255,219,0.35);">
+        <div class="chip" style="background:rgba(143,255,219,0.12); color:var(--teal); border-color:rgba(143,255,219,0.35);">Respondents</div>
+        <p class="mt-3 text-xs leading-6" style="color:var(--sub);">The stakeholder groups responsible for completing and validating assessments.</p>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="item">Offering Owners</div>
+          <div class="item">Sales &amp; GTM Leaders</div>
+          <div class="item">Practice Leads</div>
+          <div class="item">Executive Sponsors</div>
+        </div>
+      </div>
+
+      <div class="hidden xl:flex items-center justify-center">
+        <div class="arrow-pill">Submit <span style="color:var(--teal);">→</span></div>
+      </div>
+
+      <div class="panel p-5" style="border-color:rgba(100,0,236,0.35);">
+        <div class="chip" style="background:rgba(100,0,236,0.12); color:var(--violet); border-color:rgba(100,0,236,0.35);">Submission Types</div>
+        <p class="mt-3 text-xs leading-6" style="color:var(--sub);">The structured inputs captured through the portal and passed into Lighthouse records.</p>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="item">Structured Scores</div>
+          <div class="item">Evidence Links</div>
+          <div class="item">Comments / Context</div>
+          <div class="item">Gap Flags</div>
+          <div class="item">Readiness Inputs</div>
+          <div class="item">Dependencies / Risks</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="my-4 grid gap-3 xl:grid-cols-[1.1fr_1.2fr_1fr]">
+      <div class="flex justify-center xl:justify-end">
+        <div class="arrow-pill">Creates Records For <span style="color:var(--teal);">→</span></div>
+      </div>
+      <div class="flex justify-center">
+        <div class="arrow-pill">Feeds <span style="color:var(--teal);">→</span></div>
+      </div>
+      <div></div>
+    </div>
+
+    <div class="connector">
+      <div class="connector-line"></div>
+      <div class="connector-label">Portal Submissions Flow Into Governed Model And Scoring Engine</div>
+      <div class="connector-line"></div>
+    </div>
+
+    <div class="grid gap-6 xl:grid-cols-[1.1fr_1.2fr_1fr]">
+      <div class="panel p-5" style="border-color:rgba(143,255,219,0.35);">
+        <div class="chip" style="background:rgba(143,255,219,0.12); color:var(--teal); border-color:rgba(143,255,219,0.35);">Governed Objects</div>
+        <p class="mt-3 text-xs leading-6" style="color:var(--sub);">
+          The core entities Lighthouse manages and the relationship path that turns raw submissions into scored records.
+        </p>
+
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="item">Offering</div>
+          <div class="item">Vertical / Specialisation</div>
+          <div class="item">Technical Capability</div>
+          <div class="item">Asset / Accelerator</div>
+          <div class="item">Evidence Item</div>
+          <div class="item">Criterion</div>
+          <div class="item">Owner</div>
+          <div class="item">Dependency / Risk</div>
+        </div>
+
+        <div class="mini-flow mt-5">
+          <div class="text-xs uppercase tracking-[0.18em]" style="color:var(--sub);">Relationship Hub</div>
+          <div class="mt-4 space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="flex-1 rounded-2xl border px-4 py-3" style="border-color:rgba(143,255,219,0.35); background:rgba(143,255,219,0.08);">
+                <div class="text-sm font-semibold">Offering</div>
+                <div class="mt-1 text-[11px] uppercase tracking-[0.16em]" style="color:var(--sub);">targets verticals • uses assets</div>
+              </div>
+              <div class="arrow-pill">Links To <span style="color:var(--teal);">→</span></div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <div class="flex-1 rounded-2xl border px-4 py-3" style="border-color:rgba(100,0,236,0.35); background:rgba(100,0,236,0.08);">
+                <div class="text-sm font-semibold">Technical Capability</div>
+                <div class="mt-1 text-[11px] uppercase tracking-[0.16em]" style="color:var(--sub);">supports offering delivery</div>
+              </div>
+              <div class="arrow-pill">Links To <span style="color:var(--teal);">→</span></div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <div class="flex-1 rounded-2xl border px-4 py-3" style="border-color:rgba(246,82,117,0.35); background:rgba(246,82,117,0.08);">
+                <div class="text-sm font-semibold">Evidence Item</div>
+                <div class="mt-1 text-[11px] uppercase tracking-[0.16em]" style="color:var(--sub);">proves readiness and claims</div>
+              </div>
+              <div class="arrow-pill">Links To <span style="color:var(--teal);">→</span></div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <div class="flex-1 rounded-2xl border px-4 py-3" style="border-color:rgba(192,166,255,0.35); background:rgba(192,166,255,0.08);">
+                <div class="text-sm font-semibold">Criterion</div>
+                <div class="mt-1 text-[11px] uppercase tracking-[0.16em]" style="color:var(--sub);">scores maturity dimensions</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-[30px] border p-6 shadow-2xl" style="background:linear-gradient(180deg, rgba(192,166,255,0.10), rgba(255,255,255,0.02)); border-color:rgba(192,166,255,0.35);">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="chip" style="background:rgba(192,166,255,0.12); color:var(--amber); border-color:rgba(192,166,255,0.35);">Central Engine</div>
+            <h2 class="mt-3 text-2xl font-semibold md:text-3xl">Lighthouse Scoring &amp; Governance Engine</h2>
+            <p class="mt-2 text-sm leading-6" style="color:var(--sub);">
+              Converts connected Lighthouse records, evidence, criteria, and dependencies into credible maturity outputs, authority thresholds, and decision-ready status.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-5 grid gap-3 sm:grid-cols-2">
+          <div class="item">Weighted Scoring</div>
+          <div class="item">Must-Have Rules</div>
+          <div class="item">Authority Thresholds</div>
+          <div class="item">Strength / Confidence</div>
+          <div class="item">Composite Score</div>
+          <div class="item">Maturity Level Assignment</div>
+        </div>
+
+        <div class="mt-6 rounded-[24px] border p-5" style="border-color:var(--border); background:rgba(10,29,41,0.85);">
+          <div class="text-xs uppercase tracking-[0.18em]" style="color:var(--sub);">Engine Logic</div>
+          <p class="mt-2 text-sm leading-7">
+            Portal submissions from offering owners, GTM leaders, practice leads, and sponsors are translated into Lighthouse records. Structured scores, evidence links, comments, readiness inputs, and dependency flags are assessed against Lighthouse criteria, adjusted by must-have rules, evidence strength, and dependencies, then converted into maturity levels and next actions.
+          </p>
+        </div>
+      </div>
+
+      <div class="panel p-5" style="border-color:rgba(192,166,255,0.35);">
+        <div class="chip" style="background:rgba(192,166,255,0.12); color:var(--pink); border-color:rgba(192,166,255,0.35);">Portfolio Outputs</div>
+        <p class="mt-3 text-xs leading-6" style="color:var(--sub);">
+          Decision-ready outcomes produced for leadership, GTM, enablement, and a structured assets experience for Sales and Marketing.
+        </p>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="item">Readiness Decision</div>
+          <div class="item">Investment Priority</div>
+          <div class="item">Portfolio Ranking</div>
+          <div class="item">Structured GTM Assets Portal</div>
+          <div class="item">Maturity Heatmap</div>
+          <div class="item">Revenue / Adoption Tracking</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-3 grid gap-4 xl:grid-cols-[1.1fr_1.2fr_1fr]">
+      <div class="flex justify-center xl:justify-end"><div class="connector-label">Entities Feed Scoring</div></div>
+      <div class="flex justify-center"><div class="connector-label">Scoring Drives Decisions</div></div>
+      <div class="flex justify-center xl:justify-start"><div class="connector-label">Outputs Inform Action</div></div>
+    </div>
+
+    <div class="my-4 grid gap-3 xl:grid-cols-[1.2fr_auto_1fr] xl:items-center">
+      <div class="flex justify-center xl:justify-end"><div class="arrow-pill">Drives <span style="color:var(--teal);">→</span></div></div>
+      <div class="hidden xl:flex items-center justify-center text-xl" style="color:var(--teal);">↓</div>
+      <div class="flex justify-center xl:justify-start"><div class="arrow-pill">Governed By <span style="color:var(--teal);">→</span></div></div>
+    </div>
+
+    <div class="connector">
+      <div class="connector-line"></div>
+      <div class="connector-label">Operationalised Through Workflow And Controls</div>
+      <div class="connector-line"></div>
+    </div>
+
+    <div class="my-4 flex justify-center">
+      <div class="arrow-pill">Translates Into MVP <span style="color:var(--teal);">→</span></div>
+    </div>
+
+    <div class="grid gap-6 xl:grid-cols-[1.2fr_1fr]">
+      <div class="panel p-5" style="border-color:rgba(246,82,117,0.35);">
+        <div class="chip" style="background:rgba(246,82,117,0.12); color:var(--coral); border-color:rgba(246,82,117,0.35);">Lifecycle Workflow</div>
+        <p class="mt-3 text-xs leading-6" style="color:var(--sub);">The operational path for moving an offering or capability from idea to scaled readiness.</p>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="item">Intake</div>
+          <div class="item">Assess</div>
+          <div class="item">Shape</div>
+          <div class="item">Enable</div>
+          <div class="item">Launch</div>
+          <div class="item">Scale</div>
+        </div>
+      </div>
+
+      <div class="panel p-5" style="border-color:rgba(100,0,236,0.35);">
+        <div class="chip" style="background:rgba(100,0,236,0.12); color:var(--violet); border-color:rgba(100,0,236,0.35);">Controls &amp; Action Layer</div>
+        <p class="mt-3 text-xs leading-6" style="color:var(--sub);">The control system that closes gaps, manages blockers, and maintains review discipline.</p>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="item">Actions</div>
+          <div class="item">Milestones</div>
+          <div class="item">Reviews</div>
+          <div class="item">Blockers</div>
+          <div class="item">Approvals</div>
+          <div class="item">Priority Gaps</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 rounded-[30px] border p-6 shadow-2xl" style="background:var(--panel); border-color:rgba(143,255,219,0.35);">
+      <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+        <div class="md:max-w-sm">
+          <div class="chip" style="background:rgba(143,255,219,0.12); color:var(--teal); border-color:rgba(143,255,219,0.35);">MVP Delivery Layer</div>
+          <h3 class="mt-3 text-2xl font-semibold">How Lighthouse Produces The MVP</h3>
+          <p class="mt-3 text-sm leading-7" style="color:var(--sub);">
+            The backend does not stop at scoring. It feeds a first live Lighthouse experience by turning structured records and outputs into a SharePoint-based portfolio view, standardised offering pages, and linked GTM collateral for Sales and Marketing.
+          </p>
+        </div>
+        <div class="grid flex-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          <div class="item">Live SharePoint Offerings Site</div>
+          <div class="item">Portfolio Overview View</div>
+          <div class="item">Standardised Offering Page</div>
+          <div class="item">Maturity Stage &amp; Ownership</div>
+          <div class="item">Links To Core GTM Collateral</div>
+          <div class="item">Consistent Source Of Truth</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 rounded-[30px] border p-6 shadow-2xl" style="background:var(--panel2); border-color:var(--border);">
+      <div class="text-xs uppercase tracking-[0.18em]" style="color:var(--sub);">Positioning</div>
+      <h3 class="mt-2 text-2xl font-semibold">What This Backend Model Says</h3>
+      <p class="mt-3 max-w-5xl text-sm leading-7 md:text-base" style="color:var(--sub);">
+        Project Lighthouse is not just a scorecard. It is the backend operating model for managing offering maturity — connecting portal intake, stakeholder submissions, governed entities, relationship logic, evidence-based scoring, workflow control, and portfolio decisions, then translating those outputs into the MVP SharePoint experience, including portfolio visibility, standardised offering pages, and a structured GTM assets portal for Sales and Marketing.
+      </p>
+    </div>
+  </div>
+</body>
+</html>
