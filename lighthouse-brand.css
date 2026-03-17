@@ -1,0 +1,4034 @@
+
+Uploaded image
+what does this show
+
+Thought for 5s
+This looks like a conceptual ServiceNow data and process model for AI governance, showing how AI assets move from discovery, into CMDB/governance, through risk/compliance, and then into strategy and value tracking.
+At a high level, it shows an end-to-end operating model for managing AI systems:
+
+Top row: Intake and discovery
+This is how AI use cases or AI assets enter the process. It includes sources like:
+
+Now Assist auto-discovery
+Employee Centre
+Workspace intake
+API integration
+Hyperscaler discovery
+So the message is: AI assets can be discovered manually, through portals, via integrations, or eventually from cloud providers.
+CMDB foundation / AI asset inventory
+This is the core governed inventory layer. It defines the main asset types:
+
+AI system
+AI model
+AI dataset
+AI prompt
+It also shows supporting entities:
+Inputs and outputs
+Tools
+Sub AI systems
+And key relationships such as:
+AI system uses AI models
+AI model trained on datasets
+AI system uses prompts
+AI prompt linked to models
+AI system contains sub systems
+AI system has tools
+So this section is basically saying: these are the governed objects you need in CMDB, and this is how they relate to one another.
+Governance and lifecycle layer
+This is the process/control layer above the inventory. It includes:
+
+AI asset governance details
+AI asset approval request
+AI asset approval task
+And a lifecycle/playbook:
+Intake
+Assess
+Build & Test
+Deploy
+So once an AI asset exists in inventory, it triggers a governance workflow to move it through lifecycle stages.
+AI risk and compliance
+This section looks like the IRM / GRC model linked to the governed AI assets. It includes:
+
+AI system (GRC)
+Entity in IRM
+Authority documents
+Citations
+Control objectives
+Risk framework
+Risk statements
+Risk assessments
+Impact assessments
+Controls
+Control attestation
+This means the governed AI asset is then mapped into risk, policy, controls, assessments, and compliance evidence.
+AI strategy
+On the right, the model connects to strategy and portfolio management, with items like:
+
+Strategic priorities
+Demands
+Projects and epics
+Portfolio plans
+So the model is not just about governance; it also ties AI assets to investment planning and execution.
+Value and adoption / case management / intake methods
+The legend at the top suggests the colours represent different domains:
+
+CMDB / inventory
+Governance / lifecycle
+Risk and compliance
+Strategy and execution
+Value and adoption
+Case management
+Intake methods
+So this is a layered reference architecture rather than a single workflow screen.
+What it shows in plain English
+It shows how an organisation could manage AI in ServiceNow by:
+
+Discovering or registering an AI asset
+Storing it as a governed object in CMDB
+Defining its relationships to models, prompts, datasets, and tools
+Running it through a lifecycle and approval process
+Linking it to risk, controls, compliance, and regulatory requirements
+Connecting it to strategic priorities, demand, and portfolio execution
+Potentially tracking value/adoption outcomes
+The core point is:
+AI systems should not be treated as standalone experiments. They should be inventoried, governed, risk-assessed, lifecycle-managed, and connected to business strategy.
+If you want, I can also turn this into:
+
+a simple executive summary
+a cleaner labelled version of the diagram
+or a Crossfuze-style interpretation of what this means operationally.
+
+ok how can we adopt to my project lighthouse?
+
+Thought for a couple of seconds
+Yes — and there is a strong fit.
+What this diagram gives you is not a maturity model. It is a reference operating model for how AI assets are discovered, inventoried, governed, risk-assessed, and connected to execution. Project Lighthouse is different: it is a decision and maturity framework for evaluating how ready, scalable, and commercially viable an offering is.
+
+So the best move is not to copy this structure directly. It is to map its logic into Lighthouse so Lighthouse becomes the front-door scoring and orchestration layer, while the ServiceNow-style model becomes the governed operational backbone underneath.
+
+The simplest way to think about it
+This diagram answers:
+“What objects, workflows, controls, and relationships must exist to govern AI properly?”
+
+Project Lighthouse answers:
+
+“How mature is this offering, where is it weak, and what evidence proves readiness?”
+
+So the adaptation is:
+
+Lighthouse = strategic maturity lens
+This model = operational control architecture
+
+Recommended adaptation for Project Lighthouse
+1. Reframe the diagram into Lighthouse language
+You already score offerings across things like:
+Strategic Alignment
+Commercial Readiness
+Delivery Expertise
+Demand Activation
+Revenue Performance
+Stakeholder Alignment
+Governance / evidence / repeatability themes inside the framework
+This ServiceNow-style model can be translated into Lighthouse capability blocks.
+Suggested Lighthouse mapping
+ServiceNow-style layer	What it means	Lighthouse equivalent
+Intake and discovery	How opportunities / use cases enter the process	Intake / idea capture / offering onboarding
+CMDB foundation / AI asset inventory	Core governed asset model	Offering definition and asset structure
+Governance and lifecycle	Approval stages, lifecycle progression	Maturity workflow and stage-gate progression
+Risk and compliance	Controls, risks, regulatory mapping	Delivery assurance / governance / trust readiness
+AI strategy	Strategic priorities, demands, projects	Strategic alignment + portfolio prioritisation
+Value and adoption	Outcome tracking	Revenue performance / customer value / adoption
+So Lighthouse should not show “AI system”, “AI dataset”, “AI prompt” exactly as-is unless you are building a dedicated AI offering module. Instead, Lighthouse should convert them into its own managed entities.
+2. Introduce a Lighthouse entity model
+Right now Lighthouse is mainly a scoring framework. To make it more powerful, define the core entities that Lighthouse governs.
+For Crossfuze / your model, I would suggest:
+
+Primary governed entities
+Offering
+Offering module / component
+Use case
+Asset / accelerator
+Proof point / evidence
+Dependency
+Risk / constraint
+Enablement requirement
+Commercial package
+Delivery pattern
+Optional AI-specific sub-entities
+Only for AI-related offerings:
+AI use case
+AI model / tool dependency
+Prompt / agent dependency
+Data dependency
+Guardrail / governance requirement
+That mirrors the ServiceNow idea of governed objects, but in Lighthouse language.
+So instead of:
+
+AI system
+AI model
+AI prompt
+AI dataset
+You may have:
+AI-enabled offering
+Model / platform dependency
+Prompt / workflow component
+Data source / data requirement
+That will fit your framework much better.
+3. Add a formal “Lighthouse lifecycle”
+The diagram is useful because it makes the lifecycle explicit:
+Intake
+Assess
+Build & Test
+Deploy
+Lighthouse should absolutely adopt this idea.
+Suggested Lighthouse lifecycle
+I would recommend something like:
+Intake
+New offering / capability identified
+Sponsor, owner, strategic rationale logged
+Assess
+Score against Lighthouse criteria
+Identify maturity gaps
+Define required actions
+Shape
+Package offer
+Define ICP, positioning, use cases, pricing, collateral, dependencies
+Enable
+Delivery readiness
+Sales enablement
+Internal training
+Asset creation
+Launch
+Go-to-market activated
+Demand plays live
+Pipeline tracking started
+Scale
+Repeatability proven
+References, margins, attach rates, conversion data, expansion routes
+That is stronger than the ServiceNow version for your use case because Lighthouse is not only governance — it is also commercialisation.
+4. Use the diagram’s relationship logic inside Lighthouse
+This is one of the most valuable parts.
+The ServiceNow diagram shows that assets should not exist in isolation. Relationships matter:
+
+system uses model
+model trained on dataset
+prompt linked to model
+system has tools
+For Lighthouse, do the same with offering relationships.
+Example Lighthouse relationships
+Offering supports strategic priority
+Offering depends on platform capability
+Offering requires delivery skillset
+Offering uses accelerator / IP / template
+Offering needs proof points / case studies
+Offering maps to target industry / ICP
+Offering feeds campaign / GTM motion
+Offering creates pipeline / revenue / adoption outcomes
+This is powerful because Lighthouse becomes more than a scorecard. It becomes a networked decision model.
+5. Create a dedicated governance sub-layer in Lighthouse
+This is where the diagram is especially helpful.
+Right now Lighthouse can feel like a maturity assessment. To make it more executive-grade, add a clear governance layer.
+
+Add these governance objects to every offering
+Executive owner
+Commercial owner
+Delivery owner
+Review cadence
+Current maturity score
+Confidence level
+Evidence strength
+Risks / blockers
+Required actions
+Approval status
+Last reviewed date
+This mirrors the ServiceNow “governance details / approval request / approval task” logic.
+For Lighthouse, that means every offering should have:
+
+a score
+evidence
+owners
+actions
+decision status
+That is how it becomes operational, not just diagnostic.
+6. Adapt risk and compliance into “delivery trust readiness”
+Your framework probably should not surface a big GRC-heavy section unless the audience is internal governance or AI assurance. But you should adopt the concept.
+In Lighthouse terms, translate “risk and compliance” into:
+Delivery risk
+Dependency risk
+Commercial risk
+Platform / product dependency
+Legal / compliance needs
+AI governance requirements
+Data sensitivity
+Customer trust requirements
+For AI Compass or any AI-led offering, you could add an AI assurance mini-score inside Lighthouse:
+Data sensitivity understood
+Human oversight defined
+Prompt/model dependencies documented
+Security/compliance considerations identified
+Customer-facing positioning approved
+That is the practical Crossfuze version of the ServiceNow risk layer.
+7. Connect Lighthouse scoring to portfolio decisions
+This is a major win from the diagram.
+The right-hand side shows strategy feeding demand, projects, and plans.
+
+Lighthouse should do exactly that.
+
+Your adapted logic could be:
+Lighthouse score → investment priority → enablement actions → GTM activation → pipeline/value tracking
+For example:
+
+High strategic alignment + low commercial readiness = invest in packaging
+High commercial readiness + low delivery expertise = invest in enablement
+High maturity + strong proof points = promote as priority GTM play
+Low evidence + high executive demand = incubate with controlled sponsorship
+This makes Lighthouse useful not just for assessment, but for resource allocation.
+Best-fit structure for a Lighthouse page or model
+If you wanted to adapt this visually into Project Lighthouse, I would use this structure:
+A. Intake and Portfolio Entry
+Top strip:
+New offering intake
+Market signal / leadership request
+Vendor-led opportunity
+Customer-led request
+Innovation / AI opportunity
+B. Lighthouse Offering Foundation
+Core managed objects:
+Offering
+Use cases
+Assets / accelerators
+Dependencies
+Evidence
+Owners
+C. Lighthouse Maturity Engine
+Main scoring pillars:
+Strategic Alignment
+Commercial Readiness
+Delivery Expertise
+Demand Activation
+Revenue Performance
+Stakeholder Alignment
+D. Lifecycle and Governance
+Intake
+Assess
+Shape
+Enable
+Launch
+Scale
+With:
+owner
+approval status
+review date
+actions
+confidence score
+E. Risk / Trust / Readiness
+delivery risk
+dependency risk
+compliance needs
+AI/data/security considerations
+mitigation actions
+F. Portfolio and Value Outcomes
+strategic priority
+campaign alignment
+pipeline influence
+revenue contribution
+adoption / expansion signal
+That would feel very native to Lighthouse.
+What I would not do
+A few things I would avoid:
+Do not make Lighthouse too CMDB-like
+Lighthouse should remain executive-friendly and commercially useful. If you over-engineer it into a technical asset registry, it will lose adoption.
+Do not bring over ServiceNow terminology directly
+Terms like:
+entity in IRM
+citations
+control attestation
+record producers
+…are fine for system design, but not for Lighthouse’s main UX.
+Do not over-index on AI if Lighthouse is broader than AI
+Use this model as a pattern for all offerings, then add AI-specific fields only where relevant.
+My recommended adaptation path
+Option A — light adaptation
+Use this only as a conceptual input and update Lighthouse to include:
+lifecycle stages
+governed objects
+relationship mapping
+risk/readiness section
+This is fastest.
+Option B — stronger adaptation
+Build a Lighthouse operating model with:
+entity model
+scoring model
+stage gates
+evidence model
+action tracking
+portfolio outputs
+This is the better long-term design.
+Option C — dual-layer model
+Create:
+Lighthouse Executive Layer for scoring and decisions
+Operational Control Layer underneath for detailed assets, dependencies, risks, and evidence
+This is probably the best enterprise model.
+My recommendation for your project
+For Project Lighthouse, I would do this:
+Use the ServiceNow diagram as a structural reference, not a literal template.
+
+Then redesign Lighthouse around six layers:
+
+Intake
+Offering Foundation
+Maturity Scoring
+Lifecycle Governance
+Risk / Trust / Readiness
+Value / Portfolio Outcomes
+That gives you a much more complete model and makes Lighthouse feel like:
+a maturity framework
+an operating model
+a governance mechanism
+a portfolio decision tool
+all in one.
+The best single-line framing for leadership would be:
+
+“Project Lighthouse becomes the control tower for offering maturity, readiness, and investment prioritisation — connecting intake, evidence, governance, risk, and value into one operating model.”
+
+I can turn this next into either a one-page adapted Lighthouse architecture, a table mapping old Lighthouse to new Lighthouse, or a clean visual structure for your portal page.
+
+V9 Crossfuzematurity Master📖 README
+
+
+does it map to this
+
+Thought for 59s
+Yes — it maps directionally, but not 1:1.
+Your workbook is already structured as a maturity and operating model, so the ServiceNow-style diagram fits the logic of Lighthouse quite well. But it maps better as a supporting architecture pattern than as a literal field-by-field template.
+
+Where it maps well
+1. Intake / discovery → Lighthouse intake and scoring entry
+The diagram starts with different intake routes.
+In your workbook, that logic already exists in practice through:
+🗂️ Evidence Collection
+📝 Scoring Session
+the idea of recurring maturity reviews in 🧭 Overview
+So yes, this maps to your front-end process for getting an offering, vertical, or platform capability into review.
+2. Governed asset inventory → your core portfolio entities
+The diagram uses governed AI entities like:
+AI system
+AI model
+AI dataset
+AI prompt
+In Lighthouse, the equivalent is not technical AI objects, but your governed business entities:
+offering
+vertical / specialisation
+platform capability / module
+evidence
+actions / gaps
+milestones
+Your workbook clearly supports that structure already through:
+🏭 Specialisation Tracker
+📦 Commercial Tracker
+🛠️ Technical Tracker
+🧩 Master Checklist
+✅ Action Log
+So this is a strong conceptual match.
+3. Governance and lifecycle → your Authority model
+This is probably the strongest alignment.
+The diagram has a lifecycle/governance layer with:
+
+governance details
+approval request
+approval task
+stages like intake, assess, build/test, deploy
+Your workbook already has this in Lighthouse language:
+Authority thresholds
+must-haves
+completion gates
+credible level claiming
+readiness bands
+stage progression from L1 to L5
+That is effectively your own governance engine.
+4. Risk and compliance → your gaps / blockers / must-have logic
+You do not currently frame this as formal GRC, but the mechanism is there:
+must-have blockers
+evidence requirements
+confidence
+data gaps
+priority actions
+So Lighthouse already contains a lighter, more commercially usable version of “risk and compliance.”
+5. Strategy and execution → your maturity-to-investment logic
+The diagram connects governed assets to:
+strategic priorities
+demands
+projects and epics
+portfolio plans
+Your workbook does this through:
+Strategic intent in 🧭 Overview
+criterion weighting in ⚙️ Framework Config
+gap-to-action conversion in ✅ Action Log
+portfolio visibility across trackers
+So yes, this also maps.
+Where it does not map cleanly
+1. The diagram is object-centric; Lighthouse is score-centric
+The ServiceNow model is built around system objects and relationships.
+Your workbook is built around:
+criteria
+weighted scoring
+maturity levels
+stage gates
+checklist evidence
+So Lighthouse is more of a maturity control framework, whereas the diagram is more of a governed asset model.
+2. Your workbook is broader than AI governance
+The diagram is specifically about governing AI systems.
+Your workbook covers:
+commercial maturity
+vertical maturity
+technical maturity
+GTM readiness
+partner alignment
+customer expansion
+So the diagram is narrower than Lighthouse.
+3. Your entities are still implied, not fully modelled
+This is the biggest gap.
+The workbook strongly implies the core entities, but it does not yet fully formalise them as a relationship model.
+
+For example, it tracks:
+
+offerings
+verticals
+technical capabilities
+milestones
+evidence
+actions
+But it does not yet explicitly show relationships like:
+offering depends on platform capability
+offering targets vertical
+vertical requires proof
+capability supports offering
+evidence validates criterion
+action closes milestone gap
+That is where the diagram could help you strengthen Lighthouse.
+My verdict
+Yes, it maps at the operating model level
+It maps well to your workbook’s structure because both are trying to do the same broad thing:
+create a governed way to move from discovery → assessment → control → action → portfolio visibility
+
+No, it does not map as a literal structural overlay
+You should not try to force AI-specific objects like:
+AI model
+AI prompt
+AI dataset
+directly into the current Lighthouse workbook unless you are building a dedicated AI module.
+Best mapping from the diagram into your workbook
+Here is the cleanest translation:
+Diagram layer	Best workbook equivalent
+Intake and discovery	Evidence Collection + Scoring Session entry point
+Asset inventory	Commercial / Specialisation / Technical trackers
+Governance and lifecycle	Scoring Logic + Master Checklist + L1–L5 stages
+Risk and compliance	Must-haves, confidence, blockers, data gaps, actions
+Strategy and execution	Overview objectives + gap prioritisation + Action Log
+Value and adoption	Tracker targets, maturity uplift, enablement outcomes
+What is missing in your workbook if you want it to map more tightly
+To make Lighthouse align more strongly with that architecture, I would add 4 things:
+1. A formal entity layer
+Add a simple tab or model for:
+Offering ID
+Vertical ID
+Capability ID
+Owner
+Dependencies
+Required evidence
+Linked actions
+2. Relationship mapping
+A sheet showing:
+which offerings map to which modules
+which offerings map to which verticals
+which proof points support which offerings
+which actions unlock which maturity criteria
+3. Lifecycle status
+Right now you have maturity levels. Add a separate workflow status such as:
+Intake
+Assess
+Shape
+Enable
+Launch
+Scale
+That would complement maturity scoring.
+4. Trust / risk / governance mini-layer
+Not full GRC, but a small section for:
+dependency risk
+delivery risk
+proof risk
+commercial risk
+AI / compliance flags where relevant
+Bottom line
+Yes — your workbook already maps to this in principle.
+It is actually quite close.
+But the mapping is:
+
+ServiceNow diagram = governed architecture pattern
+Lighthouse workbook = maturity scoring and portfolio control model
+
+So the real answer is:
+
+Lighthouse already aligns to the diagram’s logic, but it would need a clearer entity-and-relationship layer to fully mirror it.
+
+The most useful next step would be to produce a “Diagram to Lighthouse mapping table” with three columns:
+
+ServiceNow-style concept
+Current workbook equivalent
+Recommended Lighthouse enhancement
+That would show exactly what already fits and what needs adding.
+
+what i want is a project lighthouse backend that shows how it all fits togehter like that image
+
+Thought for 22s
+
+what happened?
+
+Thought for a couple of seconds
+That one dropped out.
+What you want is clear: not just the Lighthouse scoring front end, but the backend architecture view — a diagram that shows how all Lighthouse objects, workflows, scoring, evidence, actions, and outputs connect together, in the same way that ServiceNow image shows its AI governance backbone.
+
+That is the right move.
+
+What your Project Lighthouse backend should show
+It should explain, visually and structurally, how Lighthouse works behind the scenes across six layers:
+1. Intake layer
+How something enters Lighthouse:
+New offering
+Leadership request
+Vendor / market opportunity
+Capability gap identified
+Customer demand signal
+Innovation / AI idea
+This is the equivalent of the top “intake and discovery” row in that image.
+2. Core entity layer
+These are the main objects Lighthouse governs.
+I would define them as:
+
+Primary entities
+
+Offering
+Vertical / Specialisation
+Technical capability
+Asset / accelerator
+Evidence item
+Criterion
+Milestone
+Action
+Owner
+Optional supporting entities
+Dependency
+Risk / blocker
+Review cycle
+Investment priority
+GTM motion
+Value metric
+This is your equivalent of their “AI system / model / dataset / prompt” inventory layer.
+3. Relationship layer
+This is the most important bit. It shows how entities connect.
+For example:
+
+Offering is assessed against criteria
+Offering targets verticals
+Offering depends on technical capabilities
+Offering uses assets / accelerators
+Offering is validated by evidence
+Criterion rolls up into maturity dimensions
+Milestones unlock maturity levels
+Actions close gaps against criteria
+Owners review entities
+Scores feed investment decisions
+Without this layer, Lighthouse is just tabs and trackers.
+With this layer, it becomes a real operating model.
+4. Scoring and maturity engine
+This is your core backend logic:
+Dimension scores
+Weighted scoring
+Must-have checks
+Authority thresholds
+Strength / evidence confidence
+Composite maturity score
+Level assignment (Ad Hoc to Best in Class)
+This is the engine that converts raw inputs into a maturity position.
+5. Governance and workflow layer
+This is where Lighthouse becomes operational.
+Suggested lifecycle:
+
+Intake
+Assess
+Shape
+Enable
+Launch
+Scale
+Each entity should carry:
+Status
+Owner
+Review date
+Confidence
+Blockers
+Required actions
+Approval / authority state
+This is your equivalent of the middle governance playbook layer in that image.
+6. Portfolio and value output layer
+This is what Lighthouse should drive:
+Portfolio prioritisation
+GTM readiness view
+Delivery readiness view
+Investment recommendation
+Enablement plan
+Revenue / adoption tracking
+Executive reporting
+So the backend diagram should end with “what decisions and actions Lighthouse informs.”
+Best backend structure for Lighthouse
+If I were shaping this as a clean backend architecture, I would structure it like this:
+A. Intake and demand sources
+Top strip:
+Leadership priorities
+Market / vendor opportunities
+Sales demand
+Customer expansion needs
+Innovation ideas
+B. Lighthouse foundation objects
+Main governed objects:
+Offering
+Vertical
+Capability
+Asset
+Evidence
+Criterion
+Owner
+C. Scoring engine
+Core logic:
+Weightings
+Criteria scoring
+Must-have rules
+Authority scoring
+Strength / confidence scoring
+Composite maturity output
+D. Governance and lifecycle
+Workflow layer:
+Intake
+Assess
+Shape
+Enable
+Launch
+Scale
+With:
+review cadence
+action tracking
+approvals
+blockers
+E. Dependency and risk layer
+Support logic:
+capability dependencies
+commercial gaps
+delivery risks
+proof gaps
+AI / compliance / platform flags where relevant
+F. Value and decision outputs
+Outputs:
+maturity heatmap
+priority actions
+investment need
+launch readiness
+portfolio ranking
+value tracking
+In plain English
+The Lighthouse backend diagram should answer:
+What goes in?
+Ideas, offerings, capabilities, evidence, owners.
+
+What gets governed?
+Offerings, verticals, technical capabilities, proof points, milestones, actions.
+
+What logic is applied?
+Scoring, evidence validation, threshold checks, maturity rules.
+
+What workflow happens?
+Assessment, shaping, enablement, launch, scaling.
+
+What comes out?
+Readiness decisions, actions, priorities, portfolio views, value tracking.
+
+That is the equivalent of the image you showed.
+
+The key design choice
+You should decide whether Lighthouse backend is shown as:
+Option 1: Entity architecture view
+Best for showing:
+objects
+relationships
+dependencies
+This is closest to the ServiceNow image.
+Option 2: Process architecture view
+Best for showing:
+stages
+approvals
+flow from intake to scale
+Option 3: Hybrid backend operating model
+Best option for you.
+This combines:
+
+top intake strip
+middle core entity model
+scoring/governance engine
+bottom outputs and actions
+That gives you the “how it all fits together” picture.
+My recommendation for Project Lighthouse
+I would build the backend view as a six-band architecture diagram:
+Band 1 — Intake Sources
+Leadership, market, customer, vendor, innovation
+
+Band 2 — Core Lighthouse Entities
+Offering, vertical, capability, asset, evidence, criterion, owner
+
+Band 3 — Relationships and Dependencies
+Targets, depends on, uses, validates, supports, blocks
+
+Band 4 — Scoring and Governance Engine
+Weighting, thresholds, authority, confidence, maturity level, workflow stage
+
+Band 5 — Actions and Controls
+Gaps, actions, milestones, blockers, review cadence, approvals
+
+Band 6 — Portfolio and Value Outputs
+Readiness, prioritisation, GTM activation, investment decisions, performance tracking
+
+That would feel like a true Lighthouse backend map.
+
+What I can do next
+I can now build this for you in one of three forms:
+A text architecture blueprint you can review quickly
+A clean box-by-box diagram structure ready for HTML / PowerPoint
+A full visual backend map in your Lighthouse style, using your colours and labels
+The best next step is the box-by-box diagram structure, because that gives us the exact content before we design it.
+
+visual
+
+I’m turning this into a clean Lighthouse backend architecture visual rather than just describing it. I’m using a structured layout that mirrors the ServiceNow-style model, but with your Lighthouse entities, scoring engine, governance flow, and outputs.
+Thought for 6s
+I’ve built the visual in canvas as a Lighthouse Backend Operating Model.
+It shows:
+
+intake sources
+core Lighthouse entities
+relationships and dependencies
+scoring and governance engine
+actions, workflow, and controls
+portfolio and value outputs
+It is structured to mirror the logic of the ServiceNow-style diagram, but in your Lighthouse language.
+Next best refinement is to make it more like an architecture diagram and less like stacked sections — with boxes, connectors, and a central scoring engine in the middle.
+
+Lighthouse Backend Architecture Visual
+yes box by box
+
+I’m changing it from stacked bands into a true architecture map with distinct boxes and connecting flows. The centre will be the Lighthouse scoring engine, with intake on top, governed objects around it, workflow below, and outputs to the right.
+Thought for 5s
+Done — it’s now a box-by-box backend architecture map rather than stacked bands.
+The new structure has:
+
+top input layer
+governed objects on the left
+central Lighthouse scoring & governance engine
+portfolio outputs on the right
+lifecycle workflow and controls/action layer underneath
+This is much closer to the “how it all fits together” style you were after.
+The next refinement should be to make it even more like the reference image by adding visible connector lines/arrows between specific boxes and possibly turning the centre into a more CMDB-style relationship hub.
+
+Lighthouse Backend Architecture Visual
+the input will come from and assessment portal sent to all stakeholders
+
+Good catch — that changes the architecture meaningfully. I’m replacing the generic intake sources with an Assessment Portal entry point and framing stakeholder submissions as the primary upstream input to Lighthouse.
+Thought for a couple of seconds
+I hit a text-match issue while updating the wording, so I’m patching the specific sections directly. The core change is still the same: the top layer will become portal-led stakeholder assessment input, not generic demand sources.
+I attempted to update the canvas to make the top input layer portal-led, but the edit failed because the exact text pattern in the document did not match cleanly.
+The change that should be made is:
+
+replace the current Top Input Layer items with:
+Assessment Portal
+Stakeholder Submissions
+Offering Owners
+Sales & GTM Leaders
+Practice / Delivery Leads
+Executive Sponsors
+change the top-layer subtitle to:
+“Inputs enter Lighthouse through a central assessment portal completed by relevant stakeholders across the business.”
+update the engine logic to say the records come from stakeholder portal submissions, not generic intake signals
+update the final positioning line so it references:
+assessment portal inputs and stakeholder submissions
+Conceptually, this is the right model:
+Assessment Portal → Stakeholder Responses → Lighthouse Records → Scoring Engine → Actions / Decisions / Outputs
+Also, this means the top box should probably be renamed from Top Input Layer to something stronger like:
+
+Assessment Portal & Stakeholder Inputs
+Assessment Intake Layer
+Portal Submission Layer
+My recommendation is Assessment Portal & Stakeholder Inputs because it is the clearest.
+
+Lighthouse Backend Architecture Visual
+make the change
+
+I’ve got the current canvas state, so I can patch the exact live code directly this time. I’m updating the top layer, the explainer copy, and the engine logic so the whole model is clearly portal-led.
+Done — the visual now reflects Assessment Portal & Stakeholder Inputs as the upstream source.
+I changed:
+
+the top input box title
+the input items
+the top-layer description
+the engine logic text
+the final positioning statement
+So the model now reads much more accurately as:
+Assessment Portal → Stakeholder Submissions → Lighthouse Records → Scoring & Governance Engine → Workflow / Controls → Portfolio Outputs
+
+The next smart refinement is to make the top box feel even more real by splitting it into:
+
+Portal
+Respondents
+Submission types
+That would make it look even closer to a true backend architecture map.
+
+Lighthouse Backend Architecture Visual
+yes
+
+I’m splitting the top area into three explicit boxes so the architecture reads more like a real backend: the portal itself, who responds, and what they submit.
+Thought for a couple of seconds
+Done — the top section is now split into three distinct architecture boxes:
+Assessment Portal
+Respondents
+Submission Types
+That makes the backend flow much clearer and more realistic:
+Portal → stakeholder inputs → structured submissions → Lighthouse records
+The strongest next step is to add actual connector arrows between those three top boxes and the governed objects / engine, so it starts to feel much closer to the ServiceNow reference diagram.
+
+Lighthouse Backend Architecture Visual
+yes 
+
+I’m adding explicit arrow connectors now so the top boxes read as a real flow into governed objects and the scoring engine, rather than just adjacent sections.
+Thought for 5s
+I hit another exact-match issue in the code, so I’m patching the connector helper and layout in smaller pieces. The aim is still the same: add visible arrows between the top boxes and into the model below.
+Done — the visual now has explicit arrow-style connectors:
+Assessment Portal → Respondents
+Respondents → Submission Types
+Submission Types → Governed Model / Scoring Engine
+Scoring / outputs → Workflow & Controls
+That should make it read much more like an actual backend architecture map rather than grouped sections.
+The next refinement that would improve it most is turning Governed Objects into its own mini-network with internal relationships like:
+Offering → Capability → Evidence → Criterion → Score.
+
+Lighthouse Backend Architecture Visual
+yes
+
+I’m converting the governed objects section into a relationship hub so the architecture shows how records actually connect before they hit scoring. That will make the left side feel much closer to the reference backend map.
+Done — the Governed Objects section is now a mini relationship hub.
+It now shows a clearer internal chain:
+Offering → Technical Capability → Evidence Item → Criterion
+
+with short descriptors under each so it reads like a real backend record model before the scoring engine.
+
+That makes the left side much closer to the kind of architecture logic in your reference image.
+
+The next refinement I’d suggest is making that chain even more Lighthouse-specific by changing it to something like:
+Offering → Capability / Asset → Evidence → Scoring Criterion → Maturity Output
+
+Lighthouse Backend Architecture Visual
+cool ok one of the outputs is a structured gtm assets portal for Sales/Delivery/marketing
+
+That fits well as a concrete downstream output, and it makes the right-hand side more tangible. I’m updating the outputs so the architecture explicitly shows a structured GTM assets portal for Sales, Delivery, and Marketing.
+Thought for 4s
+Added.
+The outputs now explicitly include:
+
+Structured GTM Assets Portal
+And the supporting copy now makes clear that Lighthouse produces:
+leadership decisions
+GTM and enablement outputs
+a structured assets experience for Sales, Delivery, and Marketing
+A stronger next refinement would be to split that single output into a mini-output cluster, for example:
+Sales Portal
+Delivery Portal
+Marketing Portal
+Shared GTM Asset Library
+That would show whether it is one portal with role-based views, or separate experiences.
+
+Lighthouse Backend Architecture Visual
+forget delivery for now
+
+I’m removing Delivery from the GTM portal output and tightening the copy so it reads as a Sales and Marketing outcome only.
+I hit a no-op edit on one line, so I’m applying only the text changes that actually need updating.
+Thought for 11s
+Done — I’ve removed Delivery from that path.
+It now reads as:
+
+structured assets experience for Sales and Marketing
+structured GTM assets portal for Sales and Marketing
+Practice Leads instead of Practice / Delivery Leads
+The next useful refinement would be to rename that output more explicitly, for example:
+Sales & Marketing GTM Portal or GTM Enablement Portal.
+
+Lighthouse Backend Architecture Visual
+Uploaded image
+DOES IT MEET THIS BRIEF MAKE NO CHANGES
+
+Thought for a couple of seconds
+Mostly yes — directionally it meets the brief, but not fully yet.
+Where it matches the brief well
+It does align to the core intent of your brief:
+Centralized source of truth for offerings
+Yes. The governed objects, scoring engine, and outputs all imply a central operating backbone.
+Structured dashboard / visibility into maturity
+Yes. The scoring engine, maturity output, readiness logic, and portfolio outputs clearly support this.
+Visibility into supporting GTM assets
+Yes. You now explicitly show Structured GTM Assets Portal as an output, which maps well.
+Assess readiness
+Yes. That is one of the strongest parts of the architecture.
+Reduce confusion / duplication
+Indirectly yes. The governed model and central engine imply consistency and control.
+Where it does not fully meet the brief yet
+This visual is currently more of a backend operating model than an MVP solution architecture for the brief in the image.
+Your brief is very specific about the MVP output being:
+
+a live SharePoint Offerings Site
+simple portfolio overview
+standardized page for each offering
+clear maturity stage and ownership
+links to core collateral
+Your current visual does not yet make those MVP deliverables explicit enough.
+Specifically missing or too implicit:
+SharePoint Offerings Site is not named directly
+standardized offering page is not shown as a concrete output/object
+portfolio overview view (list or visual) is not shown explicitly
+ownership on each offering page is implied in “Owner” but not surfaced as an end-user output
+links to pitch / one-pager / messaging / demo / pricing are implied in GTM assets, but not called out clearly
+Verdict
+If the question is:
+“Does this meet the spirit of the brief?”
+Yes, largely.
+If the question is:
+“Does this precisely express the MVP described on this slide?”
+Not completely.
+It currently does a better job of answering:
+
+“How Lighthouse works behind the scenes.”
+
+But your brief also needs it to answer:
+
+“What the first live user-facing MVP actually is.”
+
+Best concise assessment
+I’d score it like this:
+Strategic alignment to brief: high
+Backend architecture fit: high
+MVP output clarity vs brief: medium
+SharePoint / offering-page / collateral-view specificity: medium-low
+Bottom line
+Yes, it supports the brief, but it is broader and more backend-oriented than the brief itself.
+It is a strong architecture view, but not yet a perfect MVP brief translation.
+
+Lighthouse Backend Architecture Visual
+YES BUT WILL THIS BACKEND ALLOW ME TO PRODUCE THE REQUIRED BEIFE THAT IS THE IDEA?
+
+Thought for a couple of seconds
+Yes — that is the right idea, and this backend is directionally capable of producing the briefed MVP.
+The key point is this:
+
+The brief is asking for a user-facing outcome:
+
+central source of truth
+offering visibility
+maturity and ownership
+links to GTM collateral
+simple portfolio navigation
+What you are building here is the backend operating model that makes that possible in a controlled, repeatable way.
+So the question is not:
+“Is this backend the MVP itself?”
+
+It is:
+“Does this backend provide the structure needed to generate and maintain the MVP outputs?”
+
+And the answer is yes, broadly.
+
+Why the answer is yes
+Because your backend already includes the essential ingredients needed to drive that front-end SharePoint/offering-site experience:
+1. A structured intake source
+You now have:
+Assessment Portal
+Respondents
+Submission Types
+That gives you a mechanism to collect consistent input from stakeholders rather than building pages manually.
+2. Governed records
+You have:
+Offering
+Owner
+Evidence
+Criterion
+Capability
+Dependency / Risk
+That gives you the objects needed to create a standardized offering record.
+3. A scoring and maturity engine
+You have:
+weighted scoring
+must-have rules
+thresholds
+confidence
+maturity assignment
+That gives you the logic needed to produce:
+maturity stage
+readiness view
+prioritisation
+4. Workflow and controls
+You have:
+actions
+milestones
+reviews
+blockers
+approvals
+That gives you the mechanism to keep the information current and governed over time.
+5. Outputs that support the front end
+You already show:
+portfolio ranking
+readiness decision
+GTM assets portal
+maturity heatmap
+That means the architecture is explicitly designed to generate portfolio-level and offering-level outputs.
+So in practical terms
+Yes, this backend should allow you to produce the briefed MVP provided the front-end layer is built on top of it properly.
+In other words:
+
+Assessment Portal + Lighthouse backend logic + governed records = data foundation
+SharePoint Offerings Site = presentation layer of that foundation
+
+That is exactly the right model.
+
+The only important caveat
+It will support the brief well if the backend records are explicitly mapped to the required MVP outputs.
+Those outputs are:
+
+Portfolio view
+The backend needs to expose:
+offering name
+maturity stage
+owner
+status
+maybe priority / readiness
+Standard offering page
+The backend needs to expose:
+offering summary
+positioning
+owner
+maturity stage
+linked evidence / assets
+linked GTM collateral
+GTM collateral links
+The backend needs to store or reference:
+pitch
+one-pager
+messaging
+demo
+pricing if applicable
+Visibility and consistency
+The backend needs common fields and rules so every offering page follows the same structure.
+So the cleanest answer
+Yes — this backend can absolutely serve as the foundation for the MVP in your brief.
+That is exactly what it should do.
+It is the operating backbone that enables you to produce:
+
+the SharePoint Offerings Site
+the portfolio overview
+standardized offering pages
+maturity and ownership views
+linked GTM assets for Sales and Marketing
+Best way to describe it internally
+You could frame it like this:
+“The Lighthouse backend is the structured data, scoring, and governance layer that powers the MVP SharePoint Offerings Site and standardized GTM asset experience.”
+
+So yes — the architecture is doing the right job.
+
+What it is not yet showing strongly enough is the final translation layer from backend to front-end MVP deliverables. But as a backend, the logic is sound.
+
+The real test is simple:
+
+Can this model consistently produce for each offering:
+
+a maturity stage
+an owner
+a standard record
+linked collateral
+portfolio visibility
+From what you have here, yes, it can.
+
+Lighthouse Backend Architecture Visual
+Can we link and show how it will produce mvp?
+
+I’m adding an explicit MVP delivery layer so the architecture shows how backend outputs translate into the first live Lighthouse experience.
+Thought for 7s
+Yes — I’ve now linked it.
+The visual now includes an explicit MVP Delivery Layer that shows how the backend produces the first live experience:
+
+Live SharePoint Offerings Site
+Portfolio Overview View
+Standardised Offering Page
+Maturity Stage & Ownership
+Links to Core GTM Collateral
+Consistent Source of Truth
+So the architecture now reads more clearly as:
+Assessment Portal → Governed Records → Scoring & Governance Engine → Portfolio Outputs → MVP Delivery Layer
+
+That is the bridge you needed between backend logic and the briefed MVP outcome.
+
+Lighthouse Backend Architecture Visual
+ok what next?
+
+Thought for a few seconds
+Next is to turn this from a concept diagram into a build blueprint.
+The right sequence is:
+
+1. Lock the data model
+Define the exact fields each offering record needs to power the MVP:
+
+offering name
+owner
+maturity stage
+positioning
+linked assets
+evidence
+key gaps
+status
+last review date
+2. Define the portal submission form
+Work out exactly what stakeholders complete in the assessment portal:
+who submits
+what questions they answer
+what is scored
+what is evidence
+what is optional vs required
+3. Map outputs to SharePoint pages
+Take each MVP output and define where it appears:
+portfolio overview page
+individual offering page
+GTM asset links section
+maturity/ownership section
+4. Create the record-to-page logic
+This is the most important bridge:
+which backend fields feed the portfolio view
+which fields feed the standard offering page
+which fields feed Sales/Marketing assets
+5. Decide the MVP system architecture
+Confirm what is doing what:
+assessment portal
+data store
+scoring logic
+SharePoint front end
+asset repository
+6. Build the first example offering end to end
+Do one real offering as a pilot:
+portal submission
+score output
+backend record
+SharePoint page
+linked GTM assets
+That will show whether the model actually works.
+The single best next deliverable is a field-by-field MVP schema:
+Portal question → backend field → scoring rule → SharePoint output
+
+That is the document that will let you actually build this.
+
+Lighthouse Backend Architecture Visual
+Ok how do I build this out -shall we use hit hub and make this index page and then branch off or another way?
+
+Thought for a few seconds
+Yes — but I would not make GitHub Pages + branching the primary build path for the MVP itself.
+That is fine for:
+
+prototyping the UI
+versioning the architecture page
+testing page layouts
+keeping design/code tidy
+But for your actual MVP brief, the core outcome is a live SharePoint Offerings Site with structured records, ownership, maturity, and collateral links. So the better build pattern is:
+Best approach
+Use GitHub for:
+UI prototype
+architecture mockups
+reusable front-end components
+design iteration
+documentation
+Use Microsoft stack for the MVP backbone:
+Assessment Portal = Microsoft Form / Power App / SharePoint form
+Record store = SharePoint Lists or Dataverse
+Workflow / notifications = Power Automate
+User-facing MVP site = SharePoint
+Collateral storage = SharePoint document libraries
+So my recommendation is:
+Prototype in GitHub if you want speed and visual control
+Build the real MVP in SharePoint + Lists/Power Platform
+
+Why I would not make GitHub the main branch-off architecture
+Because your MVP is not really a website problem.
+It is a structured content, workflow, and governance problem.
+You need:
+
+stakeholder submissions
+structured records
+scoring outputs
+ownership
+maturity status
+linked documents
+easy internal access
+simple governance
+GitHub Pages is weak for that unless you start bolting on APIs, forms, databases, authentication, and admin workflows.
+That quickly becomes heavier than it needs to be.
+
+Best architecture for your use case
+Option A — best MVP path
+SharePoint-native MVP
+Build the whole first version inside Microsoft stack.
+Structure:
+
+SharePoint site = Lighthouse front end
+SharePoint List = offering records
+SharePoint List = assessment submissions / scoring
+SharePoint Library = GTM assets
+Power Automate = update workflows / reminders / approvals
+Power Apps or Forms = assessment portal
+Why this is strongest
+fastest route to your stated MVP
+native internal access
+easy document linking
+easy ownership and permissions
+simple to operationalise
+This is the option I would recommend for you.
+Option B — hybrid
+GitHub for front-end prototype, SharePoint for real data/content
+Use GitHub now to design:
+homepage
+portfolio view
+offering page template
+architecture/logic pages
+Then translate that into SharePoint build components.
+Why this is useful
+you can move quickly on design
+easy to iterate visually
+low-risk before building SharePoint structure
+This is probably the smartest immediate route.
+Option C — custom app
+GitHub/React frontend + real backend
+Only do this if you want Lighthouse to become a much bigger product later.
+Example:
+
+React frontend
+database backend
+Power Automate / APIs
+document storage integration
+auth layer
+This is powerful, but it is too much for MVP unless you are intentionally building a product, not just an internal operating portal.
+My recommendation for you
+Phase 1
+Use your current React/canvas/GitHub-style work to define:
+page structure
+visual design
+field model
+user flow
+Phase 2
+Build the real MVP in SharePoint with structured data behind it.
+That means:
+
+1. Create the data model first
+You need a master offering record with fields like:
+Offering Name
+Offering Type
+Owner
+Practice
+Maturity Stage
+Maturity Score
+Positioning Summary
+Key Use Cases
+Target ICP / vertical
+GTM Status
+Evidence Links
+Pitch Deck Link
+One-Pager Link
+Messaging Link
+Demo Link
+Pricing Link
+Last Review Date
+Next Action
+Notes / Risks
+2. Create the assessment intake
+Best first question:
+do you want simple or structured?
+For MVP, I would make it structured but light:
+
+stakeholder name
+offering selected
+scored questions
+comments
+evidence links
+risk/blocker notes
+asset gaps
+3. Decide where scoring happens
+For MVP, easiest options:
+calculate in SharePoint columns
+calculate in Power Automate
+calculate in Excel/Power BI support layer
+or manual at first if needed
+I would keep this simple early on.
+4. Build the SharePoint outputs
+You need at least:
+Portfolio Overview page
+Offering Detail template page
+GTM Assets section
+5. Link assets properly
+Do not bury documents in random folders.
+Use a structured document library with naming discipline:
+Offering
+Asset Type
+Version
+Owner
+Last Updated
+Should you use an index page and branch off?
+Yes — but in SharePoint terms, not only GitHub terms.
+Good pattern
+One top-level Lighthouse home page
+This acts like your index page and should show:
+what Lighthouse is
+portfolio overview
+filters by maturity / practice / owner
+key calls to action
+link to assessment portal
+link to offering pages
+link to GTM assets
+Then branch into:
+portfolio view
+offering detail pages
+assessment submission page
+assets portal / document views
+maturity framework / methodology page
+That is the correct navigation model.
+So the answer is:
+yes, use an index page and branch off — but the real version should branch inside SharePoint, not just GitHub.
+
+What I would do next, practically
+Best immediate path
+Step 1
+Keep the current architecture visual in GitHub/canvas as your design reference
+Step 2
+Define the actual Lighthouse information architecture
+You need 5 real page types:
+Home / Index
+Portfolio Overview
+Offering Page Template
+Assessment Portal
+GTM Assets Portal
+Step 3
+Define the backing lists/libraries
+At minimum:
+Offerings list
+Assessments list
+Assets library
+Owners / metadata list
+Actions / review list
+Step 4
+Build one real example
+Do not build the whole thing at once.
+Pick one offering and create:
+
+portal submission
+scoring record
+offering page
+linked GTM assets
+maturity tag
+owner tag
+If that works, scale.
+My blunt recommendation
+Do not start by turning this into a full GitHub site and branching pages there as your main solution.
+That risks building a polished shell before you lock the data model.
+Instead:
+
+Use GitHub/React for prototype and design
+Use SharePoint + Lists + Power Automate for the real MVP
+Use one Lighthouse home page as the index
+Branch from there into offering pages and assets
+
+That is the cleanest, lowest-friction, most enterprise-realistic path.
+
+The next thing we should do is define the exact SharePoint site map + list structure before any more front-end building.
+
+Lighthouse Backend Architecture Visual
+sharepoint does not allow visual design I need in html I dont want embed files it needs to look like portal.
+
+I’m checking the best-fit build pattern against current Microsoft guidance, because the answer depends on how much native HTML/portal control SharePoint actually gives you versus using a custom app front end.
+Thought for 18s
+Yes — in that case, do not use standard SharePoint pages as the primary UI layer.
+If you want it to look and feel like a real portal in HTML, with full visual control, then the better approach is:
+
+Build Lighthouse as a custom front end
+and use SharePoint/Microsoft 365 more as the content/data backend, not the presentation layer.
+
+The reason is that modern SharePoint is good for structured content and integration, but it is not ideal for fully bespoke portal design. Microsoft’s recommended extensibility model is the SharePoint Framework (SPFx) rather than open custom script, and Microsoft explicitly warns that allowing broad custom script reduces governance and recommends SPFx as the safer alternative. SPFx supports client-side development and can be hosted in SharePoint, including Single Part App Pages, which are designed for locked-layout app-like experiences. 
+
+So the right architectural choice depends on what you mean by “portal”:
+
+Best-fit options
+Option 1 — SPFx app inside SharePoint
+Build Lighthouse as a custom SPFx application/web part with your own HTML/CSS/React UI, then host it in SharePoint as a Single Part App Page. That gives you much more visual control than normal SharePoint pages, while still sitting inside the Microsoft environment. Microsoft documents SPFx as the primary client-side model for SharePoint development, and Single Part App Pages are specifically intended for locked, app-like layouts. 
+This is the best route if:
+
+you want the portal to live “in SharePoint”
+you need Microsoft identity/access
+you want custom UI, not standard page chrome
+you still want SharePoint lists/libraries behind it
+Option 2 — Fully custom app, SharePoint as backend
+Build the Lighthouse portal as a standalone React/HTML app hosted outside SharePoint, and use SharePoint or Microsoft 365 only for:
+asset/document storage
+possibly lists or APIs
+authentication/integration where needed
+This is the best route if:
+you want full control over layout, motion, branding, navigation, and UX
+you do not want the UI constrained by SharePoint’s page model
+you want something that feels like a true product portal
+Option 3 — GitHub Pages as prototype only
+GitHub Pages is good for:
+prototyping the portal UI
+validating navigation and layout
+iterating quickly
+But it is weak as the final internal portal if you need structured records, secure document handling, workflow, permissions, and admin-controlled enterprise integration.
+My recommendation for your case
+Based on what you just said, I would use:
+React/HTML portal frontend + Microsoft backend services
+
+And then choose one of these two deployment models:
+
+Recommended path A
+SPFx app page
+Front end: React / HTML / CSS
+Host: SharePoint via SPFx Single Part App Page
+Backend data: SharePoint Lists / Libraries / optionally Dataverse
+Workflow: Power Automate
+Assessment intake: Power App or custom form
+This keeps it in Microsoft, but gives you a much more portal-like UI. Microsoft supports SPFx for this kind of client-side SharePoint customization. 
+Recommended path B
+Standalone app
+Front end: React / HTML / CSS
+Host: Azure Static Web Apps, Vercel, Netlify, or internal hosting
+Backend: SharePoint/Graph/Dataverse/document libraries
+Assessment intake: custom app form or Power App
+Authentication: Microsoft Entra ID
+This is the strongest option if visual polish matters most.
+So should you use GitHub and make this the index page?
+Yes — as the build starting point, that makes sense.
+Use GitHub as:
+
+the codebase
+version control
+prototype environment
+component library
+place to build the portal shell
+Then decide whether the finished shell is deployed:
+into SharePoint via SPFx, or
+as a standalone app
+Practical build sequence
+Better than “SharePoint pages first”
+Use GitHub as the main repo
+Build:
+Lighthouse home/index page
+portfolio page
+offering detail template
+GTM assets portal
+assessment portal entry
+Then connect the UI to real data sources
+Then decide final host:
+SPFx in SharePoint
+or standalone app
+That gets you the portal feel first, instead of fighting SharePoint page design.
+My blunt answer
+Because you want:
+HTML
+real portal feel
+not embedded files
+strong visual design
+I would not build the MVP as standard SharePoint pages.
+I would build:
+a custom React portal in GitHub first, with your current index page as the starting shell, and then either:
+
+package it into SPFx if it must live in SharePoint, or
+host it separately and integrate with Microsoft content/services.
+That is the cleanest path.
+The best next move is to define the portal information architecture before writing more code:
+
+Home
+Portfolio
+Offering Detail
+GTM Assets
+Assessment Intake
+Admin / Review layer
+Then build the index page and routing structure in GitHub from there.
+
+Lighthouse Backend Architecture Visual
+I want to use GitHub as prototype to show map and then we can build using option b
+
+I’m mapping this into a practical build path: GitHub as the prototype/showcase, then a cleaner handoff to a standalone portal build. I’m checking the current platform fit so the recommendation is grounded, not just theoretical.
+Thought for 22s
+Yes — that is the right approach.
+Use GitHub as the prototype and presentation layer now, then move to Option B for the real build:
+
+custom portal frontend
+hosted separately
+connected to Microsoft/SharePoint data and assets behind the scenes
+That fits your goal much better than trying to force the MVP into standard SharePoint UI.
+Recommended path
+Phase 1 — GitHub prototype
+Build the Lighthouse portal shell in GitHub first:
+home / index page
+backend architecture map
+portfolio view
+offering page template
+GTM assets portal concept
+assessment portal concept
+GitHub Pages is suitable for this because it serves static HTML/CSS/JS directly from a repo and can publish from a branch or GitHub Actions. 
+Phase 2 — real portal build
+Then build the actual product as a standalone app:
+frontend: React / HTML / CSS
+hosting: Azure Static Web Apps is a strong fit for a Microsoft-centric stack and supports modern web apps plus built-in auth options including Microsoft Entra ID. 
+backend content/data: SharePoint lists and document libraries exposed through Microsoft Graph, which supports SharePoint sites, lists, list items, and drives. 
+Best structure
+In GitHub now
+Create one repo, and use the current page as the starting point.
+Suggested structure:
+
+/ = Lighthouse home / index
+/architecture = backend map
+/portfolio = portfolio overview mock
+/offering/sample-offering = standard offering page prototype
+/assets = GTM assets portal prototype
+/assessment = assessment intake prototype
+That gives you a clickable story, not just one diagram.
+Then for Option B
+Keep the same information architecture, but swap the fake/static content for real data:
+Assessment data from your form/app
+Offering records from SharePoint lists or another data store
+GTM collateral from SharePoint document libraries
+Authentication via Microsoft identity
+Portal hosting via Azure Static Web Apps or similar
+My recommendation
+Do it in this order:
+Use GitHub to prototype the portal
+Turn the current canvas into the /architecture page
+Build a simple /index page that links to the prototype sections
+Create one sample offering page
+Create one sample GTM assets page
+After that, define the real data model for Option B
+What next, specifically
+The best next move is to build the GitHub prototype site map with:
+index page
+architecture page
+portfolio page
+sample offering page
+sample GTM assets page
+Then you have something tangible to show, and it becomes the blueprint for the standalone build.
+If you want, I’d do the next step as the exact GitHub repo/page structure and navigation for the prototype.
+
+Lighthouse Backend Architecture Visual
+ok I already have a live GITHUB repo with an index page? I dont want that to break
+
+You don’t need to touch your live index to start this. The safest path is to prototype alongside it, not on top of it.
+Thought for 10s
+Yes — you can keep the live repo safe.
+The safest way is not to replace your current index page first. GitHub Pages can publish from a specific branch or from either the repository root or a /docs folder, so you can build the prototype in a separate location without touching the live source. GitHub also supports publishing with a custom GitHub Actions workflow if you want more control later. 
+
+The lowest-risk options are:
+
+Option 1 — safest: create a new repo just for the prototype.
+Your live repo stays untouched, and the prototype gets its own URL.
+
+Option 2 — still safe: keep the same repo, but build the prototype in a new branch or a /docs folder that is not the current Pages publishing source. Pages only updates from the configured source, so if your live site publishes from main root, work in another branch until you are ready. 
+
+Option 3 — controlled rollout: use GitHub Actions and deploy only when specific paths change, so prototype files do not accidentally overwrite the live site. GitHub documents path-based workflow controls for this. 
+
+What I would do in your case:
+
+Keep the current live repo exactly as it is.
+Create either a new repo called something like lighthouse-prototype, or a prototype branch in the existing repo.
+Put the architecture page and portal mockups there first.
+Only merge into the live publishing source once you are happy.
+One important caution: if your live site uses a custom domain, changing Pages settings or publishing source can affect it. GitHub notes that branch-based custom domains use a CNAME file in the publishing source, while Actions-based publishing handles that differently. 
+My recommendation: new repo for the prototype. It is the cleanest way to guarantee the live index does not break.
+
+The next practical step is to identify how your current Pages site is published now:
+
+main root
+main/docs
+gh-pages
+or GitHub Actions
+Once you know that, the safe setup becomes exact.
+
+Lighthouse Backend Architecture Visual
+shall I paste the html from GitHub for current
+
+Yes — paste the current HTML from GitHub.
+Best thing to send is:
+
+your current index.html
+and, if it has them, linked style.css and any script.js
+I’ll check:
+what will break if you change it
+the safest way to add the Lighthouse prototype alongside it
+whether you should use a new page, subfolder, branch, or separate repo
+If it’s a React/Vite-style setup instead of plain HTML, paste the current file structure too.
+
+Lighthouse Backend Architecture Visual
+https://github.com/crossfuze-lighthouse/ZOOM/blob/main/index.html https://github.com/crossfuze-lighthouse/ZOOM/blob/main/lighthouse-brand.css https://github.com/crossfuze-lighthouse/ZOOM/blob/main/lighthouse-shell.js
+
+I’m reviewing the live GitHub files directly so I can tell you the safest way to add the prototype without touching what’s already working.
+Thought for 47s
+Yes — and the safest move is leave your current index.html alone.
+I could not reliably fetch those three GitHub file links from this environment because GitHub was rate-limiting the requests, so I have not inspected your exact code yet. 
+
+Based on how GitHub Pages works, the safest way to prototype in the same repo without breaking the live page is:
+
+Do not replace index.html.
+Instead, add a new prototype path alongside it.
+
+Best same-repo pattern
+If your site currently publishes from the repo root, create:
+/index.html                 ← keep live page unchanged
+/lighthouse-prototype/
+/lighthouse-prototype/index.html
+/lighthouse-prototype/lighthouse-prototype.css
+/lighthouse-prototype/lighthouse-prototype.js
+Then your live page stays where it is, and the prototype gets its own URL:
+/lighthouse-prototype/
+GitHub Pages serves static HTML/CSS/JS from the configured publishing source, and the entry file for a page path is index.html in that folder. GitHub also documents that Pages can publish from a branch root or a /docs folder. 
+
+Important caveat
+If your Pages site is configured to publish from /docs instead of repo root, use:
+/docs/index.html            ← keep live page unchanged
+/docs/lighthouse-prototype/index.html
+/docs/lighthouse-prototype/lighthouse-prototype.css
+/docs/lighthouse-prototype/lighthouse-prototype.js
+GitHub’s publishing source can be:
+a branch root (/)
+or a /docs folder on that branch. 
+What not to do
+Do not do any of these yet:
+overwrite the current index.html
+change the Pages publishing source
+switch branches for Pages
+touch custom domain settings
+If you use a custom domain, GitHub stores branch-based custom domain config with a CNAME file in the publishing source, so changing source settings is where risk starts. 
+My recommendation
+For your exact situation, the cleanest route is:
+Keep current live files untouched.
+Add a new folder:
+lighthouse-prototype/
+Put the architecture map and prototype pages in there.
+Link to it only when you’re ready.
+That gives you:
+zero disruption to the live homepage
+a clean prototype URL
+an easy path later to move into Option B
+Practical next step
+Paste your current index.html here anyway, and I’ll tell you exactly whether your current setup is:
+root-published
+docs-published
+or likely using something custom
+Then I can give you the exact folder structure and first files to add without risking the live page.
+
+Lighthouse Backend Architecture Visual
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Lighthouse | Crossfuze</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --midnight: #040E3D;
+      --bright-green: #8FFFDB;
+      --bright-blue: #71F1F7;
+      --utility-blue: #2CB0CD;
+      --purple: #6400EC;
+      --lavender: #C0A6FF;
+      --callout-red: #F65275;
+      --crisp-grey: #F2F2F4;
+    }
+
+    body {
+      position: relative;
+      background:
+        radial-gradient(circle at top left, rgba(113, 241, 247, 0.16), transparent 24%),
+        radial-gradient(circle at top right, rgba(143, 255, 219, 0.10), transparent 18%),
+        linear-gradient(180deg, #0a1652 0%, #040E3D 42%, #040E3D 100%);
+    }
+
+    body::before {
+      content: none;
+    }
+
+    .hero-panel {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .mini-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.45rem;
+      margin-top: 1rem;
+    }
+
+    .mini-kpi {
+      min-height: 90px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0.68rem 0.72rem;
+      border-radius: 12px;
+      border: 1px solid rgba(113,241,247,0.16);
+      background: linear-gradient(180deg, rgba(4, 14, 61, 0.94), rgba(8, 27, 74, 0.90));
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.04);
+      backdrop-filter: blur(8px);
+    }
+
+    .mini-kpi-label {
+      min-height: 10px;
+      font-size: 7px;
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.46);
+      margin: 0 0 0.34rem 0;
+      display: block;
+    }
+
+    .mini-kpi-value {
+      display: flex;
+      align-items: flex-end;
+      width: 100%;
+      min-height: 22px;
+      margin: 0;
+      font-size: 18px;
+      line-height: 1;
+      text-align: left;
+      font-weight: 600;
+      letter-spacing: -0.05em;
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum" 1;
+      color: white;
+    }
+
+    .mini-kpi-value.is-green { color: #8FFFDB; }
+    .mini-kpi-value.is-cyan { color: #71F1F7; }
+    .mini-kpi-value.is-red { color: #F65275; font-size: 18px; }
+    .mini-kpi-value.is-white { color: rgba(255,255,255,0.96); font-size: 18px; }
+
+    .mini-kpi-meta {
+      min-height: 22px;
+      margin-top: auto;
+      font-size: 9px;
+      line-height: 1.22;
+      font-weight: 500;
+      color: rgba(255,255,255,0.66);
+      display: flex;
+      align-items: flex-start;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-white font-sans">
+
+<div class="mx-auto max-w-7xl px-4 pt-5 pb-4 sm:px-6 sm:pt-6 sm:pb-5 md:px-8 md:pt-7 md:pb-6 xl:px-10 xl:pt-8 xl:pb-6">
+  <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+    <div class="flex flex-col items-start leading-none">
+      <img
+        src="https://cdn.prod.website-files.com/66f7a9d0051c2479948b2667/6930bea01a665531afb73e42_Crossfuze%20Logo_Cool%20Navy%20Gradient-p-500.png"
+        alt="Crossfuze logo"
+        class="h-7 w-auto brightness-0 invert sm:h-8 md:h-9"
+      />
+      <div class="mt-1 pl-1 text-[9px] font-semibold uppercase tracking-[0.34em] text-white/88 sm:text-[10px] sm:tracking-[0.42em]">Lighthouse</div>
+    </div>
+
+    <div class="flex items-start justify-start sm:items-center sm:justify-end">
+      <span class="rounded-full border border-[#2CB0CD]/60 bg-[#2CB0CD]/18 px-3 py-1.5 text-[11px] font-semibold text-[#8FFFDB] shadow-[0_12px_28px_rgba(44,176,205,0.18)] sm:px-3.5 sm:py-2 sm:text-xs md:px-4 md:text-sm">Lighthouse Live</span>
+    </div>
+  </div>
+</div>
+
+<div class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 md:px-8 md:pb-16 xl:px-10 xl:pb-20">
+  <div class="hero-panel rounded-[24px] bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.09),transparent_30%),radial-gradient(circle_at_88%_0%,rgba(113,241,247,0.05),transparent_22%),linear-gradient(135deg,rgba(255,255,255,0.055),rgba(255,255,255,0.02))] p-4 shadow-[0_28px_72px_rgba(0,0,0,0.30)] backdrop-blur-xl sm:rounded-[28px] sm:p-5 md:p-7 xl:rounded-[38px] xl:p-10">
+    <div class="hero-content">
+    <div class="max-w-[860px]">
+      <div class="inline-flex max-w-full rounded-full border border-[#2CB0CD]/34 bg-[linear-gradient(135deg,rgba(44,176,205,0.16),rgba(113,241,247,0.08))] px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.18em] text-[#8FFFDB] shadow-[0_10px_28px_rgba(0,0,0,0.16)] sm:px-4 sm:py-2 sm:text-[11px] sm:tracking-[0.28em]">Crossfuze GTM Portal</div>
+      <h1 class="mt-4 text-[2rem] font-semibold leading-tight tracking-[-0.05em] text-white sm:text-[2.8rem] md:mt-5 md:text-6xl">Project Lighthouse</h1>
+      <p class="mt-3.5 max-w-2xl text-[14px] leading-6 text-white/88 sm:mt-4 sm:text-[16px] sm:leading-8">
+        A central hub for Crossfuze maturity, readiness, and GTM execution.
+      </p>
+    </div>
+
+    <div class="mt-9 sm:mt-11">
+      <div class="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/56 sm:text-[11px] sm:tracking-[0.28em]">Core Maturity</div>
+      <div class="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <a href="offering.html" class="group flex min-h-[178px] sm:min-h-[198px] xl:min-h-[214px] h-full flex-col rounded-[22px] sm:rounded-[28px] xl:rounded-[32px] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.08),rgba(255,255,255,0.035))] p-4 sm:p-5 xl:p-6 shadow-[0_24px_62px_rgba(0,0,0,0.28)] ring-1 ring-white/6 transition duration-200 hover:-translate-y-1.5 hover:border-white/18 hover:shadow-[0_30px_78px_rgba(0,0,0,0.34)]">
+          <div class="flex items-start justify-between gap-4">
+            <div class="max-w-[190px] text-[20px] font-semibold leading-[1.02] tracking-[-0.045em] text-white sm:max-w-[210px] sm:text-[23px] xl:max-w-[220px] xl:text-[26px]">Offering<br>Maturity</div>
+            <span class="-mt-0.5 inline-flex shrink-0 items-center rounded-full border border-white/12 bg-white/[0.05] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/52 shadow-[0_8px_22px_rgba(0,0,0,0.12)] sm:px-3.5 sm:text-[11px] sm:tracking-[0.18em]">Planned</span>
+          </div>
+          <p class="mt-7 max-w-[290px] text-[13.5px] leading-[1.7] text-white/90">Assess offer readiness, packaging, proof, and operational maturity.</p>
+        </a>
+
+        <a href="vertical.html" class="group flex min-h-[178px] sm:min-h-[198px] xl:min-h-[214px] h-full flex-col rounded-[22px] sm:rounded-[28px] xl:rounded-[32px] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.08),rgba(255,255,255,0.035))] p-4 sm:p-5 xl:p-6 shadow-[0_24px_62px_rgba(0,0,0,0.28)] ring-1 ring-white/6 transition duration-200 hover:-translate-y-1.5 hover:border-white/18 hover:shadow-[0_30px_78px_rgba(0,0,0,0.34)]">
+          <div class="flex items-start justify-between gap-4">
+            <div class="max-w-[190px] text-[20px] font-semibold leading-[1.02] tracking-[-0.045em] text-white sm:max-w-[210px] sm:text-[23px] xl:max-w-[220px] xl:text-[26px]">Vertical<br>Maturity</div>
+            <span class="-mt-0.5 inline-flex shrink-0 items-center rounded-full border border-white/12 bg-white/[0.05] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/52 shadow-[0_8px_22px_rgba(0,0,0,0.12)] sm:px-3.5 sm:text-[11px] sm:tracking-[0.18em]">Planned</span>
+          </div>
+          <p class="mt-7 max-w-[290px] text-[13.5px] leading-[1.7] text-white/90">Review industry readiness, specialisation, and evidence by target vertical.</p>
+        </a>
+
+        <a href="assets.html" class="group flex min-h-[178px] sm:min-h-[198px] xl:min-h-[214px] h-full flex-col rounded-[22px] sm:rounded-[28px] xl:rounded-[32px] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.08),rgba(255,255,255,0.035))] p-4 sm:p-5 xl:p-6 shadow-[0_24px_62px_rgba(0,0,0,0.28)] ring-1 ring-white/6 transition duration-200 hover:-translate-y-1.5 hover:border-white/18 hover:shadow-[0_30px_78px_rgba(0,0,0,0.34)]">
+          <div class="flex items-start justify-between gap-4">
+            <div class="max-w-[220px] text-[20px] font-semibold leading-[1.02] tracking-[-0.045em] text-white sm:max-w-[240px] sm:text-[23px] xl:max-w-[250px] xl:text-[26px]">Assets &amp;<br>Enablement</div>
+            <span class="-mt-0.5 inline-flex shrink-0 items-center rounded-full border border-white/12 bg-white/[0.05] px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/52 shadow-[0_8px_22px_rgba(0,0,0,0.12)] sm:px-3.5 sm:text-[11px] sm:tracking-[0.18em]">Planned</span>
+          </div>
+          <p class="mt-7 max-w-[292px] text-[13.5px] leading-[1.7] text-white/90">Track collateral, enablement, delivery proof, certifications, and commercial support.</p>
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-10 border-t border-white/10 pt-8 sm:mt-12 sm:pt-9">
+      <div class="text-[10px] font-semibold uppercase tracking-[0.24em] text-white/56 sm:text-[11px] sm:tracking-[0.28em]">GTM Maturity</div>
+      <div class="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        <a href="aeo.html" class="group relative flex min-h-[214px] sm:min-h-[236px] xl:min-h-[270px] h-full flex-col overflow-hidden rounded-[22px] sm:rounded-[28px] xl:rounded-[32px] border border-[#71F1F7]/22 bg-[radial-gradient(circle_at_top_left,rgba(113,241,247,0.14),transparent_22%),linear-gradient(145deg,rgba(4,14,61,0.96),rgba(8,27,74,0.92))] p-4 sm:p-5 xl:p-6 shadow-[0_34px_88px_rgba(0,0,0,0.38)] ring-1 ring-[#2CB0CD]/10 transition duration-200 hover:-translate-y-1.5 hover:border-[#71F1F7]/42 hover:shadow-[0_40px_100px_rgba(0,0,0,0.42)]">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <div class="min-h-[18px] text-[12px] font-semibold uppercase tracking-[0.22em] text-white/58">AEO</div>
+              <div class="mt-2 text-[20px] font-semibold leading-tight tracking-[-0.04em] text-white sm:text-[23px] xl:text-[26px]">Inbound</div>
+            </div>
+            <span class="rounded-full border border-[#2CB0CD]/72 bg-[linear-gradient(135deg,rgba(44,176,205,0.52),rgba(113,241,247,0.28))] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#F3FFFF] shadow-[0_14px_30px_rgba(44,176,205,0.28)] ring-1 ring-[#71F1F7]/18 sm:px-3 sm:py-1.5 sm:text-[11px] sm:tracking-[0.18em]">Live Now</span>
+          </div>
+          <p class="mt-4 text-[13px] leading-5.5 text-white/88">Build visibility, structure, and authority across AI and search channels.</p>
+          <div class="mini-kpi-grid" style="margin-top:0.85rem;">
+            <div class="mini-kpi">
+              <div class="mini-kpi-label">Maturity Score</div>
+              <div class="mini-kpi-value is-green">2.8</div>
+              <div class="mini-kpi-meta">Standardized</div>
+            </div>
+            <div class="mini-kpi">
+              <div class="mini-kpi-label">Peer Rank</div>
+              <div class="mini-kpi-value is-cyan">2.3</div>
+              <div class="mini-kpi-meta">Out of 8 Peers</div>
+            </div>
+            <div class="mini-kpi">
+              <div class="mini-kpi-label">Main Gap</div>
+              <div class="mini-kpi-value is-red">Authority</div>
+              <div class="mini-kpi-meta">Content &amp; Authority</div>
+            </div>
+          </div>
+          <div class="mt-auto pt-4 sm:pt-6 xl:pt-7">
+            <div class="rounded-full border border-[#2CB0CD]/34 bg-[linear-gradient(135deg,rgba(44,176,205,0.24),rgba(113,241,247,0.12))] px-3 py-1.5 text-[10px] sm:px-3.5 sm:py-2 sm:text-[11px] xl:px-4 xl:text-[12px] font-semibold uppercase tracking-[0.2em] text-[#ECFEFF] shadow-[0_10px_22px_rgba(44,176,205,0.14)]">Open AEO</div>
+          </div>
+        </a>
+
+        <a href="zoominfo.html" class="group relative flex min-h-[214px] sm:min-h-[236px] xl:min-h-[270px] h-full flex-col overflow-hidden rounded-[22px] sm:rounded-[28px] xl:rounded-[32px] border border-[#8FFFDB]/22 bg-[radial-gradient(circle_at_top_right,rgba(143,255,219,0.12),transparent_22%),linear-gradient(145deg,rgba(4,14,61,0.96),rgba(8,27,74,0.92))] p-4 sm:p-5 xl:p-6 shadow-[0_34px_88px_rgba(0,0,0,0.38)] ring-1 ring-[#2CB0CD]/10 transition duration-200 hover:-translate-y-1.5 hover:border-[#8FFFDB]/42 hover:shadow-[0_40px_100px_rgba(0,0,0,0.42)]">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <div class="min-h-[18px] text-[12px] font-semibold uppercase tracking-[0.22em] text-white/58">ZoomInfo</div>
+              <div class="mt-2 text-[20px] font-semibold leading-tight tracking-[-0.04em] text-white sm:text-[23px] xl:text-[26px]">Outbound</div>
+            </div>
+            <span class="rounded-full border border-[#2CB0CD]/72 bg-[linear-gradient(135deg,rgba(44,176,205,0.52),rgba(113,241,247,0.28))] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#F3FFFF] shadow-[0_14px_30px_rgba(44,176,205,0.28)] ring-1 ring-[#71F1F7]/18 sm:px-3 sm:py-1.5 sm:text-[11px] sm:tracking-[0.18em]">Live Now</span>
+          </div>
+          <p class="mt-4 text-[13px] leading-5.5 text-white/88">Enable signal-led outreach, readiness tracking, and sales activation.</p>
+          <div class="mini-kpi-grid" style="margin-top:0.85rem;">
+            <div class="mini-kpi">
+              <div class="mini-kpi-label">Signals</div>
+              <div class="mini-kpi-value is-green">Live</div>
+              <div class="mini-kpi-meta">Intent + fit model</div>
+            </div>
+            <div class="mini-kpi">
+              <div class="mini-kpi-label">Motion</div>
+              <div class="mini-kpi-value is-cyan">UK</div>
+              <div class="mini-kpi-meta">Sales activation live</div>
+            </div>
+            <div class="mini-kpi">
+              <div class="mini-kpi-label">Focus</div>
+              <div class="mini-kpi-value is-white">Outbound</div>
+              <div class="mini-kpi-meta">Signal-led outreach</div>
+            </div>
+          </div>
+          <div class="mt-auto pt-4 sm:pt-6 xl:pt-7">
+            <div class="rounded-full border border-[#2CB0CD]/34 bg-[linear-gradient(135deg,rgba(44,176,205,0.24),rgba(113,241,247,0.12))] px-3 py-1.5 text-[10px] sm:px-3.5 sm:py-2 sm:text-[11px] xl:px-4 xl:text-[12px] font-semibold uppercase tracking-[0.2em] text-[#ECFEFF] shadow-[0_10px_22px_rgba(44,176,205,0.14)]">Open Zoom</div>
+          </div>
+        </a>
+
+        <a href="expansion.html" class="group flex min-h-[178px] sm:min-h-[198px] xl:min-h-[214px] h-full flex-col rounded-[22px] sm:rounded-[28px] xl:rounded-[32px] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.08),rgba(255,255,255,0.035))] p-4 sm:p-5 xl:p-6 shadow-[0_24px_62px_rgba(0,0,0,0.28)] ring-1 ring-white/6 transition duration-200 hover:-translate-y-1.5 hover:border-white/18 hover:shadow-[0_30px_78px_rgba(0,0,0,0.34)]">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <div class="min-h-[18px] text-[12px] font-semibold uppercase tracking-[0.22em] text-white/58">Customers</div>
+              <div class="mt-2 text-[20px] font-semibold leading-tight tracking-[-0.04em] text-white sm:text-[23px] xl:text-[26px]">Expansion</div>
+            </div>
+            <span class="rounded-full border border-white/12 bg-white/[0.05] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/52 shadow-[0_8px_22px_rgba(0,0,0,0.12)] sm:px-3 sm:py-1.5 sm:text-[11px] sm:tracking-[0.18em]">Planned</span>
+          </div>
+          <p class="mt-4 text-[13.5px] leading-6 text-white/90">Build existing customer targeting, expansion plays, and cross-sell / upsell readiness.</p>
+          <div class="mt-auto pt-4 sm:pt-6 xl:pt-7">
+            <div class="rounded-full border border-white/12 bg-white/[0.05] px-3 py-1.5 text-[10px] sm:px-3.5 sm:py-2 sm:text-[11px] xl:px-4 xl:text-[12px] font-semibold uppercase tracking-[0.2em] text-white/52 shadow-[0_10px_24px_rgba(0,0,0,0.12)]">Planned</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html> I will do one by one here is index
+
+Thought for a couple of seconds
+Your current index.html is safe to keep live as-is.
+Nothing in this file forces you to rebuild the whole site. It is a plain static homepage with:
+
+Tailwind via CDN
+inline styles
+links out to other HTML pages like offering.html, vertical.html, assets.html, aeo.html, zoominfo.html, expansion.html
+That means you have a very simple and safe structure to extend.
+What this means
+You do not need to replace index.html to prototype Lighthouse.
+The cleanest approach is:
+
+Keep current live index unchanged
+Leave this file exactly where it is.
+Add a new prototype page
+Create a new page such as:
+lighthouse-architecture.html
+or
+prototype.html
+Then link to it from the current index only when you are ready.
+Or even safer
+Do not link it from the homepage yet.
+Just upload the new file and open it directly by URL.
+So if your site is published from repo root, the prototype URL would be something like:
+
+https://<your-pages-domain>/lighthouse-architecture.html
+Why this is low risk
+Because your current page is not part of a build system. It is just static HTML.
+So adding a new file will not break:
+
+the homepage
+the styles on the homepage
+the live cards
+the current navigation
+Unless you overwrite
+
+Lighthouse Backend Architecture Visual
+here is js /* ============================================================
+   CROSSFUZE LIGHTHOUSE — SHARED SHELL
+   lighthouse-shell.js
+   Version: 1.0 · March 2026
+   ============================================================
+   Provides: LighthouseShell, LighthouseNav, LighthouseSignalBar,
+             useLighthouseData, BRAND
+   ============================================================
+   Usage in your page script:
+     const { LighthouseShell, useLighthouseData, BRAND } = LighthouseShellLib;
+   ============================================================ */
+
+const LighthouseShellLib = (function() {
+
+  const { useState, useEffect } = React;
+
+  /* ── BRAND TOKENS (JS mirror of CSS vars) ──────────────────── */
+  const BRAND = {
+    midnight:     "#040E3D",
+    green:        "#8FFFDB",
+    teal:         "#71F1F7",
+    utilityBlue:  "#2CB0CD",
+    purple:       "#6400EC",
+    lavender:     "#C0A6FF",
+    red:          "#F65275",
+    crispGrey:    "#F2F2F4",
+    // Maturity levels
+    l1: "#F65275",
+    l2: "#C0A6FF",
+    l3: "#2CB0CD",
+    l4: "#71F1F7",
+    l5: "#8FFFDB",
+    // Bar gradients
+    barStandard:     "linear-gradient(to right,#F65275 0%,#F65275 8%,#2CB0CD 30%,#71F1F7 65%,#8FFFDB 100%)",
+    barAchievement:  "linear-gradient(to right,#8FFFDB,#71F1F7,#2CB0CD)",
+    barGap:          "linear-gradient(to right,#F65275,#2CB0CD,#71F1F7)",
+  };
+
+  /* ── DATA FETCH HOOK ────────────────────────────────────────── */
+  function useLighthouseData(jsonUrl) {
+    const [data,   setData]   = useState(null);
+    const [status, setStatus] = useState("loading"); // loading | ok | fallback
+
+    useEffect(()=>{
+      if(!jsonUrl) { setStatus("fallback"); return; }
+      fetch(jsonUrl)
+        .then(r => { if(!r.ok) throw new Error("fetch failed"); return r.json(); })
+        .then(d => { setData(d); setStatus("ok"); })
+        .catch(() => setStatus("fallback"));
+    }, [jsonUrl]);
+
+    // Helper: deep-read a dot-path from data, return fallback if missing
+    function rd(path, fallback) {
+      if(!data) return fallback;
+      return path.split(".").reduce((o,k)=> o&&o[k]!==undefined ? o[k] : undefined, data) ?? fallback;
+    }
+
+    return { data, status, rd };
+  }
+
+  /* ── LIGHTHOUSE ICON SVG ────────────────────────────────────── */
+  function LighthouseIcon({ size=20, color="currentColor" }) {
+    return React.createElement("svg", {
+      viewBox:"0 0 24 24", width:size, height:size,
+      fill:"none", stroke:color, strokeWidth:"1.5",
+      strokeLinecap:"round", strokeLinejoin:"round"
+    },
+      React.createElement("path",  {d:"M9.5 6 L12 2.5 L14.5 6 Z"}),
+      React.createElement("rect",  {x:"9.5", y:"6", width:"5", height:"3"}),
+      React.createElement("path",  {d:"M9.5 9 L8 20 L16 20 L14.5 9 Z"}),
+      React.createElement("line",  {x1:"8.5",  y1:"13", x2:"15.5", y2:"13"}),
+      React.createElement("line",  {x1:"8",    y1:"17", x2:"16",   y2:"17"}),
+      React.createElement("line",  {x1:"12",   y1:"20", x2:"12",   y2:"22.5"}),
+      React.createElement("line",  {x1:"8",    y1:"22.5", x2:"16", y2:"22.5"}),
+      React.createElement("line",  {x1:"12",   y1:"2.5", x2:"9",   y2:"0.5"}),
+      React.createElement("line",  {x1:"12",   y1:"2.5", x2:"15",  y2:"0.5"}),
+      React.createElement("line",  {x1:"12",   y1:"2.5", x2:"12",  y2:"0"})
+    );
+  }
+
+  /* ── CROSSFUZE LOGO ─────────────────────────────────────────── */
+  function CrossfuzeLogo() {
+    return React.createElement("div", { className:"flex items-center gap-2.5" },
+      React.createElement("svg", {
+        viewBox:"0 0 32 32", width:32, height:32, fill:"none"
+      },
+        React.createElement("path", {
+          d:"M16 2C8.268 2 2 8.268 2 16s6.268 14 14 14 14-6.268 14-14S23.732 2 16 2z",
+          fill:"none", stroke:"#71F1F7", strokeWidth:"1.5"
+        }),
+        React.createElement("path", {
+          d:"M10 16h12M16 10v12",
+          stroke:"#8FFFDB", strokeWidth:"2", strokeLinecap:"round"
+        })
+      ),
+      React.createElement("div", null,
+        React.createElement("div", {
+          style:{ fontSize:18, fontWeight:700, color:"#fff", lineHeight:1.1, letterSpacing:"-0.02em" }
+        }, "Crossfuze"),
+        React.createElement("div", {
+          style:{ fontSize:9, fontWeight:700, letterSpacing:"0.28em", textTransform:"uppercase", color:"rgba(113,241,247,0.65)" }
+        }, "Lighthouse")
+      )
+    );
+  }
+
+  /* ── NAV ────────────────────────────────────────────────────── */
+  function LighthouseNav({ currentPage, onNavigate, pages, lighthouseUrl }) {
+    // pages: [{ id, label }]
+    return React.createElement("div", {
+      className:"flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between mb-6"
+    },
+      React.createElement(CrossfuzeLogo),
+      React.createElement("nav", {
+        className:"flex flex-wrap items-center gap-2"
+      },
+        ...(pages||[]).map(({ id, label }) =>
+          React.createElement("button", {
+            key: id,
+            onClick: () => onNavigate(id),
+            className: cx-nav-btn ${currentPage===id ? "cx-nav-btn--active" : ""}
+          }, label)
+        ),
+        React.createElement("a", {
+          href: lighthouseUrl || "https://crossfuze-lighthouse.github.io/ZOOM/",
+          className: "cx-nav-btn cx-nav-btn--lighthouse",
+          style:{ display:"inline-flex", alignItems:"center", gap:6, textDecoration:"none" }
+        },
+          React.createElement(LighthouseIcon, { size:16, color:"#040E3D" }),
+          "Lighthouse"
+        )
+      )
+    );
+  }
+
+  /* ── SIGNAL BAR ─────────────────────────────────────────────── */
+  function LighthouseSignalBar({ signals, updatedLabel, dataStatus }) {
+    // signals: [{ dot, label, val, vc }]
+    return React.createElement("div", { className:"cx-signal-bar" },
+      React.createElement("span", {
+        style:{ fontSize:9, fontWeight:700, letterSpacing:"0.3em", textTransform:"uppercase", color:"rgba(255,255,255,0.28)", marginRight:8 }
+      }, "AEO Signals"),
+      React.createElement("div", { style:{ height:14, width:1, background:"rgba(255,255,255,0.10)", marginRight:4 } }),
+      ...(signals||[]).map(({ dot, label, val, vc }) =>
+        React.createElement("div", { key:label, className:"cx-signal-pill" },
+          React.createElement("span", { style:{ height:6, width:6, borderRadius:"50%", background:dot, flexShrink:0 } }),
+          React.createElement("span", { style:{ fontSize:11, color:"rgba(255,255,255,0.40)" } }, label),
+          React.createElement("span", { style:{ fontSize:11, fontWeight:700, color:vc } }, val)
+        )
+      ),
+      React.createElement("div", { style:{ marginLeft:"auto" } },
+        React.createElement("div", { className:"cx-signal-pill" },
+          React.createElement("span", { style:{ fontSize:11, color:"rgba(255,255,255,0.35)" } }, "Updated"),
+          React.createElement("span", { style:{ fontSize:11, fontWeight:700, color:"rgba(255,255,255,0.60)" } },
+            ${updatedLabel||"Q1 FY26"}${dataStatus==="fallback"?" (local)":""}
+          )
+        )
+      )
+    );
+  }
+
+  /* ── SHELL WRAPPER ──────────────────────────────────────────── */
+  function LighthouseShell({ children, currentPage, onNavigate, pages, signals, updatedLabel, dataStatus, showSignalBar=true, lighthouseUrl }) {
+    return React.createElement("div", { className:"cx-page-bg" },
+      React.createElement("div", { style:{ maxWidth:1280, margin:"0 auto" } },
+        React.createElement(LighthouseNav, { currentPage, onNavigate, pages, lighthouseUrl }),
+        showSignalBar && React.createElement(LighthouseSignalBar, { signals, updatedLabel, dataStatus }),
+        children
+      )
+    );
+  }
+
+  return { LighthouseShell, LighthouseNav, LighthouseSignalBar, LighthouseIcon, useLighthouseData, BRAND };
+
+})();
+
+Thought for a couple of seconds
+Perfect — this makes the setup much clearer.
+Your current live homepage is still safe, and this JS confirms you should not bolt the prototype into the current live index yet.
+
+What this JS tells me
+lighthouse-shell.js is a shared React-based shell library.
+It expects:
+
+React to already be loaded globally
+pages to call LighthouseShellLib
+component-driven rendering via React.createElement(...)
+That is very different from your current index.html, which is just:
+static HTML
+Tailwind CDN
+no React mount
+no JS app bootstrapping
+So your live index.html and this shell file are not yet the same architecture.
+What that means in practice
+Your safest route is:
+Keep current live homepage untouched
+Do not replace:
+index.html
+lighthouse-brand.css
+lighthouse-shell.js
+Build the prototype as a separate page
+Create a new file such as:
+architecture.html
+or
+lighthouse-prototype.html
+Then load React there and render the prototype page separately.
+Why this is the right move
+Because if you try to force the backend architecture visual into the current index.html, you would need to introduce:
+React
+a mount div
+component bootstrapping
+possibly Babel or a compiled build step
+That is where accidental breakage starts.
+Your current homepage is clean and stable because it is simple.
+
+Best structure now
+Inside the same repo, keep this pattern:
+/index.html                        ← leave alone
+/lighthouse-brand.css             ← leave alone
+/lighthouse-shell.js              ← leave alone
+
+/architecture.html                ← new prototype page
+/architecture-app.js              ← new page script
+If you want to be even cleaner:
+/prototype/architecture.html
+/prototype/architecture-app.js
+/prototype/prototype.css
+That is probably the best setup.
+Recommended build pattern for the prototype
+Option A — quickest
+Build the prototype page as plain HTML + Tailwind, like your current index.
+Pros:
+
+simplest
+lowest risk
+easy to upload
+no React dependency problems
+This is the best choice if the architecture page is mostly visual and static.
+Option B — use the React shell properly
+Build a separate React page that:
+loads React from CDN
+loads lighthouse-shell.js
+mounts a Lighthouse architecture component
+Pros:
+more reusable
+aligns with your shell pattern
+better if you want multiple interactive prototype pages
+Cons:
+a bit more setup
+easier to break if file loading is wrong
+Given where you are now, I would use:
+Option A for the first architecture prototype page
+
+Then later, when you move to Option B standalone app, you can rebuild it properly in React.
+
+My recommendation
+Right now
+Use your live repo, but add a new standalone HTML prototype page.
+Do not touch the live index except maybe later to add a link.
+
+Best first file set
+Create:
+/prototype/lighthouse-architecture.html
+/prototype/lighthouse-architecture.css
+Or if you want no subfolder:
+/lighthouse-architecture.html
+/lighthouse-architecture.css
+Important conclusion from your JS
+Because lighthouse-shell.js is React-based, it is not the right first integration point for a safe static prototype unless you deliberately set up a React page for it.
+So the answer is:
+
+Your live page is safe.
+Build the architecture prototype as a separate HTML page first.
+Do not wire it into the current shell until later.
+
+Best next step
+Paste lighthouse-brand.css next.
+That will let me tell you:
+
+whether the prototype page can reuse your existing brand styles safely
+or whether it should have its own isolated CSS so nothing leaks into the live site
+
+Lighthouse Backend Architecture Visual
+ok step by step from here
+
+Thought for a couple of seconds
+Yes. Here’s the safest step-by-step path from where you are now.
+Step 1
+Do not touch your live index.html.
+Leave these as they are:
+
+index.html
+lighthouse-brand.css
+lighthouse-shell.js
+That keeps the live page safe.
+Step 2
+Create a new prototype page in the same repo.
+Use this file name:
+
+lighthouse-architecture.html
+This will be your standalone prototype page for the backend map.
+Step 3
+Create a matching JS file for that page.
+Use:
+
+lighthouse-architecture.js
+This file will contain the architecture page code.
+Step 4
+For the first version, do not use React yet.
+Your safest first build is:
+
+static HTML
+Tailwind CDN
+optional small JS only if needed
+That avoids introducing a React runtime into the live repo before necessary.
+Step 5
+Use the canvas architecture as the content blueprint, not as direct code.
+The canvas file is React/Tailwind-style component code.
+For GitHub prototype phase, convert it into:
+
+one static HTML page
+same sections
+same wording
+same colors/look
+Step 6
+Build lighthouse-architecture.html with this structure:
+top bar / header
+page title
+assessment portal section
+respondents section
+submission types section
+governed objects section
+scoring engine section
+portfolio outputs section
+workflow / controls section
+MVP delivery layer
+final positioning block
+Step 7
+Add a link to it only after it works.
+Once the page is live and tested, add a card or button from your homepage to:
+
+lighthouse-architecture.html
+Until then, just open it directly in browser.
+Step 8
+Upload both files to GitHub:
+lighthouse-architecture.html
+any new CSS file if needed
+Then test the URL directly.
+Step 9
+After that, build the second prototype page:
+lighthouse-portfolio.html
+That should show:
+portfolio overview
+sample offerings
+maturity stage
+owner
+status
+links to assets
+Step 10
+Then build the third prototype page:
+lighthouse-offering.html
+That should show one standardised offering page:
+summary
+maturity
+owner
+proof / evidence
+GTM assets
+next actions
+Step 11
+Then build the fourth prototype page:
+lighthouse-assets.html
+That will show the Sales and Marketing portal concept.
+Step 12
+Only after those prototype pages are working do you decide:
+stay static a bit longer
+or move to full standalone React app for Option B
+What I recommend right now
+Your immediate next move should be:
+Create lighthouse-architecture.html first.
+
+Then I’ll give you the full safe code for that page in plain HTML so you can upload it without risking the live site.
+
+Say:
+give me the full lighthouse-architecture.html code
+and I’ll write it to match your current visual style.
+
+Lighthouse Backend Architecture Visual
+Uploaded image
+do I need any of these files?
+
+No — for this prototype repo, you do not need any of those optional items.
+Set it up like this:
+
+Repository name: do not use lighthouse-architecture.html
+use a repo name like:
+lighthouse-prototype
+project-lighthouse-prototype
+lighthouse-portal-prototype
+A repo name should be the project/container, not a file name.
+For the options on screen:
+
+Description: optional, but useful
+use something like:
+Prototype portal and architecture pages for Project Lighthouse
+Visibility:
+use Private if this is internal/prototype only
+use Public only if you are happy for anyone to see it
+Add README: No
+Add .gitignore: No
+Add license: No
+So the clean choice is:
+repo name: lighthouse-prototype
+description: optional
+visibility: probably Private
+README: Off
+gitignore: No .gitignore
+license: No license
+Then click Create repository.
+After that, your first files should be:
+
+index.html
+lighthouse-architecture.html
+If you want, next I’ll give you the exact repo name to use and then the first file layout.
+
+Lighthouse Backend Architecture Visual
+I need both those files
+
+Thought for a few seconds
+Yes — but not in the way you typed in the repo name box.
+You need both files as files inside the repo, not as the repo name.
+
+What to do on that screen
+Use:
+Repository name: lighthouse-prototype
+or project-lighthouse-prototype
+Do not use:
+lighthouse-architecture.html
+That should be a file name, not the repo name.
+Then inside the repo create these two files
+index.html
+lighthouse-architecture.html
+What each file does
+index.html
+This is the homepage of the prototype repo.
+Use it as a simple landing page with links to:
+
+Lighthouse Architecture
+later Portfolio
+later Offering Page
+later Assets Portal
+lighthouse-architecture.html
+This is the page for the backend architecture map.
+That is where we put the visual you’ve been building.
+
+Simplest repo structure
+Use this:
+lighthouse-prototype/
+├── index.html
+├── lighthouse-architecture.html
+That is enough to start.
+For the GitHub create repo screen
+Choose:
+Repository name: lighthouse-prototype
+Description: Project Lighthouse prototype portal and architecture pages
+Visibility: Private
+README: Off
+.gitignore: No
+License: No
+Then click Create repository
+After that
+Create these files one by one:
+index.html
+lighthouse-architecture.html
+Start with index.html first.
+Use a very simple version that links to lighthouse-architecture.html.
+
+Important point
+Your live repo stays untouched.
+This new repo is just the prototype sandbox.
+If you want, I’ll give you the exact code for:
+
+index.html first
+then lighthouse-architecture.html right after
+
+Lighthouse Backend Architecture Visual
+Uploaded image
+
+Thought for 6s
+Perfect — you’re in the right place now.
+You have the new repo and both files created. Next step is:
+
+Step 1
+Open index.html and make it a very simple landing page.
+Paste this in:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Lighthouse Prototype</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --midnight: #040E3D;
+      --bright-green: #8FFFDB;
+      --bright-blue: #71F1F7;
+      --utility-blue: #2CB0CD;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(113, 241, 247, 0.14), transparent 24%),
+        radial-gradient(circle at top right, rgba(143, 255, 219, 0.10), transparent 18%),
+        linear-gradient(180deg, #0a1652 0%, #040E3D 42%, #040E3D 100%);
+    }
+  </style>
+</head>
+<body class="min-h-screen text-white font-sans">
+  <div class="mx-auto max-w-6xl px-6 py-10">
+    <div class="mb-10 flex items-center justify-between">
+      <div>
+        <div class="text-xs font-semibold uppercase tracking-[0.35em] text-white/70">Crossfuze</div>
+        <h1 class="mt-2 text-4xl font-semibold tracking-[-0.04em]">Project Lighthouse Prototype</h1>
+        <p class="mt-3 max-w-2xl text-base leading-7 text-white/80">
+          Prototype portal and architecture pages for Project Lighthouse.
+        </p>
+      </div>
+      <div class="rounded-full border border-[#2CB0CD]/60 bg-[#2CB0CD]/15 px-4 py-2 text-sm font-semibold text-[#8FFFDB]">
+        Prototype
+      </div>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-2">
+      <a href="lighthouse-architecture.html" class="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.25)] transition hover:-translate-y-1 hover:border-white/20">
+        <div class="text-xs font-semibold uppercase tracking-[0.25em] text-white/50">Page 01</div>
+        <h2 class="mt-3 text-2xl font-semibold">Backend Architecture Map</h2>
+        <p class="mt-3 text-sm leading-7 text-white/80">
+          Visual view of how assessment portal inputs, governed objects, scoring logic, workflow, controls, outputs, and MVP delivery fit together.
+        </p>
+      </a>
+
+      <div class="rounded-3xl border border-white/10 bg-white/5 p-6 opacity-70 shadow-[0_20px_50px_rgba(0,0,0,0.2)]">
+        <div class="text-xs font-semibold uppercase tracking-[0.25em] text-white/50">Next</div>
+        <h2 class="mt-3 text-2xl font-semibold">Future Pages</h2>
+        <p class="mt-3 text-sm leading-7 text-white/80">
+          Portfolio view, standardised offering page, and GTM assets portal will sit here next.
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+Step 2
+Open lighthouse-architecture.html and paste this in.
+This is a static HTML version of the architecture you built in canvas, so it is safe for GitHub Pages:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lighthouse Backend Architecture</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --bg: #071A26;
+      --panel: #0B2433;
+      --panel2: #102B3B;
+      --border: #1F4B5F;
+      --text: #EAF6F8;
+      --sub: #9CC7CF;
+      --teal: #17B79E;
+      --tealSoft: #1D8F83;
+      --blue: #2F80ED;
+      --amber: #F5B942;
+      --coral: #F27D72;
+      --violet: #8B7CF6;
+      --pink: #E96AAE;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Montserrat, Inter, ui-sans-serif, system-ui, sans-serif;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02));
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.28);
+    }
+
+    .chip {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      border: 1px solid;
+    }
+
+    .item {
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+      padding: 0.9rem 1rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .arrow-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--sub);
+      border-radius: 999px;
+      padding: 0.4rem 0.8rem;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .connector {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+
+    .connector-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(23,183,158,0), rgba(23,183,158,0.65), rgba(23,183,158,0));
+    }
+
+    .connector-label {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--sub);
+      border-radius: 999px;
+      padding: 0.35rem 0.8rem;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .mini-flow {
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: rgba(10,29,41,0.72);
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="mx-auto max-w-7xl px-6 py-8 md:px-10 md:py-10">
+    <div class="mb-8 rounded-[30px] border p-6 shadow-2xl" style="background:linear-gradient(135deg,#0B2433 0%,#081722 100%); border-color: var(--border);">
+      <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div>
+          <div class="mb-2 inline-flex rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em]" style="border-color:#1E5368; color:var(--sub);">
+            Project Lighthouse
+          </div>
+          <h1 class="text-3xl font-semibold tracking-tight md:text-5xl">Backend Architecture Map</h1>
+          <p class="mt-3 max-w-3xl text-sm leading-6 md:text-base" style="color:var(--sub);">
+            Box-by-box view of how Lighthouse portal intake, stakeholder submissions, governed objects, scoring logic, controls, workflow, and portfolio outcomes fit together behind the maturity framework.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 gap-3 md:w-[360px]">
+          <div class="rounded-2xl border p-4" style="border-color:var(--border); background:var(--panel2);">
+            <div class="text-xs uppercase tracking-[0.18em]" style="color:var(--sub);">Role</div>
+            <div class="mt-2 text-sm font-medium">Operating backbone</div>
+          </div>
+          <div class="rounded-2xl border p-4" style="border-color:var(--border); background:var(--panel2);">
+            <div class="text-xs uppercase tracking-[0.18em]" style="color:var(--sub);">Focus</div>
+            <div class="mt-2 text-sm font-medium">Maturity, readiness, prioritisation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid gap-6 xl:grid-cols-[0.8fr_auto_1fr_auto_1fr] xl:items-stretch">
+      <div class="panel p-5" style="border-color:rgba(47,128,237,0.35);">
+        <div class="chip" style="background:rgba(47,128,237,0.12); color:var(--blue); border-color:rgba(47,128,237,0.35);">Assessment Portal</div>
+        <p class="mt-3 text-xs leading-6" style="color:var(--sub);">The front-door intake point where Lighthouse assessments are launched and collected.</p>
+        <div class="mt-4 grid gap-3">
+          <div class="item">Assessment Portal</div>
+        </div>
+      </div>
+
+      <div class="hidden xl:flex items-center justify-center">
+        <div class="arrow-pill">Routes To <span style="color:var(--teal);">→</span></div>
+      </div>
+
+      <div class="panel p-5" style="border-color:rgba(23,183,158,0.35);">
+        <div class="chip" style="background:rgba(23,183,158,0.12); color:var(--teal); border-color:rgba(23,183,158,0.35);">Respondents</div>
+        <p class="mt-3 text-xs leading-6" style="color:var(--sub);">The stakeholder groups responsible for completing and validating assessments.</p>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="item">Offering Owners</div>
+          <div class="item">Sales &amp; GTM Leaders</div>
+          <div class="item">Practice Leads</div>
+          <div class="item">Executive Sponsors</div>
+        </div>
+      </div>
+
+      <div class="hidden xl:flex items-center justify-center">
+        <div class="arrow-pill">Submit <span style="color:var(--teal);">→</span></div>
+      </div>
+
+      <div class="panel p-5" style="border-color:rgba(139,124,246,0.35);">
+        <div class="chip" style="background:rgba(139,124,246,0.12); color:var(--violet); border-color:rgba(139,124,246,0.35);">Submission Types</div>
+        <p class="mt-3 text-xs leading-6" style="color:var(--sub);">The structured inputs captured through the portal and passed into Lighthouse records.</p>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="item">Structured Scores</div>
+          <div class="item">Evidence Links</div>
+          <div class="item">Comments / Context</div>
+          <div class="item">Gap Flags</div>
+          <div class="item">Readiness Inputs</div>
+          <div class="item">Dependencies / Risks</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="my-4 grid gap-3 xl:grid-cols-[1.1fr_1.2fr_1fr]">
+      <div class="flex justify-center xl:justify-end"><div class="arrow-pill">Creates Records For <span style="color:var(--teal);">→</span></div></div>
+      <div class="flex justify-center"><div class="arrow-pill">Feeds <span style="color:var(--teal);">→</span></div></div>
+      <div></div>
+    </div>
+
+    <div class="connector">
+      <div class="connector-line"></div>
+      <div class="connector-label">Portal Submissions Flow Into Governed Model And Scoring Engine</div>
+      <div class="connector-line"></div>
+    </div>
+
+    <div class="grid gap-6 xl:grid-cols-[1.1fr_1.2fr_1fr]">
+      <div class="panel p-5" style="border-color:rgba(23,183,158,0.35);">
+        <div class="chip" style="background:rgba(23,183,158,0.12); color:var(--teal); border-color:rgba(23,183,158,0.35);">Governed Objects</div>
+        <p class="mt-3 text-xs leading-6" style="color:var(--sub);">
+          The core entities Lighthouse manages and the relationship path that turns raw submissions into scored records.
+        </p>
+
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="item">Offering</div>
+          <div class="item">Vertical / Specialisation</div>
+          <div class="item">Technical Capability</div>
+          <div class="item">Asset / Accelerator</div>
+          <div class="item">Evidence Item</div>
+          <div class="item">Criterion</div>
+          <div class="item">Owner</div>
+          <div class="item">Dependency / Risk</div>
+        </div>
+
+        <div class="mini-flow mt-5">
+          <div class="text-xs uppercase tracking-[0.18em]" style="color:var(--sub);">Relationship Hub</div>
+          <div class="mt-4 space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="flex-1 rounded-2xl border px-4 py-3" style="border-color:rgba(23,183,158,0.35); background:rgba(23,183,158,0.08);">
+                <div class="text-sm font-semibold">Offering</div>
+                <div class="mt-1 text-[11px] uppercase tracking-[0.16em]" style="color:var(--sub);">targets verticals • uses assets</div>
+              </div>
+              <div class="arrow-pill">Links To <span style="color:var(--teal);">→</span></div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <div class="flex-1 rounded-2xl border px-4 py-3" style="border-color:rgba(139,124,246,0.35); background:rgba(139,124,246,0.08);">
+                <div class="text-sm font-semibold">Technical Capability</div>
+                <div class="mt-1 text-[11px] uppercase tracking-[0.16em]" style="color:var(--sub);">supports offering delivery</div>
+              </div>
+              <div class="arrow-pill">Links To <span style="color:var(--teal);">→</span></div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <div class="flex-1 rounded-2xl border px-4 py-3" style="border-color:rgba(242,125,114,0.35); background:rgba(242,125,114,0.08);">
+                <div class="text-sm font-semibold">Evidence Item</div>
+                <div class="mt-1 text-[11px] uppercase tracking-[0.16em]" style="color:var(--sub);">proves readiness and claims</div>
+              </div>
+              <div class="arrow-pill">Links To <span style="color:var(--teal);">→</span></div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <div class="flex-1 rounded-2xl border px-4 py-3" style="border-color:rgba(233,106,174,0.35); background:rgba(233,106,174,0.08);">
+                <div class="text-sm font-semibold">Criterion</div>
+                <div class="mt-1 text-[11px] uppercase tracking-[0.16em]" style="color:var(--sub);">scores maturity dimensions</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-[30px] border p-6 shadow-2xl" style="background:linear-gradient(180deg, rgba(245,185,66,0.10), rgba(255,255,255,0.02)); border-color:rgba(245,185,66,0.35);">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="chip" style="background:rgba(245,185,66,0.12); color:var(--amber); border-color:rgba(245,185,66,0.35);">Central Engine</div>
+            <h2 class="mt-3 text-2xl font-semibold md:text-3xl">Lighthouse Scoring &amp; Governance Engine</h2>
+            <p class="mt-2 text-sm leading-6" style="color:var(--sub);">
+              Converts connected Lighthouse records, evidence, criteria, and dependencies into credible maturity outputs, authority thresholds, and decision-ready status.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-5 grid gap-3 sm:grid-cols-2">
+          <div class="item">Weighted Scoring</div>
+          <div class="item">Must-Have Rules</div>
+          <div class="item">Authority Thresholds</div>
+          <div class="item">Strength / Confidence</div>
+          <div class="item">Composite Score</div>
+          <div class="item">Maturity Level Assignment</div>
+        </div>
+
+        <div class="mt-6 rounded-[24px] border p-5" style="border-color:var(--border); background:rgba(10,29,41,0.85);">
+          <div class="text-xs uppercase tracking-[0.18em]" style="color:var(--sub);">Engine Logic</div>
+          <p class="mt-2 text-sm leading-7">
+            Portal submissions from offering owners, GTM leaders, practice leads, and sponsors are translated into Lighthouse records. Structured scores, evidence links, comments, readiness inputs, and dependency flags are assessed against Lighthouse criteria, adjusted by must-have rules, evidence strength, and dependencies, then converted into maturity levels and next actions.
+          </p>
+        </div>
+      </div>
+
+      <div class="panel p-5" style="border-color:rgba(233,106,174,0.35);">
+        <div class="chip" style="background:rgba(233,106,174,0.12); color:var(--pink); border-color:rgba(233,106,174,0.35);">Portfolio Outputs</div>
+        <p class="mt-3 text-xs leading-6" style="color:var(--sub);">
+          Decision-ready outcomes produced for leadership, GTM, enablement, and a structured assets experience for Sales and Marketing.
+        </p>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="item">Readiness Decision</div>
+          <div class="item">Investment Priority</div>
+          <div class="item">Portfolio Ranking</div>
+          <div class="item">Structured GTM Assets Portal</div>
+          <div class="item">Maturity Heatmap</div>
+          <div class="item">Revenue / Adoption Tracking</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-3 grid gap-4 xl:grid-cols-[1.1fr_1.2fr_1fr]">
+      <div class="flex justify-center xl:justify-end"><div class="connector-label">Entities Feed Scoring</div></div>
+      <div class="flex justify-center"><div class="connector-label">Scoring Drives Decisions</div></div>
+      <div class="flex justify-center xl:justify-start"><div class="connector-label">Outputs Inform Action</div></div>
+    </div>
+
+    <div class="my-4 grid gap-3 xl:grid-cols-[1.2fr_auto_1fr] xl:items-center">
+      <div class="flex justify-center xl:justify-end"><div class="arrow-pill">Drives <span style="color:var(--teal);">→</span></div></div>
+      <div class="hidden xl:flex items-center justify-center text-xl" style="color:var(--teal);">↓</div>
+      <div class="flex justify-center xl:justify-start"><div class="arrow-pill">Governed By <span style="color:var(--teal);">→</span></div></div>
+    </div>
+
+    <div class="connector">
+      <div class="connector-line"></div>
+      <div class="connector-label">Operationalised Through Workflow And Controls</div>
+      <div class="connector-line"></div>
+    </div>
+
+    <div class="my-4 flex justify-center">
+      <div class="arrow-pill">Translates Into MVP <span style="color:var(--teal);">→</span></div>
+    </div>
+
+    <div class="grid gap-6 xl:grid-cols-[1.2fr_1fr]">
+      <div class="panel p-5" style="border-color:rgba(242,125,114,0.35);">
+        <div class="chip" style="background:rgba(242,125,114,0.12); color:var(--coral); border-color:rgba(242,125,114,0.35);">Lifecycle Workflow</div>
+        <p class="mt-3 text-xs leading-6" style="color:var(--sub);">The operational path for moving an offering or capability from idea to scaled readiness.</p>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="item">Intake</div>
+          <div class="item">Assess</div>
+          <div class="item">Shape</div>
+          <div class="item">Enable</div>
+          <div class="item">Launch</div>
+          <div class="item">Scale</div>
+        </div>
+      </div>
+
+      <div class="panel p-5" style="border-color:rgba(139,124,246,0.35);">
+        <div class="chip" style="background:rgba(139,124,246,0.12); color:var(--violet); border-color:rgba(139,124,246,0.35);">Controls &amp; Action Layer</div>
+        <p class="mt-3 text-xs leading-6" style="color:var(--sub);">The control system that closes gaps, manages blockers, and maintains review discipline.</p>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="item">Actions</div>
+          <div class="item">Milestones</div>
+          <div class="item">Reviews</div>
+          <div class="item">Blockers</div>
+          <div class="item">Approvals</div>
+          <div class="item">Priority Gaps</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 rounded-[30px] border p-6 shadow-2xl" style="background:var(--panel); border-color:rgba(23,183,158,0.35);">
+      <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+        <div class="md:max-w-sm">
+          <div class="chip" style="background:rgba(23,183,158,0.12); color:var(--teal); border-color:rgba(23,183,158,0.35);">MVP Delivery Layer</div>
+          <h3 class="mt-3 text-2xl font-semibold">How Lighthouse Produces The MVP</h3>
+          <p class="mt-3 text-sm leading-7" style="color:var(--sub);">
+            The backend does not stop at scoring. It feeds a first live Lighthouse experience by turning structured records and outputs into a SharePoint-based portfolio view, standardised offering pages, and linked GTM collateral for Sales and Marketing.
+          </p>
+        </div>
+        <div class="grid flex-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          <div class="item">Live SharePoint Offerings Site</div>
+          <div class="item">Portfolio Overview View</div>
+          <div class="item">Standardised Offering Page</div>
+          <div class="item">Maturity Stage &amp; Ownership</div>
+          <div class="item">Links To Core GTM Collateral</div>
+          <div class="item">Consistent Source Of Truth</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 rounded-[30px] border p-6 shadow-2xl" style="background:var(--panel2); border-color:var(--border);">
+      <div class="text-xs uppercase tracking-[0.18em]" style="color:var(--sub);">Positioning</div>
+      <h3 class="mt-2 text-2xl font-semibold">What This Backend Model Says</h3>
+      <p class="mt-3 max-w-5xl text-sm leading-7 md:text-base" style="color:var(--sub);">
+        Project Lighthouse is not just a scorecard. It is the backend operating model for managing offering maturity — connecting portal intake, stakeholder submissions, governed entities, relationship logic, evidence-based scoring, workflow control, and portfolio decisions, then translating those outputs into the MVP SharePoint experience, including portfolio visibility, standardised offering pages, and a structured GTM assets portal for Sales and Marketing.
+      </p>
+    </div>
+  </div>
+</body>
+</html>
+Step 3
+Commit both files.
+Step 4
+Go to:
+Settings → Pages
+Set:
+
+Source: Deploy from a branch
+Branch: main
+Folder: / (root)
+Step 5
+Wait a minute or two, then open the published site.
+Your homepage will be:
+
+.../
+Your architecture page will be:
+.../lighthouse-architecture.html
+Step 6
+Check both pages load.
+Once that works, the next step is not more architecture work.
+
+The next step is:
+build the prototype portfolio page so this starts becoming a clickable portal, not just a map.
+
+Lighthouse Backend Architecture Visual
+I want o use my colors from other repo
+
+Thought for 8s
+Yes — and you should.
+Use the same brand palette as your other repo so the prototype feels native from day one.
+
+Use these colors
+From your existing repo, your core palette is:
+#040E3D — midnight
+#8FFFDB — bright green
+#71F1F7 — bright blue / teal
+#2CB0CD — utility blue
+#6400EC — purple
+#C0A6FF — lavender
+#F65275 — red
+#F2F2F4 — crisp grey
+What to change in the prototype
+In the lighthouse-architecture.html code I gave you, replace the current :root block with this:
+<style>
+  :root {
+    --midnight: #040E3D;
+    --bright-green: #8FFFDB;
+    --bright-blue: #71F1F7;
+    --utility-blue: #2CB0CD;
+    --purple: #6400EC;
+    --lavender: #C0A6FF;
+    --callout-red: #F65275;
+    --crisp-grey: #F2F2F4;
+
+    --bg: #040E3D;
+    --panel: rgba(255,255,255,0.05);
+    --panel2: rgba(255,255,255,0.04);
+    --border: rgba(113, 241, 247, 0.18);
+    --text: #ffffff;
+    --sub: rgba(255,255,255,0.72);
+
+    --teal: #8FFFDB;
+    --tealSoft: #71F1F7;
+    --blue: #2CB0CD;
+    --amber: #C0A6FF;
+    --coral: #F65275;
+    --violet: #6400EC;
+    --pink: #C0A6FF;
+  }
+
+  body {
+    background:
+      radial-gradient(circle at top left, rgba(113, 241, 247, 0.14), transparent 24%),
+      radial-gradient(circle at top right, rgba(143, 255, 219, 0.10), transparent 18%),
+      linear-gradient(180deg, #0a1652 0%, #040E3D 42%, #040E3D 100%);
+    color: var(--text);
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  }
+</style>
+What this does
+It brings the architecture page into the same visual language as your live Lighthouse repo:
+same dark navy base
+same cyan / mint / purple highlights
+same red callout tone
+same soft glass-card style
+One important note
+Because your existing brand palette does not include a true amber/orange, I mapped:
+amber to lavender
+pink also to lavender
+That keeps the architecture page consistent with your real brand instead of introducing a random new colour.
+My recommendation
+Do this now:
+keep the structure of the prototype page
+swap in your real :root colors
+then review the result visually before changing any wording
+The next best move is for you to paste your current lighthouse-brand.css, and I’ll tell you exactly which bits can be reused directly versus what should stay page-specific.
+
+Lighthouse Backend Architecture Visual
+can have click by click
+
+Thought for a few seconds
+Yes — here is the click-by-click from exactly where you are.
+Goal
+Use your new prototype repo and make the pages use the same colours as your other repo.
+We’ll do this safely.
+
+Part 1 — update index.html
+1.
+In your new repo, click index.html
+2.
+Click the pencil / edit button
+3.
+Find the <style> section near the top
+4.
+Inside that style block, find this part:
+:root {
+  --midnight: #040E3D;
+  --bright-green: #8FFFDB;
+  --bright-blue: #71F1F7;
+  --utility-blue: #2CB0CD;
+}
+5.
+Replace it with this:
+:root {
+  --midnight: #040E3D;
+  --bright-green: #8FFFDB;
+  --bright-blue: #71F1F7;
+  --utility-blue: #2CB0CD;
+  --purple: #6400EC;
+  --lavender: #C0A6FF;
+  --callout-red: #F65275;
+  --crisp-grey: #F2F2F4;
+}
+6.
+Leave the rest of index.html as it is for now
+7.
+Scroll down
+8.
+Click Commit changes
+Use a message like:
+Update index.html with Lighthouse brand colours
+
+9.
+Click Commit changes again
+Part 2 — update lighthouse-architecture.html
+1.
+Go back to the repo file list
+2.
+Click lighthouse-architecture.html
+3.
+Click the pencil / edit button
+4.
+Near the top, find the <style> block
+5.
+Inside it, find the existing :root { ... } section
+6.
+Replace the whole :root block with this:
+:root {
+  --midnight: #040E3D;
+  --bright-green: #8FFFDB;
+  --bright-blue: #71F1F7;
+  --utility-blue: #2CB0CD;
+  --purple: #6400EC;
+  --lavender: #C0A6FF;
+  --callout-red: #F65275;
+  --crisp-grey: #F2F2F4;
+
+  --bg: #040E3D;
+  --panel: rgba(255,255,255,0.05);
+  --panel2: rgba(255,255,255,0.04);
+  --border: rgba(113, 241, 247, 0.18);
+  --text: #ffffff;
+  --sub: rgba(255,255,255,0.72);
+
+  --teal: #8FFFDB;
+  --tealSoft: #71F1F7;
+  --blue: #2CB0CD;
+  --amber: #C0A6FF;
+  --coral: #F65275;
+  --violet: #6400EC;
+  --pink: #C0A6FF;
+}
+7.
+Then find the body { ... } style block
+8.
+Replace that whole body block with this:
+body {
+  background:
+    radial-gradient(circle at top left, rgba(113, 241, 247, 0.14), transparent 24%),
+    radial-gradient(circle at top right, rgba(143, 255, 219, 0.10), transparent 18%),
+    linear-gradient(180deg, #0a1652 0%, #040E3D 42%, #040E3D 100%);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+9.
+Do not change anything else yet
+10.
+Scroll down
+11.
+Click Commit changes
+Use a message like:
+Update architecture page to use Lighthouse brand colours
+
+12.
+Click Commit changes again
+Part 3 — publish with GitHub Pages
+If you have not done this already:
+1.
+Click Settings in the repo top navigation
+2.
+In the left menu, click Pages
+3.
+Under Build and deployment, set:
+Source = Deploy from a branch
+4.
+Under Branch, choose:
+main
+/ (root)
+5.
+Click Save
+6.
+Wait 1–3 minutes
+Part 4 — open the pages
+1.
+Open the repo Pages URL
+Your homepage should be:
+
+https://YOUR-NAME.github.io/lighthouse-prototype/
+2.
+Then open:
+https://YOUR-NAME.github.io/lighthouse-prototype/lighthouse-architecture.html
+Replace YOUR-NAME with your GitHub org/user path if needed.
+Part 5 — check what to look for
+On the architecture page, confirm:
+background is dark navy
+highlights are mint / cyan / purple
+red callouts are using your brand red
+cards still look clean
+nothing is broken
+Important note
+Because you created a new repo, none of this can break your live Lighthouse repo.
+If you want the absolute safest flow
+Do this in this order:
+update index.html
+commit
+update lighthouse-architecture.html
+commit
+enable Pages
+test URLs
+Paste a screenshot after Step 2 or Step 4 and I’ll tell you the exact next click.
+
+Lighthouse Backend Architecture Visual
+give me all code
+
+Thought for a couple of seconds
+Below is the full code for both files, using your Lighthouse-style colours.
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Lighthouse Prototype</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --midnight: #040E3D;
+      --bright-green: #8FFFDB;
+      --bright-blue: #71F1F7;
+      --utility-blue: #2CB0CD;
+      --purple: #6400EC;
+      --lavender: #C0A6FF;
+      --callout-red: #F65275;
+      --crisp-grey: #F2F2F4;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(113, 241, 247, 0.14), transparent 24%),
+        radial-gradient(circle at top right, rgba(143, 255, 219, 0.10), transparent 18%),
+        linear-gradient(180deg, #0a1652 0%, #040E3D 42%, #040E3D 100%);
+    }
+  </style>
+</head>
+<body class="min-h-screen text-white font-sans">
+  <div class="mx-auto max-w-6xl px-6 py-10">
+    <div class="mb-10 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div>
+        <div class="text-xs font-semibold uppercase tracking-[0.35em] text-white/70">Crossfuze</div>
+        <h1 class="mt-2 text-4xl font-semibold tracking-[-0.04em]">Project Lighthouse Prototype</h1>
+        <p class="mt-3 max-w-2xl text-base leading-7 text-white/80">
+          Prototype portal and architecture pages for Project Lighthouse.
+        </p>
+      </div>
+      <div class="rounded-full border border-[#2CB0CD]/60 bg-[#2CB0CD]/15 px-4 py-2 text-sm font-semibold text-[#8FFFDB]">
+        Prototype
+      </div>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-2">
+      <a
+        href="lighthouse-architecture.html"
+        class="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.25)] transition hover:-translate-y-1 hover:border-white/20"
+      >
+        <div class="text-xs font-semibold uppercase tracking-[0.25em] text-white/50">Page 01</div>
+        <h2 class="mt-3 text-2xl font-semibold">Backend Architecture Map</h2>
+        <p class="mt-3 text-sm leading-7 text-white/80">
+          Visual view of how assessment portal inputs, governed objects, scoring logic, workflow, controls, outputs, and MVP delivery fit together.
+        </p>
+      </a>
+
+      <div class="rounded-3xl border border-white/10 bg-white/5 p-6 opacity-70 shadow-[0_20px_50px_rgba(0,0,0,0.2)]">
+        <div class="text-xs font-semibold uppercase tracking-[0.25em] text-white/50">Next</div>
+        <h2 class="mt-3 text-2xl font-semibold">Future Pages</h2>
+        <p class="mt-3 text-sm leading-7 text-white/80">
+          Portfolio view, standardised offering page, and GTM assets portal will sit here next.
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+lighthouse-architecture.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lighthouse Backend Architecture</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --midnight: #040E3D;
+      --bright-green: #8FFFDB;
+      --bright-blue: #71F1F7;
+      --utility-blue: #2CB0CD;
+      --purple: #6400EC;
+      --lavender: #C0A6FF;
+      --callout-red: #F65275;
+      --crisp-grey: #F2F2F4;
+
+      --bg: #040E3D;
+      --panel: rgba(255,255,255,0.05);
+      --panel2: rgba(255,255,255,0.04);
+      --border: rgba(113, 241, 247, 0.18);
+      --text: #ffffff;
+      --sub: rgba(255,255,255,0.72);
+
+      --teal: #8FFFDB;
+      --tealSoft: #71F1F7;
+      --blue: #2CB0CD;
+      --amber: #C0A6FF;
+      --coral: #F65275;
+      --violet: #6400EC;
+      --pink: #C0A6FF;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(113, 241, 247, 0.14), transparent 24%),
+        radial-gradient(circle at top right, rgba(143, 255, 219, 0.10), transparent 18%),
+        linear-gradient(180deg, #0a1652 0%, #040E3D 42%, #040E3D 100%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02));
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.28);
+    }
+
+    .chip {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      border: 1px solid;
+    }
+
+    .item {
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+      padding: 0.9rem 1rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .arrow-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--sub);
+      border-radius: 999px;
+      padding: 0.4rem 0.8rem;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .connector {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+
+    .connector-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(143,255,219,0), rgba(143,255,219,0.65), rgba(143,255,219,0));
+    }
+
+    .connector-label {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: var(--sub);
+      border-radius: 999px;
+      padding: 0.35rem 0.8rem;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .mini-flow {
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: rgba(10,29,41,0.72);
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="mx-auto max-w-7xl px-6 py-8 md:px-10 md:py-10">
+    <div class="mb-8 rounded-[30px] border p-6 shadow-2xl" style="background:linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%); border-color: var(--border);">
+      <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div>
+          <div class="mb-2 inline-flex rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em]" style="border-color:rgba(113,241,247,0.24); color:var(--sub);">
+            Project Lighthouse
+          </div>
+          <h1 class="text-3xl font-semibold tracking-tight md:text-5xl">Backend Architecture Map</h1>
+          <p class="mt-3 max-w-3xl text-sm leading-6 md:text-base" style="color:var(--sub);">
+            Box-by-box view of how Lighthouse portal intake, stakeholder submissions, governed objects, scoring logic, controls, workflow, and portfolio outcomes fit together behind the maturity framework.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 gap-3 md:w-[360px]">
+          <div class="rounded-2xl border p-4" style="border-color:var(--border); background:var(--panel2);">
+            <div class="text-xs uppercase tracking-[0.18em]" style="color:var(--sub);">Role</div>
+            <div class="mt-2 text-sm font-medium">Operating backbone</div>
+          </div>
+          <div class="rounded-2xl border p-4" style="border-color:var(--border); background:var(--panel2);">
+            <div class="text-xs uppercase tracking-[0.18em]" style="color:var(--sub);">Focus</div>
+            <div class="mt-2 text-sm font-medium">Maturity, readiness, prioritisation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid gap-6 xl:grid-cols-[0.8fr_auto_1fr_auto_1fr] xl:items-stretch">
+      <div class="panel p-5" style="border-color:rgba(44,176,205,0.35);">
+        <div class="chip" style="background:rgba(44,176,205,0.12); color:var(--blue); border-color:rgba(44,176,205,0.35);">Assessment Portal</div>
+        <p class="mt-3 text-xs leading-6" style="color:var(--sub);">The front-door intake point where Lighthouse assessments are launched and collected.</p>
+        <div class="mt-4 grid gap-3">
+          <div class="item">Assessment Portal</div>
+        </div>
+      </div>
+
+      <div class="hidden xl:flex items-center justify-center">
+        <div class="arrow-pill">Routes To <span style="color:var(--teal);">→</span></div>
+      </div>
+
+      <div class="panel p-5" style="border-color:rgba(143,255,219,0.35);">
+        <div class="chip" style="background:rgba(143,255,219,0.12); color:var(--teal); border-color:rgba(143,255,219,0.35);">Respondents</div>
+        <p class="mt-3 text-xs leading-6" style="color:var(--sub);">The stakeholder groups responsible for completing and validating assessments.</p>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="item">Offering Owners</div>
+          <div class="item">Sales &amp; GTM Leaders</div>
+          <div class="item">Practice Leads</div>
+          <div class="item">Executive Sponsors</div>
+        </div>
+      </div>
+
+      <div class="hidden xl:flex items-center justify-center">
+        <div class="arrow-pill">Submit <span style="color:var(--teal);">→</span></div>
+      </div>
+
+      <div class="panel p-5" style="border-color:rgba(100,0,236,0.35);">
+        <div class="chip" style="background:rgba(100,0,236,0.12); color:var(--violet); border-color:rgba(100,0,236,0.35);">Submission Types</div>
+        <p class="mt-3 text-xs leading-6" style="color:var(--sub);">The structured inputs captured through the portal and passed into Lighthouse records.</p>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="item">Structured Scores</div>
+          <div class="item">Evidence Links</div>
+          <div class="item">Comments / Context</div>
+          <div class="item">Gap Flags</div>
+          <div class="item">Readiness Inputs</div>
+          <div class="item">Dependencies / Risks</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="my-4 grid gap-3 xl:grid-cols-[1.1fr_1.2fr_1fr]">
+      <div class="flex justify-center xl:justify-end">
+        <div class="arrow-pill">Creates Records For <span style="color:var(--teal);">→</span></div>
+      </div>
+      <div class="flex justify-center">
+        <div class="arrow-pill">Feeds <span style="color:var(--teal);">→</span></div>
+      </div>
+      <div></div>
+    </div>
+
+    <div class="connector">
+      <div class="connector-line"></div>
+      <div class="connector-label">Portal Submissions Flow Into Governed Model And Scoring Engine</div>
+      <div class="connector-line"></div>
+    </div>
+
+    <div class="grid gap-6 xl:grid-cols-[1.1fr_1.2fr_1fr]">
+      <div class="panel p-5" style="border-color:rgba(143,255,219,0.35);">
+        <div class="chip" style="background:rgba(143,255,219,0.12); color:var(--teal); border-color:rgba(143,255,219,0.35);">Governed Objects</div>
+        <p class="mt-3 text-xs leading-6" style="color:var(--sub);">
+          The core entities Lighthouse manages and the relationship path that turns raw submissions into scored records.
+        </p>
+
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="item">Offering</div>
+          <div class="item">Vertical / Specialisation</div>
+          <div class="item">Technical Capability</div>
+          <div class="item">Asset / Accelerator</div>
+          <div class="item">Evidence Item</div>
+          <div class="item">Criterion</div>
+          <div class="item">Owner</div>
+          <div class="item">Dependency / Risk</div>
+        </div>
+
+        <div class="mini-flow mt-5">
+          <div class="text-xs uppercase tracking-[0.18em]" style="color:var(--sub);">Relationship Hub</div>
+          <div class="mt-4 space-y-3">
+            <div class="flex items-center gap-3">
+              <div class="flex-1 rounded-2xl border px-4 py-3" style="border-color:rgba(143,255,219,0.35); background:rgba(143,255,219,0.08);">
+                <div class="text-sm font-semibold">Offering</div>
+                <div class="mt-1 text-[11px] uppercase tracking-[0.16em]" style="color:var(--sub);">targets verticals • uses assets</div>
+              </div>
+              <div class="arrow-pill">Links To <span style="color:var(--teal);">→</span></div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <div class="flex-1 rounded-2xl border px-4 py-3" style="border-color:rgba(100,0,236,0.35); background:rgba(100,0,236,0.08);">
+                <div class="text-sm font-semibold">Technical Capability</div>
+                <div class="mt-1 text-[11px] uppercase tracking-[0.16em]" style="color:var(--sub);">supports offering delivery</div>
+              </div>
+              <div class="arrow-pill">Links To <span style="color:var(--teal);">→</span></div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <div class="flex-1 rounded-2xl border px-4 py-3" style="border-color:rgba(246,82,117,0.35); background:rgba(246,82,117,0.08);">
+                <div class="text-sm font-semibold">Evidence Item</div>
+                <div class="mt-1 text-[11px] uppercase tracking-[0.16em]" style="color:var(--sub);">proves readiness and claims</div>
+              </div>
+              <div class="arrow-pill">Links To <span style="color:var(--teal);">→</span></div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <div class="flex-1 rounded-2xl border px-4 py-3" style="border-color:rgba(192,166,255,0.35); background:rgba(192,166,255,0.08);">
+                <div class="text-sm font-semibold">Criterion</div>
+                <div class="mt-1 text-[11px] uppercase tracking-[0.16em]" style="color:var(--sub);">scores maturity dimensions</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-[30px] border p-6 shadow-2xl" style="background:linear-gradient(180deg, rgba(192,166,255,0.10), rgba(255,255,255,0.02)); border-color:rgba(192,166,255,0.35);">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <div class="chip" style="background:rgba(192,166,255,0.12); color:var(--amber); border-color:rgba(192,166,255,0.35);">Central Engine</div>
+            <h2 class="mt-3 text-2xl font-semibold md:text-3xl">Lighthouse Scoring &amp; Governance Engine</h2>
+            <p class="mt-2 text-sm leading-6" style="color:var(--sub);">
+              Converts connected Lighthouse records, evidence, criteria, and dependencies into credible maturity outputs, authority thresholds, and decision-ready status.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-5 grid gap-3 sm:grid-cols-2">
+          <div class="item">Weighted Scoring</div>
+          <div class="item">Must-Have Rules</div>
+          <div class="item">Authority Thresholds</div>
+          <div class="item">Strength / Confidence</div>
+          <div class="item">Composite Score</div>
+          <div class="item">Maturity Level Assignment</div>
+        </div>
+
+        <div class="mt-6 rounded-[24px] border p-5" style="border-color:var(--border); background:rgba(10,29,41,0.85);">
+          <div class="text-xs uppercase tracking-[0.18em]" style="color:var(--sub);">Engine Logic</div>
+          <p class="mt-2 text-sm leading-7">
+            Portal submissions from offering owners, GTM leaders, practice leads, and sponsors are translated into Lighthouse records. Structured scores, evidence links, comments, readiness inputs, and dependency flags are assessed against Lighthouse criteria, adjusted by must-have rules, evidence strength, and dependencies, then converted into maturity levels and next actions.
+          </p>
+        </div>
+      </div>
+
+      <div class="panel p-5" style="border-color:rgba(192,166,255,0.35);">
+        <div class="chip" style="background:rgba(192,166,255,0.12); color:var(--pink); border-color:rgba(192,166,255,0.35);">Portfolio Outputs</div>
+        <p class="mt-3 text-xs leading-6" style="color:var(--sub);">
+          Decision-ready outcomes produced for leadership, GTM, enablement, and a structured assets experience for Sales and Marketing.
+        </p>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="item">Readiness Decision</div>
+          <div class="item">Investment Priority</div>
+          <div class="item">Portfolio Ranking</div>
+          <div class="item">Structured GTM Assets Portal</div>
+          <div class="item">Maturity Heatmap</div>
+          <div class="item">Revenue / Adoption Tracking</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-3 grid gap-4 xl:grid-cols-[1.1fr_1.2fr_1fr]">
+      <div class="flex justify-center xl:justify-end"><div class="connector-label">Entities Feed Scoring</div></div>
+      <div class="flex justify-center"><div class="connector-label">Scoring Drives Decisions</div></div>
+      <div class="flex justify-center xl:justify-start"><div class="connector-label">Outputs Inform Action</div></div>
+    </div>
+
+    <div class="my-4 grid gap-3 xl:grid-cols-[1.2fr_auto_1fr] xl:items-center">
+      <div class="flex justify-center xl:justify-end"><div class="arrow-pill">Drives <span style="color:var(--teal);">→</span></div></div>
+      <div class="hidden xl:flex items-center justify-center text-xl" style="color:var(--teal);">↓</div>
+      <div class="flex justify-center xl:justify-start"><div class="arrow-pill">Governed By <span style="color:var(--teal);">→</span></div></div>
+    </div>
+
+    <div class="connector">
+      <div class="connector-line"></div>
+      <div class="connector-label">Operationalised Through Workflow And Controls</div>
+      <div class="connector-line"></div>
+    </div>
+
+    <div class="my-4 flex justify-center">
+      <div class="arrow-pill">Translates Into MVP <span style="color:var(--teal);">→</span></div>
+    </div>
+
+    <div class="grid gap-6 xl:grid-cols-[1.2fr_1fr]">
+      <div class="panel p-5" style="border-color:rgba(246,82,117,0.35);">
+        <div class="chip" style="background:rgba(246,82,117,0.12); color:var(--coral); border-color:rgba(246,82,117,0.35);">Lifecycle Workflow</div>
+        <p class="mt-3 text-xs leading-6" style="color:var(--sub);">The operational path for moving an offering or capability from idea to scaled readiness.</p>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="item">Intake</div>
+          <div class="item">Assess</div>
+          <div class="item">Shape</div>
+          <div class="item">Enable</div>
+          <div class="item">Launch</div>
+          <div class="item">Scale</div>
+        </div>
+      </div>
+
+      <div class="panel p-5" style="border-color:rgba(100,0,236,0.35);">
+        <div class="chip" style="background:rgba(100,0,236,0.12); color:var(--violet); border-color:rgba(100,0,236,0.35);">Controls &amp; Action Layer</div>
+        <p class="mt-3 text-xs leading-6" style="color:var(--sub);">The control system that closes gaps, manages blockers, and maintains review discipline.</p>
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          <div class="item">Actions</div>
+          <div class="item">Milestones</div>
+          <div class="item">Reviews</div>
+          <div class="item">Blockers</div>
+          <div class="item">Approvals</div>
+          <div class="item">Priority Gaps</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 rounded-[30px] border p-6 shadow-2xl" style="background:var(--panel); border-color:rgba(143,255,219,0.35);">
+      <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+        <div class="md:max-w-sm">
+          <div class="chip" style="background:rgba(143,255,219,0.12); color:var(--teal); border-color:rgba(143,255,219,0.35);">MVP Delivery Layer</div>
+          <h3 class="mt-3 text-2xl font-semibold">How Lighthouse Produces The MVP</h3>
+          <p class="mt-3 text-sm leading-7" style="color:var(--sub);">
+            The backend does not stop at scoring. It feeds a first live Lighthouse experience by turning structured records and outputs into a SharePoint-based portfolio view, standardised offering pages, and linked GTM collateral for Sales and Marketing.
+          </p>
+        </div>
+        <div class="grid flex-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          <div class="item">Live SharePoint Offerings Site</div>
+          <div class="item">Portfolio Overview View</div>
+          <div class="item">Standardised Offering Page</div>
+          <div class="item">Maturity Stage &amp; Ownership</div>
+          <div class="item">Links To Core GTM Collateral</div>
+          <div class="item">Consistent Source Of Truth</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-6 rounded-[30px] border p-6 shadow-2xl" style="background:var(--panel2); border-color:var(--border);">
+      <div class="text-xs uppercase tracking-[0.18em]" style="color:var(--sub);">Positioning</div>
+      <h3 class="mt-2 text-2xl font-semibold">What This Backend Model Says</h3>
+      <p class="mt-3 max-w-5xl text-sm leading-7 md:text-base" style="color:var(--sub);">
+        Project Lighthouse is not just a scorecard. It is the backend operating model for managing offering maturity — connecting portal intake, stakeholder submissions, governed entities, relationship logic, evidence-based scoring, workflow control, and portfolio decisions, then translating those outputs into the MVP SharePoint experience, including portfolio visibility, standardised offering pages, and a structured GTM assets portal for Sales and Marketing.
+      </p>
+    </div>
+  </div>
+</body>
+</html>
+After you paste those in, commit both files, then turn on GitHub Pages in the prototype repo.
+
+Lighthouse Backend Architecture Visual
+how make viewable
+
+Yes. To make it viewable on GitHub Pages:
+1. Commit the files
+Make sure index.html and lighthouse-architecture.html are saved and committed in the repo.
+2. Open repo Settings
+At the top of the repo, click Settings.
+3. Click Pages
+In the left sidebar, click Pages.
+4. Set publishing source
+Under Build and deployment:
+Source = Deploy from a branch
+5. Set branch and folder
+Choose:
+Branch = main
+Folder = / (root)
+Then click Save.
+6. Wait a minute
+GitHub will publish the site. It can take 1–3 minutes.
+7. Open the site URL
+On the Pages settings screen, GitHub will show the live URL.
+It will usually be:
+
+https://crossfuze-lighthouse.github.io/lighthouse-prototype/
+8. Open the architecture page directly
+Your second page should be at:
+https://crossfuze-lighthouse.github.io/lighthouse-prototype/lighthouse-architecture.html
+If it does not work
+Check these:
+repo is not empty
+files are committed to main
+Pages is set to main and /root
+repo visibility allows Pages access if needed
+Important note
+Your repo is currently Private in the screenshot. GitHub Pages availability for private repos depends on plan/org settings. If the Pages option does not appear or won’t publish, you may need to make the repo Public or use an org plan that supports private Pages.
+Fastest test
+Once Pages is enabled:
+open the root URL first
+then add /lighthouse-architecture.html
+If you want, send me a screenshot of the Pages settings screen after you click it, and I’ll tell you the exact next click.
+
+Lighthouse Backend Architecture Visual
+need to make public 1st
+
+I’m checking the current GitHub flow so I give you the exact steps for making the repo public before you turn on Pages.
+Thought for 11s
+Yes — if Pages is blocked on a private repo for your setup, make it public first.
+Click by click:
+
+Open the new prototype repo.
+Click Settings. If you do not see it, open the … menu and choose Settings.
+Scroll down to Danger Zone.
+Find Change repository visibility.
+Click Change visibility.
+Select Make public.
+Confirm the repo name when GitHub asks.
+Tick I have read and understand these effects.
+Click Make this repository public. 
+A few consequences to be aware of:
+the code becomes visible to anyone on GitHub
+anyone can fork it
+GitHub Actions history and logs become visible too, if you use Actions
+push rulesets are disabled when moving from private to public. 
+Then turn on Pages:
+Stay in Settings.
+Click Pages in the left menu.
+Under Build and deployment, set Source to Deploy from a branch.
+Set Branch to main.
+Set Folder to / (root).
+Click Save.
+Then wait a minute or two and open:
+your home page at the repo Pages URL
+.../lighthouse-architecture.html for the architecture page
+If you want, send the next screenshot after you click Pages.
+
+Lighthouse Backend Architecture Visual
+/* ============================================================
+   CROSSFUZE LIGHTHOUSE — SHARED BRAND STYLES
+   lighthouse-brand.css
+   Version: 1.0 · March 2026
+   ============================================================
+   Usage: <link rel="stylesheet" href="lighthouse-brand.css">
+   ============================================================ */
+
+/* ── FONTS ─────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;900&display=swap');
+
+/* ── BRAND TOKENS ───────────────────────────────────────────── */
+:root {
+  /* Core palette */
+  --cx-midnight:      #040E3D;
+  --cx-green:         #8FFFDB;
+  --cx-teal:          #71F1F7;
+  --cx-utility-blue:  #2CB0CD;
+  --cx-purple:        #6400EC;
+  --cx-lavender:      #C0A6FF;
+  --cx-red:           #F65275;
+  --cx-crisp-grey:    #F2F2F4;
+
+  /* Maturity level colours */
+  --cx-l1: #F65275;   /* Ad Hoc       — pink  */
+  --cx-l2: #C0A6FF;   /* Developing   — lavender */
+  --cx-l3: #2CB0CD;   /* Standardized — utility blue */
+  --cx-l4: #71F1F7;   /* Advanced     — teal  */
+  --cx-l5: #8FFFDB;   /* Best-In-Class — green */
+
+  /* Semantic roles */
+  --cx-done:     var(--cx-green);
+  --cx-active:   var(--cx-teal);
+  --cx-gap:      var(--cx-red);
+  --cx-target:   var(--cx-green);
+  --cx-authority: var(--cx-red);
+
+  /* Standard progress bar gradient */
+  --cx-bar-gradient: linear-gradient(to right, #F65275 0%, #F65275 8%, #2CB0CD 30%, #71F1F7 65%, #8FFFDB 100%);
+  --cx-bar-achievement: linear-gradient(to right, #8FFFDB, #71F1F7, #2CB0CD);
+  --cx-bar-gap:         linear-gradient(to right, #F65275, #2CB0CD, #71F1F7);
+
+  /* Typography */
+  --cx-font:      'Source Sans 3', 'Source Sans Pro', system-ui, sans-serif;
+
+  /* Spacing */
+  --cx-radius-card:  28px;
+  --cx-radius-inner: 18px;
+  --cx-radius-pill:  999px;
+
+  /* Shadows */
+  --cx-shadow-card:  0 20px 50px rgba(0,0,0,0.2);
+  --cx-shadow-hero:  0 32px 80px rgba(0,0,0,0.42);
+}
+
+/* ── RESET & BASE ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--cx-midnight) !important;
+  color: var(--cx-crisp-grey);
+  font-family: var(--cx-font);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100%;
+}
+
+/* ── PAGE BACKGROUND ────────────────────────────────────────── */
+.cx-page-bg {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left,  rgba(113,241,247,0.055), transparent 18%),
+    radial-gradient(circle at bottom right, rgba(143,255,219,0.04), transparent 22%),
+    var(--cx-midnight);
+  padding: 20px 16px;
+}
+@media (min-width: 768px)  { .cx-page-bg { padding: 24px 28px; } }
+@media (min-width: 1280px) { .cx-page-bg { padding: 24px 48px; } }
+
+/* ── CARD SHELLS ────────────────────────────────────────────── */
+.cx-card {
+  border-radius: var(--cx-radius-card);
+  border: 1px solid rgba(255,255,255,0.10);
+  background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  padding: 24px;
+  box-shadow: var(--cx-shadow-card);
+  backdrop-filter: blur(16px);
+}
+.cx-card-hero {
+  border-radius: 32px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background:
+    radial-gradient(ellipse at top right, rgba(113,241,247,0.08), transparent 48%),
+    radial-gradient(ellipse at bottom left, rgba(143,255,219,0.05), transparent 42%),
+    linear-gradient(135deg, rgba(12,32,100,0.70), rgba(8,16,58,0.94));
+  box-shadow: var(--cx-shadow-hero);
+  backdrop-filter: blur(16px);
+}
+
+/* ── TYPOGRAPHY ─────────────────────────────────────────────── */
+.cx-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(242,242,244,0.45);
+}
+.cx-section-heading {
+  font-size: 1.55rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #fff;
+}
+.cx-hero-heading {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+.cx-body {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(242,242,244,0.62);
+}
+
+/* ── PILLS & BADGES ─────────────────────────────────────────── */
+.cx-pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--cx-radius-pill);
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  padding: 4px 12px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.cx-pill--teal   { border-color: rgba(113,241,247,0.28); background: rgba(113,241,247,0.08); color: var(--cx-teal); }
+.cx-pill--green  { border-color: rgba(143,255,219,0.28); background: rgba(143,255,219,0.08); color: var(--cx-green); }
+.cx-pill--red    { border-color: rgba(246,82,117,0.28);  background: rgba(246,82,117,0.08);  color: var(--cx-red); }
+.cx-pill--blue   { border-color: rgba(44,176,205,0.28);  background: rgba(44,176,205,0.08);  color: var(--cx-utility-blue); }
+.cx-pill--lav    { border-color: rgba(192,166,255,0.28); background: rgba(192,166,255,0.08); color: var(--cx-lavender); }
+
+/* ── PROGRESS BARS ──────────────────────────────────────────── */
+.cx-bar-track {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  overflow: hidden;
+}
+.cx-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--cx-bar-gradient);
+}
+.cx-bar-fill--achievement { background: var(--cx-bar-achievement); }
+.cx-bar-fill--gap         { background: var(--cx-bar-gap); }
+
+/* ── SIGNAL BAR ─────────────────────────────────────────────── */
+.cx-signal-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  border-radius: 16px;
+  border: 1px solid rgba(113,241,247,0.20);
+  background: rgba(113,241,247,0.03);
+  padding: 12px 20px;
+  margin-bottom: 28px;
+  backdrop-filter: blur(8px);
+}
+.cx-signal-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+/* ── NAV ────────────────────────────────────────────────────── */
+.cx-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: transparent;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.65);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.cx-nav-btn:hover  { border-color: rgba(113,241,247,0.30); color: var(--cx-teal); background: rgba(113,241,247,0.05); }
+.cx-nav-btn--active { border-color: rgba(255,255,255,0.35); color: #fff; background: rgba(255,255,255,0.06); }
+.cx-nav-btn--lighthouse {
+  background: var(--cx-teal);
+  color: var(--cx-midnight);
+  border-color: var(--cx-teal);
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(113,241,247,0.28);
+}
+.cx-nav-btn--lighthouse:hover { filter: brightness(1.06); color: var(--cx-midnight); }
+
+/* ── FADE IN ────────────────────────────────────────────────── */
+@keyframes cxFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.cx-fade-in { animation: cxFadeIn 0.22s ease both; }
+
+/* ── DIVIDER ────────────────────────────────────────────────── */
+.cx-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 0; }
+
+Thought for 9s
+Perfect — this confirms you should reuse this brand CSS, not duplicate colours page by page.
+What to do now
+Use:
+lighthouse-brand.css for shared styling
+keep page-specific layout styles inside each HTML file only where needed
+That gives you:
+consistent colours
+same font
+same card language
+less code to maintain
+Best next move
+Update both prototype files so they link to your shared brand CSS.
+In index.html
+Add this inside <head>:
+<link rel="stylesheet" href="lighthouse-brand.css">
+Then remove any duplicate font/color setup you do not need.
+In lighthouse-architecture.html
+Also add inside <head>:
+<link rel="stylesheet" href="lighthouse-brand.css">
+How to use it properly
+Your shared CSS already gives you strong reusable classes like:
+.cx-page-bg
+.cx-card
+.cx-card-hero
+.cx-eyebrow
+.cx-section-heading
+.cx-hero-heading
+.cx-body
+.cx-pill
+.cx-pill--teal
+.cx-pill--green
+.cx-pill--red
+.cx-pill--blue
+.cx-pill--lav
+So instead of hardcoding everything in each page, use those classes.
+Important point
+Do not paste the full brand CSS inside every HTML page.
+Keep it as:
+
+one shared file: lighthouse-brand.css
+Then each page just links to it.
+Recommended file structure now
+lighthouse-prototype/
+├── index.html
+├── lighthouse-architecture.html
+├── lighthouse-brand.css
+Clean approach
+Shared in lighthouse-brand.css
+colours
+font
+card styles
+pills
+signal bar
+navigation styles
+page background
+Local in each HTML file
+page-specific grid layout
+architecture-specific connectors
+special box spacing
+any one-off visual tweaks
+My recommendation
+Next, I should give you the revised full code for both HTML files so they use:
+your real lighthouse-brand.css
+fewer duplicated styles
+your existing Crossfuze visual language
+That is the right next step.
+
+
+
+
+
+Lighthouse Backend Architecture Visual
+
+Lighthouse Backend Architecture Visual
+Ready
+
