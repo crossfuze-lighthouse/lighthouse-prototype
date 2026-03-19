@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" style="background:#F0F2F7">
 <head>
@@ -202,23 +203,23 @@ html,body{background:var(--main-bg)!important;color:rgba(255,255,255,0.9);font-f
       <div>
         <div class="hero-badge">Collateral &amp; Enablement</div>
         <h1 style="font-size:1.6rem;font-weight:600;letter-spacing:-0.04em;color:rgba(255,255,255,0.96);margin-bottom:6px;">GTM Assets</h1>
-        <p style="font-size:13px;color:rgba(255,255,255,0.45);max-width:480px;line-height:1.6;">Track what sales, delivery and marketing collateral exists for each offering — and what's missing or in progress.</p>
+        <p style="font-size:13px;color:rgba(255,255,255,0.45);max-width:480px;line-height:1.6;">Track what sales, delivery and marketing collateral exists for each offering — and what's unavailable or prioritized.</p>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;">
         <div style="display:flex;gap:14px;">
           <div style="text-align:right;">
             <div style="font-size:1.6rem;font-weight:600;color:#8FFFDB;line-height:1;">23</div>
-            <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.16em;color:rgba(255,255,255,0.28);margin-top:2px;">Assets exist</div>
+            <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.16em;color:rgba(255,255,255,0.28);margin-top:2px;">Available</div>
           </div>
           <div style="width:1px;height:36px;background:rgba(255,255,255,0.08);"></div>
           <div style="text-align:right;">
             <div style="font-size:1.6rem;font-weight:600;color:#C0A6FF;line-height:1;">8</div>
-            <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.16em;color:rgba(255,255,255,0.28);margin-top:2px;">In progress</div>
+            <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.16em;color:rgba(255,255,255,0.28);margin-top:2px;">Prioritized</div>
           </div>
           <div style="width:1px;height:36px;background:rgba(255,255,255,0.08);"></div>
           <div style="text-align:right;">
             <div style="font-size:1.6rem;font-weight:600;color:#F65275;line-height:1;">14</div>
-            <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.16em;color:rgba(255,255,255,0.28);margin-top:2px;">Missing</div>
+            <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.16em;color:rgba(255,255,255,0.28);margin-top:2px;">Unavailable</div>
           </div>
         </div>
         <div style="font-size:9px;color:rgba(255,255,255,0.18);">5 offerings · Q1 2026 · Demo data</div>
@@ -286,9 +287,9 @@ html,body{background:var(--main-bg)!important;color:rgba(255,255,255,0.9);font-f
 
   <!-- LEGEND -->
   <div class="legend" style="margin-bottom:10px;">
-    <div class="legend-item" style="color:rgba(4,14,61,0.65);"><div class="legend-dot dot-exists"></div>Exists — live and accessible</div>
-    <div class="legend-item" style="color:rgba(4,14,61,0.65);"><div class="legend-dot dot-progress"></div>In progress — draft or owner assigned</div>
-    <div class="legend-item" style="color:rgba(4,14,61,0.65);"><div class="legend-dot dot-missing"></div>Missing — not started</div>
+    <div class="legend-item" style="color:rgba(4,14,61,0.65);"><div class="legend-dot dot-exists"></div>Available — live and accessible</div>
+    <div class="legend-item" style="color:rgba(4,14,61,0.65);"><div class="legend-dot dot-progress"></div>Prioritized — owner assigned, in progress</div>
+    <div class="legend-item" style="color:rgba(4,14,61,0.65);"><div class="legend-dot dot-missing"></div>Unavailable — not started</div>
     <div class="legend-item" style="color:rgba(4,14,61,0.65);"><div class="legend-dot dot-na"></div>N/A — not applicable for this offering</div>
   </div>
 
@@ -345,9 +346,9 @@ const ASSETS = [
 ];
 
 const STATUS = {
-  E:{cls:'sp-exists',  dot:'ad-exists',   label:'Exists'},
-  P:{cls:'sp-progress',dot:'ad-progress', label:'In progress'},
-  M:{cls:'sp-missing', dot:'ad-missing',  label:'Missing'},
+  E:{cls:'sp-exists',  dot:'ad-exists',   label:'Available'},
+  P:{cls:'sp-progress',dot:'ad-progress', label:'Prioritized'},
+  M:{cls:'sp-missing', dot:'ad-missing',  label:'Unavailable'},
   N:{cls:'sp-na',      dot:'ad-na',       label:'N/A'},
 };
 
