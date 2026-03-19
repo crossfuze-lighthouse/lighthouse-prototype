@@ -1,1 +1,737 @@
 
+<!DOCTYPE html>
+<html lang="en" style="background:#F0F2F7">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Scoring Session | Project Lighthouse | Crossfuze</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--navy:#040E3D;--teal:#71F1F7;--green:#8FFFDB;--red:#F65275;--lav:#C0A6FF;--util:#2CB0CD;--main-bg:#F0F2F7;--sidebar-w:232px;--topbar-h:64px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--main-bg)!important;color:rgba(255,255,255,0.9);font-family:'Inter',ui-sans-serif,system-ui,sans-serif;min-height:100vh;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeIn 0.3s ease forwards;}
+
+/* TOPBAR */
+#topbar{position:fixed;top:0;left:0;right:0;height:var(--topbar-h);background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;z-index:200;padding-right:24px;}
+#topbar-brand{width:var(--sidebar-w);flex-shrink:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:3px;padding:0 22px;border-right:1px solid rgba(255,255,255,0.08);height:100%;}
+#topbar-brand img{height:30px;filter:brightness(0) invert(1);display:block;}
+#topbar-brand .lh-label{font-size:9px;font-weight:600;letter-spacing:0.38em;text-transform:uppercase;color:rgba(255,255,255,0.50);line-height:1;}
+#topbar-center{flex:1;display:flex;align-items:center;gap:10px;padding:0 24px;}
+#topbar-page-title{font-size:14px;font-weight:600;color:rgba(255,255,255,0.92);}
+.tb-sep{width:1px;height:16px;background:rgba(255,255,255,0.12);}
+#topbar-page-sub{font-size:12px;color:rgba(255,255,255,0.38);}
+#topbar-right{display:flex;align-items:center;gap:10px;}
+.demo-badge{font-size:9px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(246,82,117,0.15);color:var(--red);border:1px solid rgba(246,82,117,0.30);letter-spacing:0.05em;text-transform:uppercase;}
+.topbar-avatar{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(113,241,247,0.28);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--teal);}
+
+/* SIDEBAR */
+#sidebar{position:fixed;top:var(--topbar-h);left:0;bottom:0;width:var(--sidebar-w);background:var(--navy);border-right:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;z-index:100;overflow-y:auto;}
+#sidebar::-webkit-scrollbar{width:3px;}
+#sidebar::-webkit-scrollbar-thumb{background:rgba(113,241,247,0.15);border-radius:2px;}
+.nav-section{font-size:9px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.25);padding:16px 20px 5px;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 20px;cursor:pointer;border-left:2px solid transparent;color:rgba(255,255,255,0.45);transition:all 0.15s;text-decoration:none;font-size:12px;font-weight:500;}
+.nav-item:hover{background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.80);border-left-color:rgba(113,241,247,0.25);}
+.nav-item.active{background:rgba(113,241,247,0.08);color:var(--teal);border-left-color:var(--teal);}
+.nav-item.active .nav-icon svg{stroke:var(--teal);}
+.nav-item:hover .nav-icon svg{stroke:rgba(255,255,255,0.75);}
+.nav-icon{width:16px;height:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.nav-icon svg{width:14px;height:14px;stroke:rgba(255,255,255,0.38);stroke-width:1.5;fill:none;transition:stroke 0.15s;}
+.nav-label{white-space:nowrap;}
+.nav-badge{margin-left:auto;font-size:9px;font-weight:700;padding:2px 6px;border-radius:999px;}
+.nav-badge.warn{background:rgba(246,82,117,0.15);color:var(--red);border:1px solid rgba(246,82,117,0.25);}
+.nav-badge.ok{background:rgba(113,241,247,0.12);color:var(--teal);border:1px solid rgba(113,241,247,0.22);}
+.nav-divider{height:1px;background:rgba(255,255,255,0.06);margin:6px 20px;}
+.nav-footer{margin-top:auto;padding:14px 20px;border-top:1px solid rgba(255,255,255,0.07);font-size:9px;color:rgba(255,255,255,0.20);line-height:1.7;}
+.nav-footer span{color:var(--red);}
+.nav-group-toggle{display:flex;align-items:center;gap:10px;padding:9px 20px;cursor:pointer;border-left:2px solid transparent;color:rgba(255,255,255,0.45);font-size:12px;font-weight:500;user-select:none;transition:all 0.15s;}
+.nav-group-toggle:hover{background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.80);border-left-color:rgba(113,241,247,0.25);}
+.nav-group-toggle.active{background:rgba(113,241,247,0.08);color:var(--teal);border-left-color:var(--teal);}
+.nav-group-toggle .nav-icon svg{stroke:rgba(255,255,255,0.38);transition:stroke 0.15s;}
+.nav-group-toggle:hover .nav-icon svg{stroke:rgba(255,255,255,0.75);}
+.nav-group-toggle.active .nav-icon svg{stroke:var(--teal);}
+.nav-chevron{margin-left:auto;font-size:10px;color:rgba(255,255,255,0.30);transition:transform 0.2s;}
+.nav-chevron.closed{transform:rotate(-90deg);}
+.nav-sub{padding:4px 0 6px 0;}
+.nav-sub-item{display:flex;align-items:center;gap:7px;padding:6px 20px 6px 42px;cursor:pointer;color:rgba(255,255,255,0.38);font-size:11px;font-weight:500;text-decoration:none;transition:color 0.15s;border-left:2px solid transparent;}
+.nav-sub-item:hover{color:rgba(255,255,255,0.72);}
+.nav-sub-item.active{color:var(--teal);border-left-color:rgba(113,241,247,0.35);}
+.nav-sub-dot{width:4px;height:4px;border-radius:50%;background:currentColor;flex-shrink:0;}
+
+/* MAIN */
+#main{margin-top:var(--topbar-h);margin-left:var(--sidebar-w);min-height:calc(100vh - var(--topbar-h));padding:28px 36px;background:var(--main-bg);display:flex;flex-direction:column;align-items:center;}
+
+/* SHARED CARDS */
+.card{border-radius:18px;background:var(--navy);box-shadow:0 8px 24px rgba(4,14,61,0.16);padding:20px 24px;margin-bottom:14px;}
+.section-label{font-size:9px;font-weight:700;letter-spacing:0.24em;text-transform:uppercase;color:rgba(4,14,61,0.65);margin-bottom:8px;margin-top:6px;}
+.hero-card{border-radius:18px;background:var(--navy);box-shadow:0 12px 36px rgba(4,14,61,0.20);padding:22px 26px;margin-bottom:16px;position:relative;overflow:hidden;}
+
+/* OFFERING SELECTOR CARDS */
+.offering-card{border-radius:16px;background:var(--navy);border:2px solid rgba(255,255,255,0.08);padding:18px 20px;cursor:pointer;transition:all 0.18s;flex:1;}
+.offering-card:hover{border-color:rgba(113,241,247,0.30);background:rgba(113,241,247,0.04);}
+.offering-card.selected{border-color:var(--teal);background:rgba(113,241,247,0.07);}
+.offering-card.selected .oc-name{color:var(--teal);}
+.oc-name{font-size:14px;font-weight:700;color:rgba(255,255,255,0.88);margin-bottom:4px;}
+.oc-meta{font-size:11px;color:rgba(255,255,255,0.35);}
+.oc-badges{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
+
+/* MODE TOGGLE */
+.mode-toggle{display:flex;background:rgba(255,255,255,0.05);border-radius:12px;padding:4px;gap:4px;margin-bottom:20px;border:1px solid rgba(255,255,255,0.08);}
+.mode-btn{flex:1;padding:8px 16px;border-radius:9px;font-size:12px;font-weight:600;cursor:pointer;border:none;transition:all 0.18s;background:transparent;color:rgba(255,255,255,0.40);}
+.mode-btn.active{background:var(--navy);color:rgba(255,255,255,0.90);box-shadow:0 2px 8px rgba(4,14,61,0.25);}
+.mode-btn.mode-reviewer.active{color:var(--lav);}
+
+/* ROLE TABS */
+.role-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
+.role-tab{font-size:11px;font-weight:600;padding:5px 13px;border-radius:999px;border:1px solid rgba(255,255,255,0.12);background:var(--navy);color:rgba(255,255,255,0.40);cursor:pointer;transition:all 0.15s;}
+.role-tab:hover{border-color:rgba(113,241,247,0.28);color:rgba(255,255,255,0.78);}
+.role-tab.active{background:rgba(113,241,247,0.10);border-color:rgba(113,241,247,0.35);color:var(--teal);}
+
+/* CATEGORY BLOCK */
+.cat-block{border-radius:14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);padding:16px 18px;margin-bottom:12px;}
+.cat-title{font-size:10px;font-weight:700;letter-spacing:0.20em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:12px;}
+
+/* MILESTONE ROW */
+.ms-row{display:grid;grid-template-columns:20px 1fr 90px 130px;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.ms-row:last-child{border-bottom:none;}
+.ms-check{width:16px;height:16px;border-radius:4px;border:2px solid rgba(255,255,255,0.20);cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.15s;}
+.ms-check.checked{background:var(--teal);border-color:var(--teal);}
+.ms-check.checked::after{content:'✓';font-size:9px;color:var(--navy);font-weight:700;}
+.ms-check.must{border-color:rgba(246,82,117,0.50);}
+.ms-check.must.checked{background:var(--red);border-color:var(--red);}
+.ms-check.must.checked::after{content:'✓';font-size:9px;color:white;font-weight:700;}
+.ms-label{font-size:11px;color:rgba(255,255,255,0.75);}
+.ms-label .ms-id{font-size:9px;color:rgba(255,255,255,0.28);font-family:monospace;margin-right:5px;}
+.ms-label .ms-star{color:var(--red);font-size:11px;margin-left:3px;}
+.ms-level{font-size:9px;font-weight:600;padding:2px 7px;border-radius:999px;white-space:nowrap;}
+.ms-l1{background:rgba(246,82,117,0.10);color:var(--red);border:1px solid rgba(246,82,117,0.20);}
+.ms-l2{background:rgba(192,166,255,0.10);color:var(--lav);border:1px solid rgba(192,166,255,0.20);}
+.ms-l3{background:rgba(143,255,219,0.10);color:var(--green);border:1px solid rgba(143,255,219,0.20);}
+.ms-l4{background:rgba(113,241,247,0.10);color:var(--teal);border:1px solid rgba(113,241,247,0.18);}
+.ms-l5{background:rgba(100,0,236,0.15);color:#A855F7;border:1px solid rgba(100,0,236,0.25);}
+.ev-select{font-size:10px;font-weight:500;padding:3px 8px;border-radius:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.55);cursor:pointer;outline:none;}
+.ev-select:focus{border-color:rgba(113,241,247,0.35);color:rgba(255,255,255,0.85);}
+.ev-select option{background:#040E3D;}
+
+/* STRENGTH SCORING */
+.str-row{display:grid;grid-template-columns:1fr 180px;align-items:center;gap:16px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.str-row:last-child{border-bottom:none;}
+.str-label{font-size:12px;color:rgba(255,255,255,0.75);}
+.str-sub{font-size:10px;color:rgba(255,255,255,0.30);margin-top:2px;}
+.str-score{display:flex;gap:6px;justify-content:flex-end;}
+.score-btn{width:30px;height:30px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.40);font-size:12px;font-weight:700;cursor:pointer;transition:all 0.15s;display:flex;align-items:center;justify-content:center;}
+.score-btn:hover{border-color:rgba(113,241,247,0.30);color:rgba(255,255,255,0.80);}
+.score-btn.selected{background:rgba(113,241,247,0.15);border-color:var(--teal);color:var(--teal);}
+
+/* SUBMIT BUTTON */
+.submit-btn{width:100%;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,rgba(113,241,247,0.20),rgba(143,255,219,0.15));border:1px solid rgba(113,241,247,0.30);color:var(--teal);font-size:13px;font-weight:700;cursor:pointer;transition:all 0.18s;letter-spacing:0.04em;margin-top:16px;}
+.submit-btn:hover{background:linear-gradient(135deg,rgba(113,241,247,0.28),rgba(143,255,219,0.22));box-shadow:0 4px 16px rgba(113,241,247,0.15);}
+.submit-btn:disabled{opacity:0.35;cursor:not-allowed;}
+.submitted-badge{display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;background:rgba(143,255,219,0.08);border:1px solid rgba(143,255,219,0.20);color:var(--green);font-size:12px;font-weight:600;margin-top:16px;}
+
+/* REVIEWER */
+.rev-summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
+.rev-kpi{border-radius:14px;background:var(--navy);padding:14px 16px;border-left:3px solid transparent;}
+.rev-kpi-label{font-size:8px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.32);margin-bottom:6px;}
+.rev-kpi-val{font-size:22px;font-weight:600;letter-spacing:-0.04em;}
+
+/* MUST-HAVE REVIEW ROW */
+.mh-row{display:grid;grid-template-columns:1fr 120px 110px 90px;align-items:center;gap:12px;padding:12px 20px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.mh-row:last-child{border-bottom:none;}
+.mh-title{font-size:12px;font-weight:600;color:rgba(255,255,255,0.88);}
+.mh-meta{font-size:10px;color:rgba(255,255,255,0.32);margin-top:2px;}
+.ev-pill{font-size:9px;font-weight:600;padding:3px 8px;border-radius:999px;}
+.ev-verified{background:rgba(143,255,219,0.10);color:var(--green);border:1px solid rgba(143,255,219,0.20);}
+.ev-draft{background:rgba(192,166,255,0.10);color:var(--lav);border:1px solid rgba(192,166,255,0.20);}
+.ev-none{background:rgba(246,82,117,0.10);color:var(--red);border:1px solid rgba(246,82,117,0.18);}
+.rev-btn{font-size:10px;font-weight:600;padding:5px 12px;border-radius:8px;cursor:pointer;border:none;transition:all 0.15s;}
+.rev-approve{background:rgba(143,255,219,0.10);color:var(--green);border:1px solid rgba(143,255,219,0.20);}
+.rev-approve:hover{background:rgba(143,255,219,0.20);}
+.rev-approve.done{background:rgba(143,255,219,0.18);color:var(--green);}
+.rev-return{background:rgba(246,82,117,0.08);color:var(--red);border:1px solid rgba(246,82,117,0.18);}
+.rev-return:hover{background:rgba(246,82,117,0.15);}
+.rev-return.done{background:rgba(246,82,117,0.15);color:var(--red);}
+
+/* FINAL APPROVE */
+.final-approve-btn{width:100%;padding:14px;border-radius:12px;border:none;background:linear-gradient(135deg,rgba(143,255,219,0.20),rgba(113,241,247,0.15));border:1px solid rgba(143,255,219,0.30);color:var(--green);font-size:14px;font-weight:700;cursor:pointer;transition:all 0.18s;letter-spacing:0.04em;margin-top:20px;}
+.final-approve-btn:hover:not(:disabled){background:linear-gradient(135deg,rgba(143,255,219,0.28),rgba(113,241,247,0.22));box-shadow:0 4px 20px rgba(143,255,219,0.18);}
+.final-approve-btn:disabled{opacity:0.30;cursor:not-allowed;}
+
+/* APPROVED BANNER */
+.approved-banner{display:none;border-radius:16px;background:rgba(143,255,219,0.08);border:1px solid rgba(143,255,219,0.28);padding:24px 28px;text-align:center;margin-top:16px;}
+.approved-banner.show{display:block;}
+.approved-banner h2{font-size:18px;font-weight:700;color:var(--green);margin-bottom:8px;}
+.approved-banner p{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.6;}
+
+.demo-watermark{position:fixed;bottom:14px;right:18px;font-size:9px;color:rgba(4,14,61,0.40);letter-spacing:0.06em;pointer-events:none;z-index:999;}
+</style>
+</head>
+<body>
+
+<header id="topbar">
+  <div id="topbar-brand">
+    <img src="https://cdn.prod.website-files.com/66f7a9d0051c2479948b2667/6930bea01a665531afb73e42_Crossfuze%20Logo_Cool%20Navy%20Gradient-p-500.png" alt="Crossfuze"/>
+    <span class="lh-label">Lighthouse</span>
+  </div>
+  <div id="topbar-center">
+    <span id="topbar-page-title">Scoring Session</span>
+    <div class="tb-sep"></div>
+    <span id="topbar-page-sub">Assess offering maturity · Q1 2026</span>
+  </div>
+  <div id="topbar-right">
+    <span class="demo-badge">Demo data</span>
+    <div class="topbar-avatar">CF</div>
+  </div>
+</header>
+
+<nav id="sidebar">
+  <div class="nav-section">Main</div>
+  <a href="index.html" class="nav-item">
+    <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>
+    <span class="nav-label">Hub</span>
+  </a>
+  <a href="portfolio.html" class="nav-item">
+    <span class="nav-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+    <span class="nav-label">Portfolio Overview</span>
+  </a>
+  <a href="offering.html" class="nav-item">
+    <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
+    <span class="nav-label">Offering Detail</span>
+  </a>
+  <div class="nav-divider"></div>
+  <div class="nav-section">Tools</div>
+  <a href="scoring.html" class="nav-item active">
+    <span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></span>
+    <span class="nav-label">Scoring Session</span>
+  </a>
+  <a href="actions.html" class="nav-item">
+    <span class="nav-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+    <span class="nav-label">Action Log</span>
+  </a>
+  <div class="nav-divider"></div>
+  <div class="nav-section">Modules</div>
+  <div class="nav-group-toggle" id="nav-toggle-inbound" onclick="toggleNavGroup('inbound')">
+    <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+    <span class="nav-label">Inbound</span>
+    <span class="nav-chevron closed" id="nav-chevron-inbound">▾</span>
+  </div>
+  <div class="nav-sub" id="nav-sub-inbound" style="display:none;">
+    <a href="https://crossfuze-lighthouse.github.io/ZOOM/aeo.html" target="_blank" class="nav-sub-item">
+      <span class="nav-sub-dot"></span>AEO Module
+      <span class="nav-badge ok" style="margin-left:auto;">L3</span>
+    </a>
+  </div>
+  <a class="nav-item" style="opacity:0.35;cursor:default;pointer-events:none;">
+    <span class="nav-icon"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+    <span class="nav-label">Outbound</span><span style="font-size:9px;color:rgba(255,255,255,0.25);margin-left:auto;">Soon</span>
+  </a>
+  <a class="nav-item" style="opacity:0.35;cursor:default;pointer-events:none;">
+    <span class="nav-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+    <span class="nav-label">Maturity Model</span><span style="font-size:9px;color:rgba(255,255,255,0.25);margin-left:auto;">Soon</span>
+  </a>
+  <a class="nav-item" style="opacity:0.35;cursor:default;pointer-events:none;">
+    <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span>
+    <span class="nav-label">Sales View</span><span style="font-size:9px;color:rgba(255,255,255,0.25);margin-left:auto;">Soon</span>
+  </a>
+  <div class="nav-group-toggle" id="nav-toggle-assets" onclick="toggleNavGroup('assets')">
+    <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></span>
+    <span class="nav-label">GTM Assets</span>
+    <span class="nav-chevron closed" id="nav-chevron-assets">▾</span>
+  </div>
+  <div class="nav-sub" id="nav-sub-assets" style="display:none;">
+    <a href="gtm-assets.html" class="nav-sub-item"><span class="nav-sub-dot"></span>All Assets</a>
+    <a href="asset-roadmap.html" class="nav-sub-item"><span class="nav-sub-dot"></span>Asset Roadmap</a>
+  </div>
+
+  <div style="flex:1;min-height:20px;"></div>
+  <div class="nav-divider" style="margin-top:8px;"></div>
+  <div class="nav-section" style="padding-top:12px;">Settings</div>
+  <a href="architecture.html" class="nav-item">
+    <span class="nav-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+    <span class="nav-label">Architecture</span>
+  </a>
+  <div class="nav-footer">
+    <span>Demo data — illustrative only</span><br>
+    Q1 2026 · 5 offerings assessed<br>
+    Project Lighthouse v1.0
+  </div>
+</nav>
+
+<main id="main" class="fade-in">
+<div style="width:100%;max-width:1100px;">
+
+  <!-- HERO -->
+  <div class="hero-card" style="margin-bottom:16px;background:radial-gradient(circle at top left,rgba(113,241,247,0.06),transparent 50%),var(--navy);">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;">
+      <div>
+        <h1 style="font-size:1.6rem;font-weight:600;letter-spacing:-0.04em;color:rgba(255,255,255,0.96);margin-bottom:6px;">Scoring Session</h1>
+        <p style="font-size:13px;color:rgba(255,255,255,0.45);max-width:500px;line-height:1.6;">Select an offering, choose your role, complete your section. Reviewer approves must-haves to finalise the session.</p>
+      </div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.22);text-align:right;flex-shrink:0;">Q1 2026 · Demo data</div>
+    </div>
+  </div>
+
+  <!-- OFFERING SELECTOR -->
+  <div class="section-label">Select offering</div>
+  <div style="display:flex;gap:12px;margin-bottom:20px;">
+    <div class="offering-card selected" id="oc-itsm" onclick="selectOffering('itsm')">
+      <div class="oc-name">SMART ITSM</div>
+      <div class="oc-meta">SMART · GTM Lead · Near-complete session</div>
+      <div class="oc-badges">
+        <span style="font-size:9px;font-weight:600;padding:2px 8px;border-radius:999px;background:rgba(143,255,219,0.10);color:var(--green);border:1px solid rgba(143,255,219,0.20);">L3 Standardized</span>
+        <span style="font-size:9px;font-weight:600;padding:2px 8px;border-radius:999px;background:rgba(113,241,247,0.08);color:var(--teal);border:1px solid rgba(113,241,247,0.18);">2 sections submitted</span>
+        <span style="font-size:9px;font-weight:600;padding:2px 8px;border-radius:999px;background:rgba(246,82,117,0.10);color:var(--red);border:1px solid rgba(246,82,117,0.18);">2 must-haves pending</span>
+      </div>
+    </div>
+    <div class="offering-card" id="oc-hrsd" onclick="selectOffering('hrsd')">
+      <div class="oc-name">SMART HRSD</div>
+      <div class="oc-meta">SMART · GTM Lead · Early stage — nothing submitted yet</div>
+      <div class="oc-badges">
+        <span style="font-size:9px;font-weight:600;padding:2px 8px;border-radius:999px;background:rgba(246,82,117,0.10);color:var(--red);border:1px solid rgba(246,82,117,0.18);">L1 Ad Hoc</span>
+        <span style="font-size:9px;font-weight:600;padding:2px 8px;border-radius:999px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.35);border:1px solid rgba(255,255,255,0.10);">0 sections submitted</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODE TOGGLE -->
+  <div class="mode-toggle">
+    <button class="mode-btn active" id="btn-assessor" onclick="setMode('assessor')">Assessor View</button>
+    <button class="mode-btn mode-reviewer" id="btn-reviewer" onclick="setMode('reviewer')">Reviewer View</button>
+  </div>
+
+  <!-- ASSESSOR VIEW -->
+  <div id="view-assessor">
+
+    <div class="section-label">Your role</div>
+    <div class="role-tabs" id="role-tabs">
+      <button class="role-tab active" onclick="selectRole('Sales/GTM',this)">Sales / GTM</button>
+      <button class="role-tab" onclick="selectRole('Commercial',this)">Commercial</button>
+      <button class="role-tab" onclick="selectRole('Delivery/Practice',this)">Delivery / Practice</button>
+      <button class="role-tab" onclick="selectRole('Marketing',this)">Marketing</button>
+      <button class="role-tab" onclick="selectRole('Alliance',this)">Alliance</button>
+      <button class="role-tab" onclick="selectRole('CS',this)">CS</button>
+      <button class="role-tab" onclick="selectRole('Offering Owner',this)">Offering Owner</button>
+    </div>
+
+    <div id="assessor-content"></div>
+
+  </div>
+
+  <!-- REVIEWER VIEW -->
+  <div id="view-reviewer" style="display:none;">
+    <div id="reviewer-content"></div>
+  </div>
+
+</div>
+</main>
+
+<div class="demo-watermark">Demo data — illustrative only · Project Lighthouse v1.0</div>
+
+<script>
+/* ═══════════════════════════════════════════════
+   FRAMEWORK DATA — from Scoring_Master.xlsx
+   Memory items 11, 15-18, 22
+═══════════════════════════════════════════════ */
+
+// Role → Categories mapping (memory item 11)
+var ROLE_CATS = {
+  'Sales/GTM':         ['Sales Readiness'],
+  'Commercial':        ['Commercial Readiness'],
+  'Delivery/Practice': ['Delivery Readiness','Reference & Proof'],
+  'Marketing':         ['Demand & Marketing','Reference & Proof'],
+  'Alliance':          ['Partner & SN Alignment'],
+  'CS':                ['CS & Expansion'],
+  'Offering Owner':    ['Market & Strategy']
+};
+
+// Strength criteria per role (memory item 8)
+var STRENGTH_CRITERIA = {
+  'Sales/GTM':         [{id:'sa-se',  label:'Sales Execution',          sub:'Capability to identify, qualify and convert'},
+                        {id:'sa-gtm', label:'GTM & Collateral',          sub:'Deck, one-pager, ROI tool, objection guide'}],
+  'Commercial':        [{id:'cr-or',  label:'Operational Readiness',     sub:'Pricing, SOW, margin tracking'},
+                        {id:'cr-sn',  label:'SN Commercial Partnership', sub:'Co-sell, portal, overlay'}],
+  'Delivery/Practice': [{id:'de-tc',  label:'Technical Capability',      sub:'Certifications, practice depth'},
+                        {id:'de-dp',  label:'Delivery Performance',      sub:'CSAT, on-time, case studies'}],
+  'Marketing':         [{id:'sa-mv',  label:'Market Validation',         sub:'ICP, TAL, pipeline by source'},
+                        {id:'sa-cp',  label:'Competitive Position',      sub:'Win rate, differentiation'}],
+  'Alliance':          [{id:'sa-sna', label:'SN Alignment',              sub:'Portal, overlay, co-sell agreement'}],
+  'CS':                [{id:'de-ci',  label:'Continuous Improvement',    sub:'NRR, expansion, renewal forecast'}],
+  'Offering Owner':    [{id:'sa-bsf', label:'Business Strategy Fit',     sub:'ICP, market size, SN priority'},
+                        {id:'sa-mv2', label:'Market Validation',         sub:'Pipeline, sales cycle data'}]
+};
+
+// Milestone data — representative sample per category (memory items 15-18)
+var MILESTONES = {
+  'Sales Readiness': [
+    {id:'1.1',  label:'Elevator pitch and core messaging documented',    level:'L1', must:false},
+    {id:'1.4',  label:'Sales deck created and in shared library',        level:'L2', must:true},
+    {id:'1.5',  label:'One-pager published',                            level:'L2', must:false},
+    {id:'1.9',  label:'Qualification checklist in active use',          level:'L2', must:true},
+    {id:'1.16', label:'Objection handling guide — min 5 objections',    level:'L3', must:true},
+    {id:'1.18', label:'ROI / value calculator usable by sales',         level:'L3', must:false},
+    {id:'1.25', label:'Win velocity tracked in CRM by offering',        level:'L4', must:false},
+  ],
+  'Commercial Readiness': [
+    {id:'2.3',  label:'Pricing model approved and accessible to sales', level:'L1', must:true},
+    {id:'2.5',  label:'Margin tracked — finance-approved',              level:'L2', must:false},
+    {id:'2.6',  label:'SOW / proposal template in active use on deals', level:'L2', must:true},
+    {id:'2.16', label:'Cost-to-serve tracked — actuals not estimates',  level:'L3', must:false},
+    {id:'2.17', label:'Contribution tracked per engagement',            level:'L3', must:false},
+  ],
+  'Delivery Readiness': [
+    {id:'3.1',  label:'Delivery methodology documented',                level:'L1', must:false},
+    {id:'3.7',  label:'Delivery playbook complete — not just slides',   level:'L2', must:true},
+    {id:'3.18', label:'Client satisfaction measured per engagement',    level:'L3', must:true},
+    {id:'3.31', label:'CSAT ≥ 4.5 confirmed by SN',                    level:'L5', must:false},
+  ],
+  'Reference & Proof': [
+    {id:'4.6',  label:'Named reference — confirmed willing',            level:'L2', must:false},
+    {id:'4.9',  label:'Published case study — external, live, findable',level:'L3', must:true},
+    {id:'4.10', label:'Minimum 2 confirmed references',                 level:'L3', must:false},
+    {id:'4.17', label:'Win rate tracked by offering in CRM',            level:'L4', must:true},
+  ],
+  'Market & Strategy': [
+    {id:'5.1',  label:'Offering scope and boundaries defined',          level:'L1', must:false},
+    {id:'5.2',  label:'ICP — named industries and firmographic criteria',level:'L1', must:true},
+    {id:'5.9',  label:'Sales cycle length tracked — actuals from CRM',  level:'L3', must:false},
+  ],
+  'Demand & Marketing': [
+    {id:'6.1',  label:'Thought leadership content published',           level:'L2', must:false},
+    {id:'6.6',  label:'AEO / SEO content strategy defined',             level:'L3', must:false},
+    {id:'6.8',  label:'Target account list in CRM — named and current', level:'L3', must:false},
+    {id:'6.14', label:'Pipeline tracked by source — not blended',       level:'L3', must:false},
+    {id:'6.18', label:'90-day rolling demand forecast in CRM',          level:'L4', must:false},
+  ],
+  'Partner & SN Alignment': [
+    {id:'7.1',  label:'SN partnership status documented',               level:'L1', must:false},
+    {id:'7.5',  label:'SN partner portal listing complete',             level:'L2', must:true},
+    {id:'7.13', label:'Named SN overlay established — confirmed by SN', level:'L4', must:true},
+    {id:'7.17', label:'Formal co-sell agreement — signed and current',  level:'L5', must:true},
+  ],
+  'CS & Expansion': [
+    {id:'8.3',  label:'Expansion triggers and pathway documented',      level:'L2', must:false},
+    {id:'8.10', label:'CSAT threshold explicitly linked to renewal',    level:'L3', must:false},
+    {id:'8.18', label:'90-day renewal forecast in CRM',                 level:'L3', must:false},
+    {id:'8.21', label:'NRR tracked monthly — last 3 months minimum',   level:'L5', must:true},
+  ]
+};
+
+// Evidence types (memory item 14)
+var EV_TYPES = ['—','DOC','DATA','REF','LINK','CERT','SCREEN'];
+
+// Pre-loaded ITSM state (near-complete — 2 roles already submitted)
+var ITSM_PREFILL = {
+  submitted: ['Sales/GTM','Delivery/Practice'],
+  milestones: {
+    '1.1':'DOC','1.4':'DOC','1.5':'DOC','1.9':'DOC','1.16':'DOC','1.18':'DOC','1.25':'DATA',
+    '3.1':'DOC','3.7':'DOC','3.18':'DATA',
+    '4.6':'REF','4.9':'—','4.17':'—'  // 4.9 and 4.17 pending — must-haves
+  },
+  strength: {'sa-se':4,'sa-gtm':4,'de-tc':4,'de-dp':3}
+};
+
+/* ═══════════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════════ */
+var currentOffering = 'itsm';
+var currentRole     = 'Sales/GTM';
+var currentMode     = 'assessor';
+var sessionState    = {
+  itsm: {
+    submitted: JSON.parse(JSON.stringify(ITSM_PREFILL.submitted)),
+    milestones: JSON.parse(JSON.stringify(ITSM_PREFILL.milestones)),
+    strength:   JSON.parse(JSON.stringify(ITSM_PREFILL.strength)),
+    reviewer:   {},   // milestoneId: 'approved'|'returned'
+    approved:   false
+  },
+  hrsd: {
+    submitted:  [],
+    milestones: {},
+    strength:   {},
+    reviewer:   {},
+    approved:   false
+  }
+};
+
+/* ═══════════════════════════════════════════════
+   OFFERING + MODE
+═══════════════════════════════════════════════ */
+function selectOffering(off) {
+  currentOffering = off;
+  document.getElementById('oc-itsm').classList.toggle('selected', off==='itsm');
+  document.getElementById('oc-hrsd').classList.toggle('selected', off==='hrsd');
+  renderCurrentView();
+}
+
+function setMode(mode) {
+  currentMode = mode;
+  document.getElementById('btn-assessor').classList.toggle('active', mode==='assessor');
+  document.getElementById('btn-reviewer').classList.toggle('active', mode==='reviewer');
+  document.getElementById('view-assessor').style.display = mode==='assessor' ? 'block' : 'none';
+  document.getElementById('view-reviewer').style.display = mode==='reviewer' ? 'block' : 'none';
+  renderCurrentView();
+}
+
+function renderCurrentView() {
+  if (currentMode === 'assessor') renderAssessor();
+  else renderReviewer();
+}
+
+/* ═══════════════════════════════════════════════
+   ASSESSOR VIEW
+═══════════════════════════════════════════════ */
+function selectRole(role, btn) {
+  currentRole = role;
+  document.querySelectorAll('.role-tab').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderAssessor();
+}
+
+function renderAssessor() {
+  var state     = sessionState[currentOffering];
+  var submitted = state.submitted.indexOf(currentRole) !== -1;
+  var cats      = ROLE_CATS[currentRole] || [];
+  var criteria  = STRENGTH_CRITERIA[currentRole] || [];
+  var html      = '';
+
+  if (submitted) {
+    html += '<div class="submitted-badge"><span style="font-size:16px;">✓</span> Section submitted — inputs locked. Switch role or go to Reviewer View to approve must-haves.</div>';
+  }
+
+  // Authority checklist
+  html += '<div class="section-label" style="margin-top:16px;">Authority checklist — ' + currentRole + '</div>';
+  html += '<p style="font-size:11px;color:rgba(255,255,255,0.35);margin-bottom:12px;">Tick milestones with verified evidence. Select evidence type. ★ = must-have — required for level progression.</p>';
+
+  cats.forEach(function(cat) {
+    var ms = MILESTONES[cat] || [];
+    html += '<div class="cat-block">';
+    html += '<div class="cat-title">' + cat + '</div>';
+    ms.forEach(function(m) {
+      var checked  = state.milestones[m.id] && state.milestones[m.id] !== '—';
+      var evVal    = state.milestones[m.id] || '—';
+      var lvlCls   = 'ms-l' + m.level.replace('L','').replace(' ','');
+      var disabled = submitted ? 'disabled style="opacity:0.5;pointer-events:none;"' : '';
+      html += '<div class="ms-row">';
+      html += '<div class="ms-check' + (checked?' checked':'') + (m.must?' must':'') + '" id="chk-' + m.id + '" onclick="' + (submitted ? '' : 'toggleMilestone(\''+m.id+'\')') + '"></div>';
+      html += '<div class="ms-label"><span class="ms-id">' + m.id + '</span>' + m.label + (m.must ? '<span class="ms-star">★</span>' : '') + '</div>';
+      html += '<span class="ms-level ms-l' + m.level.charAt(1) + '">' + m.level + '</span>';
+      // Evidence select
+      html += '<select class="ev-select" id="ev-' + m.id + '" onchange="setEvidence(\''+m.id+'\',this.value)" ' + disabled + '>';
+      EV_TYPES.forEach(function(et) {
+        html += '<option value="' + et + '"' + (evVal===et?' selected':'') + '>' + et + '</option>';
+      });
+      html += '</select>';
+      html += '</div>';
+    });
+    html += '</div>';
+  });
+
+  // Strength scoring
+  if (criteria.length > 0) {
+    html += '<div class="section-label" style="margin-top:8px;">Strength scoring — ' + currentRole + '</div>';
+    html += '<p style="font-size:11px;color:rgba(255,255,255,0.35);margin-bottom:12px;">Score each criterion 1–5. This is what the team believes — Authority evidence validates it.</p>';
+    html += '<div class="cat-block">';
+    criteria.forEach(function(cr) {
+      var current = state.strength[cr.id] || 0;
+      html += '<div class="str-row">';
+      html += '<div><div class="str-label">' + cr.label + '</div><div class="str-sub">' + cr.sub + '</div></div>';
+      html += '<div class="str-score">';
+      for (var s = 1; s <= 5; s++) {
+        var sel = current === s ? ' selected' : '';
+        html += '<button class="score-btn' + sel + '" ' + (submitted?'disabled':'') + ' onclick="setStrength(\''+cr.id+'\','+s+')">' + s + '</button>';
+      }
+      html += '</div></div>';
+    });
+    html += '</div>';
+  }
+
+  // Submit button
+  if (!submitted) {
+    html += '<button class="submit-btn" onclick="submitSection()">Submit my section — ' + currentRole + '</button>';
+  }
+
+  document.getElementById('assessor-content').innerHTML = html;
+}
+
+function toggleMilestone(id) {
+  var state = sessionState[currentOffering];
+  var current = state.milestones[id] || '—';
+  if (current === '—') {
+    state.milestones[id] = 'DOC'; // default evidence when ticked
+  } else {
+    state.milestones[id] = '—';
+  }
+  renderAssessor();
+}
+
+function setEvidence(id, val) {
+  sessionState[currentOffering].milestones[id] = val;
+}
+
+function setStrength(id, val) {
+  sessionState[currentOffering].strength[id] = val;
+  renderAssessor();
+}
+
+function submitSection() {
+  var state = sessionState[currentOffering];
+  if (state.submitted.indexOf(currentRole) === -1) {
+    state.submitted.push(currentRole);
+  }
+  // Save to localStorage
+  localStorage.setItem('lh_session_' + currentOffering, JSON.stringify(state));
+  renderAssessor();
+}
+
+/* ═══════════════════════════════════════════════
+   REVIEWER VIEW
+═══════════════════════════════════════════════ */
+function renderReviewer() {
+  var state   = sessionState[currentOffering];
+  var allRoles = Object.keys(ROLE_CATS);
+  var subCount = state.submitted.length;
+
+  // Collect all must-haves across all submitted role categories
+  var mustHaves = [];
+  state.submitted.forEach(function(role) {
+    var cats = ROLE_CATS[role] || [];
+    cats.forEach(function(cat) {
+      var ms = MILESTONES[cat] || [];
+      ms.forEach(function(m) {
+        if (!m.must) return;
+        var ev = state.milestones[m.id] || '—';
+        mustHaves.push({
+          id:    m.id,
+          label: m.label,
+          cat:   cat,
+          role:  role,
+          level: m.level,
+          ev:    ev
+        });
+      });
+    });
+  });
+
+  var approved  = mustHaves.filter(function(m){ return state.reviewer[m.id]==='approved'; }).length;
+  var returned  = mustHaves.filter(function(m){ return state.reviewer[m.id]==='returned'; }).length;
+  var pending   = mustHaves.length - approved - returned;
+  var canApprove = pending === 0 && returned === 0 && mustHaves.length > 0 && subCount > 0;
+
+  var html = '';
+
+  // KPI strip
+  html += '<div class="rev-summary-grid">';
+  html += '<div class="rev-kpi" style="border-left-color:rgba(113,241,247,0.45);"><div class="rev-kpi-label">Sections submitted</div><div class="rev-kpi-val" style="color:var(--teal);">' + subCount + '<span style="font-size:12px;color:rgba(255,255,255,0.25);">/7</span></div></div>';
+  html += '<div class="rev-kpi" style="border-left-color:rgba(246,82,117,0.45);"><div class="rev-kpi-label">Must-haves pending</div><div class="rev-kpi-val" style="color:var(--red);">' + pending + '</div></div>';
+  html += '<div class="rev-kpi" style="border-left-color:rgba(143,255,219,0.45);"><div class="rev-kpi-label">Must-haves approved</div><div class="rev-kpi-val" style="color:var(--green);">' + approved + '</div></div>';
+  html += '</div>';
+
+  if (subCount === 0) {
+    html += '<div style="padding:40px;text-align:center;background:var(--navy);border-radius:16px;color:rgba(255,255,255,0.30);font-size:13px;">No sections submitted yet — assessors must submit their sections before review.</div>';
+    document.getElementById('reviewer-content').innerHTML = html;
+    return;
+  }
+
+  // Must-haves table
+  html += '<div class="section-label">Must-have milestones — reviewer sign-off required</div>';
+  html += '<p style="font-size:11px;color:rgba(255,255,255,0.35);margin-bottom:12px;">Verified evidence = counts done. Draft with named owner + completion date = validator discretion. Verbal or assumed = not done.</p>';
+
+  html += '<div class="card" style="padding:0;overflow:hidden;">';
+  html += '<div style="display:grid;grid-template-columns:1fr 120px 110px 90px;gap:12px;padding:10px 20px;background:rgba(255,255,255,0.025);border-bottom:1px solid rgba(255,255,255,0.08);">';
+  html += '<div style="font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">Milestone</div>';
+  html += '<div style="font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">Evidence</div>';
+  html += '<div style="font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">Category</div>';
+  html += '<div style="font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">Decision</div>';
+  html += '</div>';
+
+  if (mustHaves.length === 0) {
+    html += '<div style="padding:28px;text-align:center;color:rgba(255,255,255,0.30);font-size:12px;">No must-have milestones in submitted sections.</div>';
+  } else {
+    mustHaves.forEach(function(m) {
+      var rev     = state.reviewer[m.id];
+      var evCls   = m.ev === '—' ? 'ev-none' : (m.ev === 'DOC'||m.ev === 'DATA'||m.ev === 'REF'||m.ev === 'LINK'||m.ev === 'CERT') ? 'ev-verified' : 'ev-draft';
+      var evLabel = m.ev === '—' ? 'None provided' : m.ev;
+      html += '<div class="mh-row">';
+      html += '<div><div class="mh-title">' + m.id + '★ — ' + m.label + '</div><div class="mh-meta">' + m.role + ' · ' + m.level + '</div></div>';
+      html += '<div><span class="ev-pill ' + evCls + '">' + evLabel + '</span></div>';
+      html += '<div style="font-size:11px;color:rgba(255,255,255,0.45);">' + m.cat + '</div>';
+      html += '<div style="display:flex;gap:6px;">';
+      if (!rev) {
+        html += '<button class="rev-btn rev-approve" onclick="reviewMH(\''+m.id+'\',\'approved\')">✓ Approve</button>';
+        html += '<button class="rev-btn rev-return"  onclick="reviewMH(\''+m.id+'\',\'returned\')">✗ Return</button>';
+      } else if (rev === 'approved') {
+        html += '<span class="rev-btn rev-approve done">✓ Approved</span>';
+      } else {
+        html += '<span class="rev-btn rev-return done">✗ Returned</span>';
+        html += '<button class="rev-btn rev-approve" style="margin-left:4px;" onclick="reviewMH(\''+m.id+'\',\'approved\')">Re-approve</button>';
+      }
+      html += '</div></div>';
+    });
+  }
+  html += '</div>';
+
+  // Final approve button
+  html += '<button class="final-approve-btn" id="final-approve-btn" onclick="finalApprove()" ' + (canApprove ? '' : 'disabled') + '>';
+  html += canApprove ? 'Approve session — finalise Q1 2026 scores' : 'Pending — all must-haves must be approved first';
+  html += '</button>';
+
+  // Approved banner
+  html += '<div class="approved-banner' + (state.approved ? ' show' : '') + '" id="approved-banner">';
+  html += '<h2>✓ Session Approved</h2>';
+  html += '<p>Q1 2026 scores finalised for ' + (currentOffering === 'itsm' ? 'SMART ITSM' : 'SMART HRSD') + '.<br>Action Log and Asset Roadmap have been updated with the latest MIS scores.</p>';
+  html += '<div style="margin-top:14px;display:flex;gap:10px;justify-content:center;">';
+  html += '<a href="actions.html" style="font-size:11px;font-weight:600;padding:6px 14px;border-radius:8px;background:rgba(143,255,219,0.12);color:var(--green);border:1px solid rgba(143,255,219,0.22);text-decoration:none;">View Action Log →</a>';
+  html += '<a href="actions.html" style="font-size:11px;font-weight:600;padding:6px 14px;border-radius:8px;background:rgba(113,241,247,0.08);color:var(--teal);border:1px solid rgba(113,241,247,0.18);text-decoration:none;">View Asset Roadmap →</a>';
+  html += '</div></div>';
+
+  document.getElementById('reviewer-content').innerHTML = html;
+}
+
+function reviewMH(id, decision) {
+  sessionState[currentOffering].reviewer[id] = decision;
+  localStorage.setItem('lh_session_' + currentOffering, JSON.stringify(sessionState[currentOffering]));
+  renderReviewer();
+}
+
+function finalApprove() {
+  sessionState[currentOffering].approved = true;
+  localStorage.setItem('lh_session_' + currentOffering, JSON.stringify(sessionState[currentOffering]));
+  // Write approval signal for other pages to read
+  localStorage.setItem('lh_approved_' + currentOffering, JSON.stringify({
+    offering: currentOffering,
+    quarter:  'Q1 2026',
+    timestamp: new Date().toISOString(),
+    milestones: sessionState[currentOffering].milestones,
+    strength:   sessionState[currentOffering].strength
+  }));
+  renderReviewer();
+}
+
+/* ═══════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════ */
+function toggleNavGroup(group) {
+  var sub  = document.getElementById('nav-sub-' + group);
+  var chev = document.getElementById('nav-chevron-' + group);
+  if (!sub) return;
+  var isOpen = sub.style.display !== 'none';
+  sub.style.display = isOpen ? 'none' : 'block';
+  if (chev) chev.className = 'nav-chevron' + (isOpen ? ' closed' : '');
+}
+
+/* ═══════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════ */
+// Restore any saved state from localStorage
+(function init() {
+  var saved = localStorage.getItem('lh_session_itsm');
+  if (saved) {
+    try { sessionState.itsm = JSON.parse(saved); } catch(e) {}
+  }
+  renderAssessor();
+})();
+</script>
+</body>
+</html>
+
