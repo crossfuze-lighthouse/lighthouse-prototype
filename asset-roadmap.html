@@ -201,7 +201,7 @@ html, body {
 .bcs-prioritized{background:rgba(192,166,255,0.10);color:var(--lav);border:1px solid rgba(192,166,255,0.20);}
 .bcs-unavailable{background:rgba(246,82,117,0.10);color:var(--red);border:1px solid rgba(246,82,117,0.18);}
 .bc-body{padding:0 20px 14px;}
-.bc-row{display:grid;grid-template-columns:90px 1fr 120px;gap:10px;align-items:center;padding:7px 0;border-top:1px solid rgba(255,255,255,0.06);}
+.bc-row{display:grid;grid-template-columns:90px 1fr 100px;gap:12px;align-items:start;padding:8px 0;border-top:1px solid rgba(255,255,255,0.06);}
 .bc-row-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:rgba(255,255,255,0.28);}
 .bc-row-value{font-size:11px;color:rgba(255,255,255,0.70);line-height:1.5;}
 .bc-row-value em{color:rgba(255,255,255,0.40);font-style:normal;}
@@ -216,24 +216,24 @@ html, body {
 /* TIMELINE STRIP */
 .tl-quarter{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:0 8px;transition:opacity 0.15s;}
 .tl-quarter:hover .tl-label{color:rgba(255,255,255,0.80);}
-.tl-dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.20);transition:all 0.2s;margin-bottom:2px;}
-.tl-dot.active{background:var(--teal);border-color:var(--teal);box-shadow:0 0 10px rgba(113,241,247,0.40);}
-.tl-label{font-size:11px;font-weight:700;color:rgba(255,255,255,0.40);transition:color 0.15s;}
-.tl-label.active{color:var(--teal);}
-.tl-sublabel{font-size:9px;color:rgba(255,255,255,0.25);font-weight:500;}
-.tl-count{font-size:9px;font-weight:700;padding:1px 7px;border-radius:999px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.35);margin-top:2px;}
+.tl-dot{width:14px;height:14px;border-radius:50%;background:rgba(4,14,61,0.15);border:2px solid rgba(4,14,61,0.25);transition:all 0.2s;margin-bottom:2px;}
+.tl-dot.active{background:var(--navy);border-color:var(--teal);box-shadow:0 0 10px rgba(113,241,247,0.40);}
+.tl-label{font-size:11px;font-weight:700;color:rgba(4,14,61,0.55);transition:color 0.15s;}
+.tl-label.active{color:#0891B2;}
+.tl-sublabel{font-size:9px;color:rgba(4,14,61,0.40);font-weight:500;}
+.tl-count{font-size:9px;font-weight:700;padding:1px 7px;border-radius:999px;background:rgba(4,14,61,0.08);color:rgba(4,14,61,0.55);border:1px solid rgba(4,14,61,0.12);margin-top:2px;}
 
 
 /* QUARTER SECTION HEADERS */
 .quarter-section{margin-bottom:6px;}
-.quarter-header{display:flex;align-items:center;gap:12px;padding:14px 0 8px;border-bottom:2px solid rgba(255,255,255,0.08);margin-bottom:10px;}
+.quarter-header{display:flex;align-items:center;gap:12px;padding:14px 16px 12px;border-bottom:2px solid rgba(255,255,255,0.10);margin-bottom:10px;background:rgba(255,255,255,0.025);border-radius:12px 12px 0 0;}
 .qh-marker{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
 .qh-q1{background:var(--red);box-shadow:0 0 8px rgba(246,82,117,0.40);}
 .qh-q2{background:var(--lav);box-shadow:0 0 8px rgba(192,166,255,0.30);}
 .qh-q3{background:var(--teal);box-shadow:0 0 8px rgba(113,241,247,0.30);}
 .qh-q4{background:var(--green);box-shadow:0 0 8px rgba(143,255,219,0.30);}
-.qh-title{font-size:13px;font-weight:700;color:rgba(255,255,255,0.85);}
-.qh-subtitle{font-size:11px;color:rgba(255,255,255,0.35);}
+.qh-title{font-size:13px;font-weight:700;color:rgba(255,255,255,0.95);letter-spacing:-0.02em;}
+.qh-subtitle{font-size:11px;color:rgba(255,255,255,0.50);}
 .qh-count{margin-left:auto;font-size:9px;font-weight:700;padding:2px 8px;border-radius:999px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.40);}
 
 
@@ -294,10 +294,6 @@ html, body {
     <span class="nav-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
     <span class="nav-label">Action Log</span>
   </a>
-    <div class="nav-sub-item" id="sub-roadmap" onclick="window.location.href='actions.html#roadmap'">
-      <span class="nav-sub-dot"></span>Asset Roadmap
-    </div>
-  </div>
   <div class="nav-divider"></div>
   <div class="nav-section">Modules</div>
   <div class="nav-group-toggle" id="nav-toggle-inbound" onclick="toggleNavGroup('inbound')">
@@ -364,9 +360,9 @@ html, body {
   </div>
 
   <!-- Timeline strip -->
-  <div style="position:relative;margin-bottom:20px;">
+  <div style="position:relative;margin-bottom:20px;background:rgba(4,14,61,0.04);border:1px solid rgba(4,14,61,0.10);border-radius:14px;padding:16px 20px;">
     <!-- Track line -->
-    <div style="position:absolute;top:22px;left:0;right:0;height:2px;background:rgba(255,255,255,0.08);border-radius:999px;"></div>
+    <div style="position:absolute;top:22px;left:0;right:0;height:2px;background:rgba(4,14,61,0.15);border-radius:999px;"></div>
     <!-- Quarter nodes -->
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;z-index:1;">
       <div class="tl-quarter active" id="tl-q1" onclick="scrollToQuarter('Q1 2026')">
