@@ -127,6 +127,16 @@ html,body{background:var(--main-bg)!important;color:rgba(255,255,255,0.9);font-f
 .gsc-count{font-size:8px;font-weight:600;min-width:14px;text-align:right;}
 
 .demo-watermark{position:fixed;bottom:14px;right:18px;font-size:9px;color:rgba(4,14,61,0.40);letter-spacing:0.06em;pointer-events:none;z-index:999;}
+
+/* NAV GROUP TOGGLE — matches nav-item padding exactly */
+.nav-group-toggle{display:flex;align-items:center;gap:10px;padding:9px 20px;cursor:pointer;border-left:2px solid transparent;color:rgba(255,255,255,0.45);font-size:12px;font-weight:500;user-select:none;transition:all 0.15s;}
+.nav-group-toggle:hover{background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.80);border-left-color:rgba(113,241,247,0.25);}
+.nav-group-toggle.active{background:rgba(113,241,247,0.08);color:var(--teal);border-left-color:var(--teal);}
+.nav-group-toggle .nav-icon svg{stroke:rgba(255,255,255,0.38);transition:stroke 0.15s;}
+.nav-group-toggle:hover .nav-icon svg{stroke:rgba(255,255,255,0.75);}
+.nav-group-toggle.active .nav-icon svg{stroke:var(--teal);}
+.nav-chevron{margin-left:auto;font-size:10px;color:rgba(255,255,255,0.30);transition:transform 0.2s;}
+.nav-chevron.closed{transform:rotate(-90deg);}
 </style>
 </head>
 <body>
@@ -167,29 +177,61 @@ html,body{background:var(--main-bg)!important;color:rgba(255,255,255,0.9);font-f
     <span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></span>
     <span class="nav-label">Scoring Session</span>
   </a>
-  <a href="actions.html" class="nav-item">
+  <a href="actions.html" class="nav-item ">
     <span class="nav-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
     <span class="nav-label">Action Log</span>
-    <span class="nav-badge warn">8</span>
   </a>
+    <div class="nav-sub-item" id="sub-roadmap" onclick="window.location.href='actions.html#roadmap'">
+      <span class="nav-sub-dot"></span>Asset Roadmap
+    </div>
+  </div>
   <div class="nav-divider"></div>
   <div class="nav-section">Modules</div>
-  <a href="https://crossfuze-lighthouse.github.io/ZOOM/aeo.html" target="_blank" class="nav-item">
-    <span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-    <span class="nav-label">AEO Module</span>
-    <span class="nav-badge ok">L3</span>
+  <div class="nav-group-toggle" id="nav-toggle-inbound" onclick="toggleNavGroup('inbound')">
+    <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span>
+    <span class="nav-label">Inbound</span>
+    <span class="nav-chevron closed" id="nav-chevron-inbound">▾</span>
+  </div>
+  <div class="nav-sub" id="nav-sub-inbound" style="display:none;">
+    <a href="https://crossfuze-lighthouse.github.io/ZOOM/aeo.html" target="_blank" class="nav-sub-item">
+      <span class="nav-sub-dot"></span>AEO Module
+      <span class="nav-badge ok" style="margin-left:auto;">L3</span>
+    </a>
+  </div>
+  <a class="nav-item" style="opacity:0.35;cursor:default;pointer-events:none;">
+    <span class="nav-icon"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
+    <span class="nav-label">Outbound</span><span style="font-size:9px;color:rgba(255,255,255,0.25);margin-left:auto;">Soon</span>
   </a>
-  <a href="gtm-assets.html" class="nav-item active">
+  <a class="nav-item" style="opacity:0.35;cursor:default;pointer-events:none;">
+    <span class="nav-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+    <span class="nav-label">Maturity Model</span><span style="font-size:9px;color:rgba(255,255,255,0.25);margin-left:auto;">Soon</span>
+  </a>
+  <a class="nav-item" style="opacity:0.35;cursor:default;pointer-events:none;">
+    <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 1 0 7.75"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+    <span class="nav-label">Sales View</span><span style="font-size:9px;color:rgba(255,255,255,0.25);margin-left:auto;">Soon</span>
+  </a>
+  <div class="nav-group-toggle active" id="nav-toggle-assets" onclick="toggleNavGroup('assets')">
     <span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></span>
     <span class="nav-label">GTM Assets</span>
-  </a>
+    <span class="nav-chevron" id="nav-chevron-assets">▾</span>
+  </div>
+  <div class="nav-sub" id="nav-sub-assets" style="display:block;">
+    <a href="gtm-assets.html" class="nav-sub-item active">
+      <span class="nav-sub-dot"></span>All Assets
+    </a>
+    <div class="nav-sub-item" onclick="window.location.href='actions.html#roadmap'">
+      <span class="nav-sub-dot"></span>Asset Roadmap
+    </div>
+  </div>
+  <div class="nav-divider"></div>
+  <div class="nav-section">Settings</div>
   <a href="architecture.html" class="nav-item">
     <span class="nav-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
     <span class="nav-label">Architecture</span>
   </a>
   <div class="nav-footer">
-    <span>Demo data — illustrative only</span><br>
-    Q1 2026 · 5 offerings assessed<br>
+    <span>Demo data â illustrative only</span><br>
+    Q1 2026 Â· 5 offerings assessed<br>
     Project Lighthouse v1.0
   </div>
 </nav>
@@ -409,6 +451,14 @@ function filterOffering(key, btn) {
 }
 
 renderTable();
+function toggleNavGroup(group) {
+  var sub    = document.getElementById('nav-sub-' + group);
+  var chev   = document.getElementById('nav-chevron-' + group);
+  if (!sub) return;
+  var isOpen = sub.style.display !== 'none';
+  sub.style.display  = isOpen ? 'none' : 'block';
+  if (chev) chev.className = 'nav-chevron' + (isOpen ? ' closed' : '');
+}
 </script>
 </body>
 </html>
