@@ -180,6 +180,13 @@ html,body{background:var(--main-bg)!important;color:rgba(255,255,255,0.9);font-f
 .nav-group-toggle.active .nav-icon svg{stroke:var(--teal);}
 .nav-chevron{margin-left:auto;font-size:10px;color:rgba(255,255,255,0.30);transition:transform 0.2s;}
 .nav-chevron.closed{transform:rotate(-90deg);}
+
+/* NAV SUB-ITEMS */
+.nav-sub{padding:4px 0 6px 0;}
+.nav-sub-item{display:flex;align-items:center;gap:7px;padding:6px 20px 6px 42px;cursor:pointer;color:rgba(255,255,255,0.38);font-size:11px;font-weight:500;text-decoration:none;transition:color 0.15s;border-left:2px solid transparent;}
+.nav-sub-item:hover{color:rgba(255,255,255,0.72);background:rgba(255,255,255,0.03);}
+.nav-sub-item.active{color:var(--teal);border-left-color:rgba(113,241,247,0.35);}
+.nav-sub-dot{width:4px;height:4px;border-radius:50%;background:currentColor;flex-shrink:0;}
 </style>
 </head>
 <body>
@@ -224,10 +231,7 @@ html,body{background:var(--main-bg)!important;color:rgba(255,255,255,0.9);font-f
     <span class="nav-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
     <span class="nav-label">Action Log</span>
   </a>
-    <div class="nav-sub-item" id="sub-roadmap" onclick="window.location.href='actions.html#roadmap'">
-      <span class="nav-sub-dot"></span>Asset Roadmap
-    </div>
-  </div>
+
   <div class="nav-divider"></div>
   <div class="nav-section">Modules</div>
   <div class="nav-group-toggle" id="nav-toggle-inbound" onclick="toggleNavGroup('inbound')">
@@ -262,12 +266,10 @@ html,body{background:var(--main-bg)!important;color:rgba(255,255,255,0.9);font-f
     <a href="gtm-assets.html" class="nav-sub-item">
       <span class="nav-sub-dot"></span>All Assets
     </a>
-    <div class="nav-sub-item" onclick="window.location.href='actions.html#roadmap'">
-      <span class="nav-sub-dot"></span>Asset Roadmap
-    </div>
-  </div>
-  <div class="nav-divider"></div>
-  <div class="nav-section">Settings</div>
+
+  <div style="flex:1;min-height:20px;"></div>
+  <div class="nav-divider" style="margin-top:8px;"></div>
+  <div class="nav-section" style="padding-top:12px;">Settings</div>
   <a href="architecture.html" class="nav-item">
     <span class="nav-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
     <span class="nav-label">Architecture</span>
