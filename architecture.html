@@ -1,1 +1,889 @@
 
+<!DOCTYPE html>
+<html lang="en" style="background:#F0F2F7">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Architecture | Project Lighthouse | Crossfuze</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ── BRAND TOKENS ──────────────────────────────── */
+:root{
+  --navy:#040E3D;
+  --teal:#71F1F7;
+  --green:#8FFFDB;
+  --red:#F65275;
+  --purple:#6400EC;
+  --lav:#C0A6FF;
+  --util:#2CB0CD;
+  --grey:#F2F2F4;
+  --main-bg:#F0F2F7;
+  --sidebar-w:232px;
+  --topbar-h:64px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--main-bg)!important;font-family:'Inter',ui-sans-serif,system-ui,sans-serif;min-height:100vh;color:rgba(4,14,61,0.82);}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.fade-in{animation:fadeIn 0.2s ease;}
+
+/* ── TOPBAR ─────────────────────────────────────── */
+#topbar{position:fixed;top:0;left:0;right:0;height:var(--topbar-h);background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;z-index:200;padding-right:24px;}
+#topbar-brand{width:var(--sidebar-w);flex-shrink:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:3px;padding:0 22px;border-right:1px solid rgba(255,255,255,0.08);height:100%;}
+#topbar-brand img{height:30px;filter:brightness(0) invert(1);}
+#topbar-brand .lh-label{font-size:9px;font-weight:600;letter-spacing:0.38em;text-transform:uppercase;color:rgba(255,255,255,0.50);}
+#topbar-center{flex:1;display:flex;align-items:center;gap:10px;padding:0 24px;}
+#topbar-page-title{font-size:14px;font-weight:600;color:rgba(255,255,255,0.92);}
+.tb-sep{width:1px;height:16px;background:rgba(255,255,255,0.12);}
+#topbar-page-sub{font-size:12px;color:rgba(255,255,255,0.38);}
+.demo-badge{font-size:9px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(246,82,117,0.15);color:var(--red);border:1px solid rgba(246,82,117,0.30);letter-spacing:0.05em;text-transform:uppercase;}
+.av{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(113,241,247,0.28);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--teal);}
+
+/* ── SIDEBAR ─────────────────────────────────────── */
+#sidebar{position:fixed;top:var(--topbar-h);left:0;bottom:0;width:var(--sidebar-w);background:var(--navy);border-right:1px solid rgba(255,255,255,0.07);display:flex;flex-direction:column;z-index:100;overflow-y:auto;}
+#sidebar::-webkit-scrollbar{width:3px;}
+#sidebar::-webkit-scrollbar-thumb{background:rgba(113,241,247,0.15);border-radius:2px;}
+.nav-section{font-size:9px;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:rgba(255,255,255,0.25);padding:16px 20px 5px;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 20px;cursor:pointer;border-left:2px solid transparent;color:rgba(255,255,255,0.45);transition:all 0.15s;text-decoration:none;font-size:12px;font-weight:500;}
+.nav-item:hover{background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.80);border-left-color:rgba(113,241,247,0.25);}
+.nav-item.active{background:rgba(113,241,247,0.08);color:var(--teal);border-left-color:var(--teal);}
+.nav-item.active .nav-icon svg,.nav-item:hover .nav-icon svg{stroke:var(--teal);}
+.nav-icon{width:16px;height:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.nav-icon svg{width:14px;height:14px;stroke:rgba(255,255,255,0.38);stroke-width:1.5;fill:none;transition:stroke 0.15s;}
+.nav-label{white-space:nowrap;}
+.nav-badge.ok{margin-left:auto;font-size:9px;font-weight:700;padding:2px 6px;border-radius:999px;background:rgba(113,241,247,0.12);color:var(--teal);border:1px solid rgba(113,241,247,0.22);}
+.nav-divider{height:1px;background:rgba(255,255,255,0.06);margin:6px 20px;}
+.nav-footer{margin-top:auto;padding:14px 20px;border-top:1px solid rgba(255,255,255,0.07);font-size:9px;color:rgba(255,255,255,0.20);line-height:1.7;}
+.nav-footer span{color:var(--red);}
+.nav-group-toggle{display:flex;align-items:center;gap:10px;padding:9px 20px;cursor:pointer;border-left:2px solid transparent;color:rgba(255,255,255,0.45);font-size:12px;font-weight:500;user-select:none;transition:all 0.15s;}
+.nav-group-toggle:hover,.nav-group-toggle.active{background:rgba(113,241,247,0.08);color:var(--teal);border-left-color:var(--teal);}
+.nav-group-toggle .nav-icon svg{stroke:rgba(255,255,255,0.38);}
+.nav-group-toggle:hover .nav-icon svg,.nav-group-toggle.active .nav-icon svg{stroke:var(--teal);}
+.nav-chevron{margin-left:auto;font-size:10px;color:rgba(255,255,255,0.30);transition:transform 0.2s;}
+.nav-chevron.closed{transform:rotate(-90deg);}
+.nav-sub{padding:4px 0 6px 0;}
+.nav-sub-item{display:flex;align-items:center;gap:7px;padding:6px 20px 6px 42px;cursor:pointer;color:rgba(255,255,255,0.38);font-size:11px;font-weight:500;text-decoration:none;transition:color 0.15s;border-left:2px solid transparent;}
+.nav-sub-item:hover{color:rgba(255,255,255,0.72);}
+.nav-sub-item.active{color:var(--teal);border-left-color:rgba(113,241,247,0.35);}
+.nav-sub-dot{width:4px;height:4px;border-radius:50%;background:currentColor;flex-shrink:0;}
+
+/* ── MAIN ─────────────────────────────────────────── */
+#main{margin-top:var(--topbar-h);margin-left:var(--sidebar-w);min-height:calc(100vh - var(--topbar-h));}
+
+/* ── LEGEND BAR ──────────────────────────────────── */
+#legend-bar{background:white;border-bottom:1px solid rgba(4,14,61,0.09);padding:9px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;position:sticky;top:0;z-index:50;box-shadow:0 1px 4px rgba(4,14,61,0.06);}
+.leg{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:600;color:rgba(4,14,61,0.50);cursor:pointer;user-select:none;padding:2px 4px;border-radius:4px;transition:background 0.12s;}
+.leg:hover{background:rgba(4,14,61,0.04);}
+.leg-dot{width:9px;height:9px;border-radius:2px;flex-shrink:0;}
+.expand-btn{margin-left:auto;font-size:10px;font-weight:600;color:rgba(4,14,61,0.40);cursor:pointer;padding:4px 10px;border-radius:6px;border:1px solid rgba(4,14,61,0.12);background:white;transition:all 0.15s;}
+.expand-btn:hover{background:rgba(4,14,61,0.05);color:rgba(4,14,61,0.70);}
+
+/* ── SWIM LANE ────────────────────────────────────── */
+.lane{border-bottom:2px solid rgba(4,14,61,0.07);}
+.lane-hdr{display:flex;align-items:stretch;cursor:pointer;user-select:none;background:white;transition:background 0.12s;}
+.lane-hdr:hover{background:#FAFBFD;}
+.lane-accent{width:6px;flex-shrink:0;}
+.lane-hdr-inner{flex:1;display:flex;align-items:center;gap:12px;padding:12px 20px;}
+.lane-title{font-size:10px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:rgba(4,14,61,0.58);}
+.lane-sub{font-size:10px;color:rgba(4,14,61,0.33);margin-left:2px;}
+.lane-meta{margin-left:auto;display:flex;align-items:center;gap:10px;}
+.lane-cnt{font-size:9px;font-weight:700;padding:2px 8px;border-radius:999px;background:rgba(4,14,61,0.06);color:rgba(4,14,61,0.42);border:1px solid rgba(4,14,61,0.09);}
+.lane-chev{font-size:11px;color:rgba(4,14,61,0.28);transition:transform 0.22s;width:18px;text-align:center;}
+.lane-chev.open{transform:rotate(90deg);}
+.lane-body{overflow:hidden;transition:max-height 0.38s ease;}
+.lane-body.closed{max-height:0!important;}
+.lane-inner{padding:14px 24px 20px;}
+
+/* ── FLOW CONNECTOR ──────────────────────────────── */
+.flow-row{display:flex;align-items:center;padding:6px 24px;background:var(--main-bg);}
+.fl{flex:1;height:1px;background:rgba(4,14,61,0.13);}
+.fh{width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:6px solid rgba(4,14,61,0.20);}
+.fl-label{font-size:9px;font-weight:600;color:rgba(4,14,61,0.33);padding:0 12px;white-space:nowrap;}
+
+/* ── GRID ─────────────────────────────────────────── */
+.g{display:grid;gap:12px;}
+.g2{grid-template-columns:1fr 1fr;}
+.g3{grid-template-columns:1fr 1fr 1fr;}
+.g4{grid-template-columns:repeat(4,1fr);}
+.g8{grid-template-columns:repeat(4,1fr);}
+
+/* ── SUBSECTION ──────────────────────────────────── */
+.ss-lbl{font-size:8px;font-weight:700;letter-spacing:0.20em;text-transform:uppercase;color:rgba(4,14,61,0.38);margin-bottom:8px;padding-bottom:5px;border-bottom:1px solid rgba(4,14,61,0.08);}
+
+/* ── ENTITY CARD ──────────────────────────────────── */
+.ec{border-radius:6px;padding:8px 10px;margin-bottom:5px;border-left:3px solid transparent;}
+.ec:last-child{margin-bottom:0;}
+.ec-n{font-size:11px;font-weight:600;color:rgba(4,14,61,0.84);margin-bottom:2px;line-height:1.3;}
+.ec-s{font-size:9px;color:rgba(4,14,61,0.44);line-height:1.5;}
+.must-tag{display:inline-block;font-size:8px;font-weight:700;padding:1px 4px;border-radius:3px;margin-left:3px;background:rgba(246,82,117,0.12);color:var(--red);border:1px solid rgba(246,82,117,0.22);vertical-align:middle;}
+
+/* ── PILLS ─────────────────────────────────────────── */
+.pill{font-size:8px;font-weight:700;padding:1px 6px;border-radius:3px;display:inline-block;margin-left:3px;vertical-align:middle;}
+.p-sa{background:rgba(100,0,236,0.09);color:var(--purple);border:1px solid rgba(100,0,236,0.18);}
+.p-cr{background:rgba(44,176,205,0.10);color:var(--util);border:1px solid rgba(44,176,205,0.20);}
+.p-de{background:rgba(113,241,247,0.12);color:#0C7080;border:1px solid rgba(113,241,247,0.28);}
+.p-l1{background:rgba(246,82,117,0.09);color:var(--red);border:1px solid rgba(246,82,117,0.18);}
+.p-l2{background:rgba(100,0,236,0.08);color:var(--purple);border:1px solid rgba(100,0,236,0.16);}
+.p-l3{background:rgba(143,255,219,0.14);color:#0A6651;border:1px solid rgba(143,255,219,0.30);}
+.p-l4{background:rgba(113,241,247,0.12);color:#0C7080;border:1px solid rgba(113,241,247,0.25);}
+.p-l5{background:rgba(4,14,61,0.07);color:rgba(4,14,61,0.55);border:1px solid rgba(4,14,61,0.14);}
+.p-live{background:rgba(143,255,219,0.12);color:#0A6651;border:1px solid rgba(143,255,219,0.25);}
+.p-plan{background:rgba(4,14,61,0.06);color:rgba(4,14,61,0.40);border:1px solid rgba(4,14,61,0.10);}
+.p-auto{background:rgba(113,241,247,0.12);color:#0C7080;border:1px solid rgba(113,241,247,0.22);}
+.p-manual{background:rgba(192,166,255,0.12);color:#5B21B6;border:1px solid rgba(192,166,255,0.22);}
+
+/* ── FORMULA ──────────────────────────────────────── */
+.formula{font-family:monospace;font-size:10px;color:rgba(4,14,61,0.65);background:rgba(4,14,61,0.04);border:1px solid rgba(4,14,61,0.09);border-radius:6px;padding:8px 10px;margin-top:7px;line-height:1.6;}
+
+/* ── LANE COLOUR THEMES (brand palette) ─────────── */
+/* 1 Framework — Purple #6400EC */
+.t1 .lane-accent{background:var(--purple);}
+.t1 .lane-body{background:#FAF7FF;}
+.t1 .ec{background:rgba(100,0,236,0.05);border-left-color:rgba(100,0,236,0.25);}
+.t1 .ec-n{color:#2E0060;}
+/* 2 Scoring — Red #F65275 */
+.t2 .lane-accent{background:var(--red);}
+.t2 .lane-body{background:#FFF8F9;}
+.t2 .ec{background:rgba(246,82,117,0.05);border-left-color:rgba(246,82,117,0.28);}
+.t2 .ec-n{color:#6B0020;}
+/* 3 Maturity — Utility Blue #2CB0CD */
+.t3 .lane-accent{background:var(--util);}
+.t3 .lane-body{background:#F0FAFC;}
+.t3 .ec{background:rgba(44,176,205,0.06);border-left-color:rgba(44,176,205,0.28);}
+.t3 .ec-n{color:#0A4A57;}
+/* 4 Data — Teal #71F1F7 */
+.t4 .lane-accent{background:var(--teal);}
+.t4 .lane-body{background:#F0FEFF;}
+.t4 .ec{background:rgba(113,241,247,0.07);border-left-color:rgba(113,241,247,0.35);}
+.t4 .ec-n{color:#0A4A57;}
+/* 5 Portal — Green #8FFFDB */
+.t5 .lane-accent{background:var(--green);}
+.t5 .lane-body{background:#F0FFF9;}
+.t5 .ec{background:rgba(143,255,219,0.07);border-left-color:rgba(143,255,219,0.40);}
+.t5 .ec-n{color:#064438;}
+/* 6 Process — Lavender #C0A6FF */
+.t6 .lane-accent{background:var(--lav);}
+.t6 .lane-body{background:#FAF8FF;}
+.t6 .ec{background:rgba(192,166,255,0.08);border-left-color:rgba(192,166,255,0.35);}
+.t6 .ec-n{color:#2E0060;}
+/* 7 Migration — Navy #040E3D */
+.t7 .lane-accent{background:var(--navy);}
+.t7 .lane-body{background:#F2F4FA;}
+.t7 .ec{background:rgba(4,14,61,0.04);border-left-color:rgba(4,14,61,0.22);}
+.t7 .ec-n{color:var(--navy);}
+
+.footer-note{padding:12px 24px 32px;font-size:10px;color:rgba(4,14,61,0.28);text-align:center;}
+</style>
+</head>
+<body>
+<header id="topbar">
+  <div id="topbar-brand"><img src="https://cdn.prod.website-files.com/66f7a9d0051c2479948b2667/6930bea01a665531afb73e42_Crossfuze%20Logo_Cool%20Navy%20Gradient-p-500.png" alt="Crossfuze"/><span class="lh-label">Lighthouse</span></div>
+  <div id="topbar-center"><span id="topbar-page-title">Architecture</span><div class="tb-sep"></div><span id="topbar-page-sub">Complete system reference · Rebuild-ready · v1.0</span></div>
+  <div style="display:flex;align-items:center;gap:10px;"><span class="demo-badge">v1.0</span><div class="av">CF</div></div>
+</header>
+
+<nav id="sidebar">
+  <div class="nav-section">Main</div>
+  <a href="index.html" class="nav-item"><span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span><span class="nav-label">Hub</span></a>
+  <a href="portfolio.html" class="nav-item"><span class="nav-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span><span class="nav-label">Portfolio Overview</span></a>
+  <a href="offering.html" class="nav-item"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span><span class="nav-label">Offering Detail</span></a>
+  <div class="nav-divider"></div>
+  <div class="nav-section">Tools</div>
+  <a href="scoring.html" class="nav-item"><span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></span><span class="nav-label">Scoring Session</span></a>
+  <a href="actions.html" class="nav-item"><span class="nav-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span><span class="nav-label">Action Log</span></a>
+  <div class="nav-divider"></div>
+  <div class="nav-section">Modules</div>
+  <div class="nav-group-toggle" id="nav-toggle-inbound" onclick="tnav('inbound')"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><span class="nav-label">Inbound</span><span class="nav-chevron closed" id="nav-chevron-inbound">▾</span></div>
+  <div class="nav-sub" id="nav-sub-inbound" style="display:none;"><a href="https://crossfuze-lighthouse.github.io/ZOOM/aeo.html" target="_blank" class="nav-sub-item"><span class="nav-sub-dot"></span>AEO Module<span class="nav-badge ok">L3</span></a></div>
+  <a class="nav-item" style="opacity:0.35;cursor:default;pointer-events:none;"><span class="nav-icon"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span><span class="nav-label">Outbound</span><span style="font-size:9px;color:rgba(255,255,255,0.25);margin-left:auto;">Soon</span></a>
+  <a class="nav-item" style="opacity:0.35;cursor:default;pointer-events:none;"><span class="nav-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><span class="nav-label">Maturity Model</span><span style="font-size:9px;color:rgba(255,255,255,0.25);margin-left:auto;">Soon</span></a>
+  <a class="nav-item" style="opacity:0.35;cursor:default;pointer-events:none;"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></span><span class="nav-label">Sales View</span><span style="font-size:9px;color:rgba(255,255,255,0.25);margin-left:auto;">Soon</span></a>
+  <div class="nav-group-toggle" id="nav-toggle-assets" onclick="tnav('assets')"><span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></span><span class="nav-label">GTM Assets</span><span class="nav-chevron closed" id="nav-chevron-assets">▾</span></div>
+  <div class="nav-sub" id="nav-sub-assets" style="display:none;"><a href="gtm-assets.html" class="nav-sub-item"><span class="nav-sub-dot"></span>All Assets</a><a href="asset-roadmap.html" class="nav-sub-item"><span class="nav-sub-dot"></span>Asset Roadmap</a></div>
+  <div style="flex:1;min-height:20px;"></div>
+  <div class="nav-divider" style="margin-top:8px;"></div>
+  <div class="nav-section" style="padding-top:12px;">Settings</div>
+  <a href="architecture.html" class="nav-item active"><span class="nav-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><span class="nav-label">Architecture</span></a>
+  <div class="nav-footer"><span>Demo data — illustrative only</span><br>Q1 2026 · 5 offerings assessed<br>Project Lighthouse v1.0</div>
+</nav>
+
+<main id="main" class="fade-in">
+
+<!-- LEGEND -->
+<div id="legend-bar">
+  <div class="leg" onclick="jump('fw')"><div class="leg-dot" style="background:#6400EC;"></div>Framework</div>
+  <div class="leg" onclick="jump('sc')"><div class="leg-dot" style="background:#F65275;"></div>Scoring Engine</div>
+  <div class="leg" onclick="jump('ma')"><div class="leg-dot" style="background:#2CB0CD;"></div>Maturity Model</div>
+  <div class="leg" onclick="jump('dm')"><div class="leg-dot" style="background:#71F1F7;"></div>Data Model</div>
+  <div class="leg" onclick="jump('pv')"><div class="leg-dot" style="background:#8FFFDB;"></div>Portal Views</div>
+  <div class="leg" onclick="jump('ap')"><div class="leg-dot" style="background:#C0A6FF;"></div>Assessment Process</div>
+  <div class="leg" onclick="jump('mg')"><div class="leg-dot" style="background:#040E3D;"></div>Migration</div>
+  <div style="margin-left:auto;font-size:10px;color:rgba(4,14,61,0.30);">Source: Scoring_Master.xlsx · v1.0 · Q1 2026</div>
+  <button class="expand-btn" id="expand-btn" onclick="toggleAll()">Expand all</button>
+</div>
+
+<!-- HERO -->
+<div style="background:var(--navy);padding:28px 28px 24px;position:relative;overflow:hidden;">
+  <div style="position:absolute;top:-60px;right:-40px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(100,0,236,0.10),transparent 65%);pointer-events:none;"></div>
+
+  <!-- Title row -->
+  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-bottom:20px;position:relative;z-index:1;">
+    <div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:0.26em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:10px;">Crossfuze · GTM Operations</div>
+      <h1 style="font-size:2rem;font-weight:700;letter-spacing:-0.04em;color:white;margin-bottom:8px;line-height:1.05;">Project Lighthouse — System Architecture</h1>
+      <p style="font-size:13px;color:rgba(255,255,255,0.45);max-width:580px;line-height:1.6;">Complete technical reference. Sufficient to review, audit or rebuild the system from scratch.</p>
+    </div>
+    <div style="flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:7px;padding-top:4px;">
+      <span style="font-size:9px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(143,255,219,0.10);color:#8FFFDB;border:1px solid rgba(143,255,219,0.20);">GitHub Pages · Now</span>
+      <span style="font-size:9px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(113,241,247,0.09);color:#71F1F7;border:1px solid rgba(113,241,247,0.18);">SharePoint · Dataverse · Target</span>
+      <span style="font-size:9px;font-weight:600;padding:3px 10px;border-radius:999px;background:rgba(192,166,255,0.10);color:#C0A6FF;border:1px solid rgba(192,166,255,0.18);">v1.0 · Q1 2026</span>
+    </div>
+  </div>
+
+  <!-- Stat strip -->
+  <div style="display:flex;align-items:center;gap:0;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:10px;overflow:hidden;position:relative;z-index:1;">
+    <div style="flex:1;padding:12px 18px;border-right:1px solid rgba(255,255,255,0.07);">
+      <div style="font-size:18px;font-weight:700;color:#C0A6FF;letter-spacing:-0.03em;line-height:1;">7</div>
+      <div style="font-size:8px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-top:3px;">Architecture layers</div>
+    </div>
+    <div style="flex:1;padding:12px 18px;border-right:1px solid rgba(255,255,255,0.07);">
+      <div style="font-size:18px;font-weight:700;color:#71F1F7;letter-spacing:-0.03em;line-height:1;">164</div>
+      <div style="font-size:8px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-top:3px;">Authority milestones</div>
+    </div>
+    <div style="flex:1;padding:12px 18px;border-right:1px solid rgba(255,255,255,0.07);">
+      <div style="font-size:18px;font-weight:700;color:#F65275;letter-spacing:-0.03em;line-height:1;">14</div>
+      <div style="font-size:8px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-top:3px;">★ Must-haves</div>
+    </div>
+    <div style="flex:1;padding:12px 18px;border-right:1px solid rgba(255,255,255,0.07);">
+      <div style="font-size:18px;font-weight:700;color:#8FFFDB;letter-spacing:-0.03em;line-height:1;">4</div>
+      <div style="font-size:8px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-top:3px;">Data tables</div>
+    </div>
+    <div style="flex:1;padding:12px 18px;border-right:1px solid rgba(255,255,255,0.07);">
+      <div style="font-size:18px;font-weight:700;color:#C0A6FF;letter-spacing:-0.03em;line-height:1;">8</div>
+      <div style="font-size:8px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-top:3px;">Portal pages</div>
+    </div>
+    <div style="flex:1;padding:12px 18px;border-right:1px solid rgba(255,255,255,0.07);">
+      <div style="font-size:18px;font-weight:700;color:#71F1F7;letter-spacing:-0.03em;line-height:1;">12</div>
+      <div style="font-size:8px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-top:3px;">Strength criteria</div>
+    </div>
+    <div style="flex:1;padding:12px 18px;">
+      <div style="font-size:18px;font-weight:700;color:#8FFFDB;letter-spacing:-0.03em;line-height:1;">7</div>
+      <div style="font-size:8px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-top:3px;">Assessor roles</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     1. FRAMEWORK REFERENCE
+════════════════════════════════════════════ -->
+<div class="lane t1" id="lane-fw">
+  <div class="lane-hdr" onclick="tl('fw')">
+    <div class="lane-accent"></div>
+    <div class="lane-hdr-inner">
+      <div class="lane-title">Framework Reference</div>
+      <div class="lane-sub">— Authority Checklist · 8 categories · 164 milestones · 14 ★ must-haves · 3 dimensions</div>
+      <div class="lane-meta"><div class="lane-cnt">8 categories · 164 milestones</div><div class="lane-chev" id="chev-fw">›</div></div>
+    </div>
+  </div>
+  <div class="lane-body closed" id="body-fw">
+    <div class="lane-inner">
+      <p style="font-size:10px;color:rgba(4,14,61,0.42);margin-bottom:12px;">★ = must-have — hard-blocks level progression regardless of % score. Dimension from <em>New Dimension</em> column in Scoring_Master.xlsx — authoritative source for MIS. Key milestones shown; full 164 in Authority Milestone Checklist tab.</p>
+      <div class="g g8">
+
+        <!-- Sales Readiness -->
+        <div>
+          <div class="ss-lbl">Sales Readiness · 22 milestones · CR + SA · Sales/GTM</div>
+          <div class="ec"><div class="ec-n">1.1 Elevator pitch documented <span class="pill p-l1">L1</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — published · accessible to sales</div></div>
+          <div class="ec"><div class="ec-n">1.3 Customer pain articulated <span class="pill p-l1">L1</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — documented · validated with sales</div></div>
+          <div class="ec"><div class="ec-n">1.4 Sales deck in shared library <span class="must-tag">★</span><span class="pill p-l2">L2</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — finalised · in shared library · not draft</div></div>
+          <div class="ec"><div class="ec-n">1.5 One-pager published <span class="pill p-l2">L2</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — published · findable by sales</div></div>
+          <div class="ec"><div class="ec-n">1.6 Buyer personas defined <span class="pill p-l2">L2</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — buying committee profiles documented</div></div>
+          <div class="ec"><div class="ec-n">1.7 Discovery questions defined <span class="pill p-l2">L2</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — standard discovery framework</div></div>
+          <div class="ec"><div class="ec-n">1.9 Qualification checklist in use <span class="must-tag">★</span><span class="pill p-l2">L2</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — in use on deals · not just exists</div></div>
+          <div class="ec"><div class="ec-n">1.10 Demo scripted <span class="pill p-l2">L2</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — scripted · available to all sales</div></div>
+          <div class="ec"><div class="ec-n">1.11 Pricing summary card <span class="pill p-l2">L2</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — published · current</div></div>
+          <div class="ec"><div class="ec-n">1.13 Buying triggers defined <span class="pill p-l3">L3</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — trigger events and urgency drivers</div></div>
+          <div class="ec"><div class="ec-n">1.14 Vertical positioning statement <span class="pill p-l3">L3</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — per vertical · accessible to sales</div></div>
+          <div class="ec"><div class="ec-n">1.16 Objection handling guide <span class="must-tag">★</span><span class="pill p-l3">L3</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — min 5 objections · accessible to sales</div></div>
+          <div class="ec"><div class="ec-n">1.17 Competitive positioning guide <span class="pill p-l3">L3</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — differentiation documented</div></div>
+          <div class="ec"><div class="ec-n">1.18 ROI / business case template <span class="pill p-l3">L3</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — usable · not blank template</div></div>
+          <div class="ec"><div class="ec-n">1.19 Sales play documented <span class="pill p-l3">L3</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — offering narrative playbook</div></div>
+          <div class="ec"><div class="ec-n">1.20 Sales training delivered <span class="pill p-l3">L3</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — attendance record</div></div>
+          <div class="ec"><div class="ec-n">1.21 Win/loss feedback loop <span class="pill p-l3">L3</span><span class="pill p-sa">SA</span></div><div class="ec-s">DATA — tracked systematically</div></div>
+          <div class="ec"><div class="ec-n">1.23 Mutual action plan template <span class="pill p-l4">L4</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — template in active use</div></div>
+          <div class="ec"><div class="ec-n">1.24 RFP / tender response library <span class="pill p-l4">L4</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — library maintained</div></div>
+          <div class="ec"><div class="ec-n">1.25 Sales velocity tracked <span class="pill p-l4">L4</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — in CRM by offering · not spreadsheet</div></div>
+          <div class="ec"><div class="ec-n">1.27 Economic impact model <span class="pill p-l5">L5</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — validated economic model</div></div>
+          <div class="ec"><div class="ec-n">1.28 Co-branded sales materials <span class="pill p-l5">L5</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — with SN branding approved</div></div>
+        </div>
+
+        <!-- Commercial Readiness -->
+        <div>
+          <div class="ss-lbl">Commercial Readiness · 23 milestones · CR + DE · Commercial</div>
+          <div class="ec"><div class="ec-n">2.1 Core offerings defined <span class="pill p-l1">L1</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — offerings documented</div></div>
+          <div class="ec"><div class="ec-n">2.2 Scope boundaries documented <span class="pill p-l1">L1</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — in/out of scope clear</div></div>
+          <div class="ec"><div class="ec-n">2.3 Pricing model defined <span class="must-tag">★</span><span class="pill p-l1">L1</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — approved · accessible to sales</div></div>
+          <div class="ec"><div class="ec-n">2.4 Standard deliverables defined <span class="pill p-l1">L1</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — standard output list</div></div>
+          <div class="ec"><div class="ec-n">2.5 Target gross margin defined <span class="pill p-l1">L1</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — finance-approved target</div></div>
+          <div class="ec"><div class="ec-n">2.6 SOW template in active use <span class="must-tag">★</span><span class="pill p-l2">L2</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — evidence of use on live deals</div></div>
+          <div class="ec"><div class="ec-n">2.7 Commercial terms documented <span class="pill p-l2">L2</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — standard terms</div></div>
+          <div class="ec"><div class="ec-n">2.10 Roles and responsibilities defined <span class="pill p-l2">L2</span><span class="pill p-de">DE</span></div><div class="ec-s">DOC — RACI or equivalent</div></div>
+          <div class="ec"><div class="ec-n">2.11 Discount guardrails defined <span class="pill p-l2">L2</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — approval thresholds set</div></div>
+          <div class="ec"><div class="ec-n">2.13 Scope change process <span class="pill p-l3">L3</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — documented change control</div></div>
+          <div class="ec"><div class="ec-n">2.14 Renewal / upsell path <span class="pill p-l3">L3</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — pathway documented</div></div>
+          <div class="ec"><div class="ec-n">2.15 Entry and expansion offers defined <span class="pill p-l3">L3</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — tiered offer structure</div></div>
+          <div class="ec"><div class="ec-n">2.16 Cost-to-serve modelled <span class="pill p-l3">L3</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — actuals not estimates</div></div>
+          <div class="ec"><div class="ec-n">2.17 Contribution margin tracked <span class="pill p-l3">L3</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — per engagement · in system</div></div>
+          <div class="ec"><div class="ec-n">2.18 Deal approval process <span class="pill p-l3">L3</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — approval thresholds</div></div>
+          <div class="ec"><div class="ec-n">2.19 Tiered packaging defined <span class="pill p-l4">L4</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — packages with pricing</div></div>
+          <div class="ec"><div class="ec-n">2.20 Multi-year pricing strategy <span class="pill p-l4">L4</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — strategy documented</div></div>
+          <div class="ec"><div class="ec-n">2.22 Utilisation tracked <span class="pill p-l4">L4</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — in system · not spreadsheet</div></div>
+          <div class="ec"><div class="ec-n">2.23 Breakeven volume defined <span class="pill p-l4">L4</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — finance-approved</div></div>
+          <div class="ec"><div class="ec-n">2.25 Pricing review cadence <span class="pill p-l4">L4</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — cadence documented and followed</div></div>
+          <div class="ec"><div class="ec-n">2.26 Automated scoping tool <span class="pill p-l5">L5</span><span class="pill p-cr">CR</span></div><div class="ec-s">TOOL — live · used by sales</div></div>
+          <div class="ec"><div class="ec-n">2.27 Marketplace / subscription pricing <span class="pill p-l5">L5</span><span class="pill p-cr">CR</span></div><div class="ec-s">LINK — marketplace listing active</div></div>
+          <div class="ec"><div class="ec-n">2.28 Offering performance reviewed <span class="pill p-l5">L5</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — regular review cadence</div></div>
+        </div>
+
+        <!-- Delivery Readiness -->
+        <div>
+          <div class="ss-lbl">Delivery Readiness · 25 milestones · DE only · Delivery/Practice</div>
+          <div class="ec"><div class="ec-n">3.2 Entry criteria defined <span class="pill p-l1">L1</span><span class="pill p-de">DE</span></div><div class="ec-s">DOC — when engagement starts</div></div>
+          <div class="ec"><div class="ec-n">3.3 Completion criteria defined <span class="pill p-l1">L1</span><span class="pill p-de">DE</span></div><div class="ec-s">DOC — definition of done</div></div>
+          <div class="ec"><div class="ec-n">3.5 Dependencies documented <span class="pill p-l1">L1</span><span class="pill p-de">DE</span></div><div class="ec-s">DOC — client and internal deps</div></div>
+          <div class="ec"><div class="ec-n">3.7 Delivery playbook documented <span class="must-tag">★</span><span class="pill p-l2">L2</span><span class="pill p-de">DE</span></div><div class="ec-s">DOC — complete · not slides</div></div>
+          <div class="ec"><div class="ec-n">3.8 Templates for key outputs <span class="pill p-l2">L2</span><span class="pill p-de">DE</span></div><div class="ec-s">DOC — standard output templates</div></div>
+          <div class="ec"><div class="ec-n">3.9 Effort model defined <span class="pill p-l2">L2</span><span class="pill p-de">DE</span></div><div class="ec-s">DOC — assumptions documented</div></div>
+          <div class="ec"><div class="ec-n">3.10 Standard timeline defined <span class="pill p-l2">L2</span><span class="pill p-de">DE</span></div><div class="ec-s">DOC — phase gates and milestones</div></div>
+          <div class="ec"><div class="ec-n">3.11 Escalation process defined <span class="pill p-l2">L2</span><span class="pill p-de">DE</span></div><div class="ec-s">DOC — escalation path documented</div></div>
+          <div class="ec"><div class="ec-n">3.12 Standard kickoff structure <span class="pill p-l2">L2</span><span class="pill p-de">DE</span></div><div class="ec-s">DOC — kickoff agenda and checklist</div></div>
+          <div class="ec"><div class="ec-n">3.13 Client communication cadence <span class="pill p-l2">L2</span><span class="pill p-de">DE</span></div><div class="ec-s">DOC — status reporting defined</div></div>
+          <div class="ec"><div class="ec-n">3.14 Proprietary IP / accelerators <span class="pill p-l2">L2</span><span class="pill p-de">DE</span></div><div class="ec-s">DOC — IP documented and accessible</div></div>
+          <div class="ec"><div class="ec-n">3.15 Risk management process <span class="pill p-l3">L3</span><span class="pill p-de">DE</span></div><div class="ec-s">DOC — risk register and mitigation</div></div>
+          <div class="ec"><div class="ec-n">3.16 Quality review checkpoints <span class="pill p-l3">L3</span><span class="pill p-de">DE</span></div><div class="ec-s">DOC — QA gates in delivery</div></div>
+          <div class="ec"><div class="ec-n">3.17 Change management process <span class="pill p-l3">L3</span><span class="pill p-de">DE</span></div><div class="ec-s">DOC — change process documented</div></div>
+          <div class="ec"><div class="ec-n">3.18 Client satisfaction measured <span class="must-tag">★</span><span class="pill p-l3">L3</span><span class="pill p-de">DE</span></div><div class="ec-s">DATA — score on record · min 1 engagement</div></div>
+          <div class="ec"><div class="ec-n">3.20 Scope creep controlled <span class="pill p-l3">L3</span><span class="pill p-de">DE</span></div><div class="ec-s">DOC — process to manage scope</div></div>
+          <div class="ec"><div class="ec-n">3.21 Post-engagement review <span class="pill p-l3">L3</span><span class="pill p-de">DE</span></div><div class="ec-s">DOC — lessons captured</div></div>
+          <div class="ec"><div class="ec-n">3.22 Lessons learned documented <span class="pill p-l3">L3</span><span class="pill p-de">DE</span></div><div class="ec-s">DOC — fed back to playbook</div></div>
+          <div class="ec"><div class="ec-n">3.23 Version control managed <span class="pill p-l3">L3</span><span class="pill p-de">DE</span></div><div class="ec-s">DATA — in system</div></div>
+          <div class="ec"><div class="ec-n">3.24 Documentation standards <span class="pill p-l3">L3</span><span class="pill p-de">DE</span></div><div class="ec-s">DOC — standards defined</div></div>
+          <div class="ec"><div class="ec-n">3.25 Effort variance tracked <span class="pill p-l4">L4</span><span class="pill p-de">DE</span></div><div class="ec-s">DATA — estimated vs actual</div></div>
+          <div class="ec"><div class="ec-n">3.28 Delivery feedback loop <span class="pill p-l4">L4</span><span class="pill p-de">DE</span></div><div class="ec-s">DATA — systematic feedback</div></div>
+          <div class="ec"><div class="ec-n">3.29 Resource mix optimised <span class="pill p-l4">L4</span><span class="pill p-de">DE</span></div><div class="ec-s">DATA — mix tracked and optimised</div></div>
+          <div class="ec"><div class="ec-n">3.30 Proprietary IP saves ≥30% <span class="pill p-l5">L5</span><span class="pill p-de">DE</span></div><div class="ec-s">DATA — effort reduction evidenced</div></div>
+          <div class="ec"><div class="ec-n">3.31 CSAT ≥4.5 cited by SN <span class="pill p-l5">L5</span><span class="pill p-de">DE</span></div><div class="ec-s">REF / CERT — SN confirmation required</div></div>
+        </div>
+
+        <!-- Reference & Proof -->
+        <div>
+          <div class="ss-lbl">Reference & Proof · 20 milestones · SA + DE + CR · Delivery + Marketing</div>
+          <div class="ec"><div class="ec-n">4.1 Success criteria defined <span class="pill p-l1">L1</span><span class="pill p-de">DE</span></div><div class="ec-s">DOC — KPIs agreed upfront</div></div>
+          <div class="ec"><div class="ec-n">4.3 Baseline metrics captured <span class="pill p-l1">L1</span><span class="pill p-de">DE</span></div><div class="ec-s">DATA — baseline before engagement</div></div>
+          <div class="ec"><div class="ec-n">4.4 Target outcomes documented <span class="pill p-l2">L2</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — outcomes documented per engagement</div></div>
+          <div class="ec"><div class="ec-n">4.5 KPI tracking implemented <span class="pill p-l2">L2</span><span class="pill p-de">DE</span></div><div class="ec-s">DATA — tracking in place</div></div>
+          <div class="ec"><div class="ec-n">4.6 Customer reference named <span class="pill p-l2">L2</span><span class="pill p-sa">SA</span></div><div class="ec-s">REF — named · confirmed willing</div></div>
+          <div class="ec"><div class="ec-n">4.7 Win / loss data tracked <span class="pill p-l2">L2</span><span class="pill p-sa">SA</span></div><div class="ec-s">DATA — tracked systematically</div></div>
+          <div class="ec"><div class="ec-n">4.8 Standard reporting template <span class="pill p-l2">L2</span><span class="pill p-de">DE</span></div><div class="ec-s">DOC — standard template in use</div></div>
+          <div class="ec"><div class="ec-n">4.9 Published case study — min 1 <span class="must-tag">★</span><span class="pill p-l3">L3</span><span class="pill p-sa">SA</span></div><div class="ec-s">LINK — external · live · findable by search</div></div>
+          <div class="ec"><div class="ec-n">4.10 Referenceable customers — min 2 <span class="pill p-l3">L3</span><span class="pill p-sa">SA</span></div><div class="ec-s">REF — 2 named · both confirmed willing</div></div>
+          <div class="ec"><div class="ec-n">4.12 Outcome variance tracked <span class="pill p-l3">L3</span><span class="pill p-de">DE</span></div><div class="ec-s">DATA — actual vs projected outcomes</div></div>
+          <div class="ec"><div class="ec-n">4.13 Outcome data used in sales <span class="pill p-l3">L3</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — referenced in sales materials</div></div>
+          <div class="ec"><div class="ec-n">4.14 Measurement data centralised <span class="pill p-l3">L3</span><span class="pill p-de">DE</span></div><div class="ec-s">DATA — single source of truth</div></div>
+          <div class="ec"><div class="ec-n">4.15 Client value reports delivered <span class="pill p-l4">L4</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — regular QBR/value report</div></div>
+          <div class="ec"><div class="ec-n">4.16 Published case studies — min 3 <span class="pill p-l4">L4</span><span class="pill p-sa">SA</span></div><div class="ec-s">LINK — 3+ external live case studies</div></div>
+          <div class="ec"><div class="ec-n">4.17 Win rate tracked by offering <span class="must-tag">★</span><span class="pill p-l4">L4</span><span class="pill p-sa">SA</span></div><div class="ec-s">DATA — in CRM by offering · not blended</div></div>
+          <div class="ec"><div class="ec-n">4.18 SN co-marketing reference <span class="pill p-l4">L4</span><span class="pill p-sa">SA</span></div><div class="ec-s">REF — SN references Crossfuze</div></div>
+          <div class="ec"><div class="ec-n">4.19 Value proof in expansion <span class="pill p-l4">L4</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — value evidenced in expansions</div></div>
+          <div class="ec"><div class="ec-n">4.20 Benchmark comparisons available <span class="pill p-l5">L5</span><span class="pill p-sa">SA</span></div><div class="ec-s">DATA — industry benchmarks referenced</div></div>
+          <div class="ec"><div class="ec-n">4.21 Predictive success indicators <span class="pill p-l5">L5</span><span class="pill p-de">DE</span></div><div class="ec-s">DATA — predictive model in use</div></div>
+          <div class="ec"><div class="ec-n">4.22 NRR linked to measured value <span class="pill p-l5">L5</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — NRR and value correlation tracked</div></div>
+        </div>
+
+        <!-- Market & Strategy -->
+        <div>
+          <div class="ss-lbl">Market & Strategy · 17 milestones · SA only · Offering Owner</div>
+          <div class="ec"><div class="ec-n">5.1 Specialisation rationale documented <span class="pill p-l1">L1</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — why we specialise in this</div></div>
+          <div class="ec"><div class="ec-n">5.2 ICP and target industries defined <span class="must-tag">★</span><span class="pill p-l1">L1</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — named industries · firmographic criteria</div></div>
+          <div class="ec"><div class="ec-n">5.4 Core business problems defined <span class="pill p-l1">L1</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — problems we solve</div></div>
+          <div class="ec"><div class="ec-n">5.5 Value proposition documented <span class="pill p-l1">L1</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — clear value prop</div></div>
+          <div class="ec"><div class="ec-n">5.7 Competitive alternatives mapped <span class="pill p-l2">L2</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — alternatives and positioning</div></div>
+          <div class="ec"><div class="ec-n">5.9 Sales cycle length understood <span class="pill p-l2">L2</span><span class="pill p-sa">SA</span></div><div class="ec-s">DATA — actuals from CRM · not estimated</div></div>
+          <div class="ec"><div class="ec-n">5.11 Why-we-win narrative defined <span class="pill p-l2">L2</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — documented and tested</div></div>
+          <div class="ec"><div class="ec-n">5.12 TAM defined <span class="pill p-l2">L2</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — total addressable market sized</div></div>
+          <div class="ec"><div class="ec-n">5.14 Capability-to-pain linkage <span class="pill p-l3">L3</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — capability mapped to pain</div></div>
+          <div class="ec"><div class="ec-n">5.15 Low-fit segments excluded <span class="pill p-l3">L3</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — exclusion criteria defined</div></div>
+          <div class="ec"><div class="ec-n">5.16 Revenue concentration target <span class="pill p-l3">L3</span><span class="pill p-sa">SA</span></div><div class="ec-s">DATA — target set and tracked</div></div>
+          <div class="ec"><div class="ec-n">5.17 Land-to-expand pathway defined <span class="pill p-l3">L3</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — multi-module growth pathway</div></div>
+          <div class="ec"><div class="ec-n">5.19 Leadership alignment documented <span class="pill p-l3">L3</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — exec sign-off on strategy</div></div>
+          <div class="ec"><div class="ec-n">5.20 Attractive segments prioritised <span class="pill p-l4">L4</span><span class="pill p-sa">SA</span></div><div class="ec-s">DATA — segment scoring in place</div></div>
+          <div class="ec"><div class="ec-n">5.22 Upgrade-triggered opportunities <span class="pill p-l4">L4</span><span class="pill p-sa">SA</span></div><div class="ec-s">DATA — SN upgrade signal tracked</div></div>
+          <div class="ec"><div class="ec-n">5.24 Strategic thesis documented <span class="pill p-l5">L5</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — long-term strategic thesis</div></div>
+          <div class="ec"><div class="ec-n">5.25 Lighthouse growth journey <span class="pill p-l5">L5</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — documented growth path</div></div>
+        </div>
+
+        <!-- Demand & Marketing -->
+        <div>
+          <div class="ss-lbl">Demand & Marketing · 16 milestones · SA + CR · Marketing</div>
+          <div class="ec"><div class="ec-n">6.1 Thought leadership themes defined <span class="pill p-l2">L2</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — themes and calendar</div></div>
+          <div class="ec"><div class="ec-n">6.2 Website aligned to offerings <span class="pill p-l2">L2</span><span class="pill p-cr">CR</span></div><div class="ec-s">LINK — live · current offering pages</div></div>
+          <div class="ec"><div class="ec-n">6.4 Content calendar established <span class="pill p-l3">L3</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — calendar in place</div></div>
+          <div class="ec"><div class="ec-n">6.6 SEO / AEO strategy defined <span class="pill p-l3">L3</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — strategy documented</div></div>
+          <div class="ec"><div class="ec-n">6.7 Lead capture mechanisms <span class="pill p-l3">L3</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — capture in place and tracked</div></div>
+          <div class="ec"><div class="ec-n">6.8 Target account list in CRM <span class="pill p-l3">L3</span><span class="pill p-sa">SA</span></div><div class="ec-s">DATA — in CRM · named · current quarter</div></div>
+          <div class="ec"><div class="ec-n">6.9 Outbound campaign structured <span class="pill p-l3">L3</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — campaign playbook</div></div>
+          <div class="ec"><div class="ec-n">6.10 Partner-aligned campaigns <span class="pill p-l3">L3</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — SN-aligned campaign plan</div></div>
+          <div class="ec"><div class="ec-n">6.11 Pipeline targets defined <span class="pill p-l3">L3</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — targets in CRM</div></div>
+          <div class="ec"><div class="ec-n">6.12 ROI / value insights published <span class="pill p-l4">L4</span><span class="pill p-cr">CR</span></div><div class="ec-s">LINK — published · externally findable</div></div>
+          <div class="ec"><div class="ec-n">6.13 Executive-level insights shared <span class="pill p-l4">L4</span><span class="pill p-sa">SA</span></div><div class="ec-s">LINK — exec content published</div></div>
+          <div class="ec"><div class="ec-n">6.14 Pipeline tracked by source <span class="pill p-l4">L4</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — by source in CRM · not blended</div></div>
+          <div class="ec"><div class="ec-n">6.15 Conversion rates monitored <span class="pill p-l4">L4</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — stage conversion tracked</div></div>
+          <div class="ec"><div class="ec-n">6.16 Cost per opportunity tracked <span class="pill p-l4">L4</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — CPO tracked by channel</div></div>
+          <div class="ec"><div class="ec-n">6.18 Forecastable pipeline model <span class="pill p-l5">L5</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — 90-day rolling forecast model</div></div>
+          <div class="ec"><div class="ec-n">6.19 Campaign ROI measured <span class="pill p-l5">L5</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — ROI per campaign tracked</div></div>
+        </div>
+
+        <!-- Partner & SN Alignment -->
+        <div>
+          <div class="ss-lbl">Partner & SN Alignment · 19 milestones · SA + DE + CR · Alliance</div>
+          <div class="ec"><div class="ec-n">7.1 Registered on SN portal <span class="pill p-l1">L1</span><span class="pill p-sa">SA</span></div><div class="ec-s">LINK — registered and active</div></div>
+          <div class="ec"><div class="ec-n">7.2 Partner Manager alignment <span class="pill p-l1">L1</span><span class="pill p-sa">SA</span></div><div class="ec-s">REF — named PM confirmed</div></div>
+          <div class="ec"><div class="ec-n">7.3 Co-sell motion defined <span class="pill p-l2">L2</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — co-sell process documented</div></div>
+          <div class="ec"><div class="ec-n">7.4 Named SN AE alignment <span class="pill p-l2">L2</span><span class="pill p-sa">SA</span></div><div class="ec-s">REF — named AE confirmed</div></div>
+          <div class="ec"><div class="ec-n">7.5 SN portal listing complete <span class="must-tag">★</span><span class="pill p-l2">L2</span><span class="pill p-sa">SA</span></div><div class="ec-s">LINK — live · all fields complete in portal</div></div>
+          <div class="ec"><div class="ec-n">7.6 Joint value proposition <span class="pill p-l3">L3</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — agreed with SN</div></div>
+          <div class="ec"><div class="ec-n">7.7 Field positioning communicated <span class="pill p-l3">L3</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — communicated to SN field</div></div>
+          <div class="ec"><div class="ec-n">7.8 Quarterly pipeline review <span class="pill p-l3">L3</span><span class="pill p-sa">SA</span></div><div class="ec-s">DATA — cadence in place</div></div>
+          <div class="ec"><div class="ec-n">7.9 Partner-influenced revenue targets <span class="pill p-l3">L3</span><span class="pill p-sa">SA</span></div><div class="ec-s">DATA — targets set in CRM</div></div>
+          <div class="ec"><div class="ec-n">7.10 Expansion pathway aligned with SN <span class="pill p-l3">L3</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — aligned expansion plan</div></div>
+          <div class="ec"><div class="ec-n">7.11 Account roadmap for key accounts <span class="pill p-l3">L3</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — joint account plans</div></div>
+          <div class="ec"><div class="ec-n">7.12 Joint account planning cadence <span class="pill p-l4">L4</span><span class="pill p-sa">SA</span></div><div class="ec-s">DATA — cadence tracked</div></div>
+          <div class="ec"><div class="ec-n">7.13 Named SN overlay established <span class="must-tag">★</span><span class="pill p-l4">L4</span><span class="pill p-sa">SA</span></div><div class="ec-s">REF — named · SN confirmed in writing</div></div>
+          <div class="ec"><div class="ec-n">7.15 Case study on SN portal <span class="pill p-l4">L4</span><span class="pill p-sa">SA</span></div><div class="ec-s">LINK — published on SN partner portal</div></div>
+          <div class="ec"><div class="ec-n">7.16 SN product specialisation certified <span class="pill p-l4">L4</span><span class="pill p-de">DE</span></div><div class="ec-s">CERT — SN certification record</div></div>
+          <div class="ec"><div class="ec-n">7.17 Formal co-sell agreement <span class="must-tag">★</span><span class="pill p-l5">L5</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — signed · current · not expired</div></div>
+          <div class="ec"><div class="ec-n">7.18 Marketplace listing active <span class="pill p-l5">L5</span><span class="pill p-cr">CR</span></div><div class="ec-s">LINK — SN marketplace listing live</div></div>
+          <div class="ec"><div class="ec-n">7.19 Featured in SN communications <span class="pill p-l5">L5</span><span class="pill p-sa">SA</span></div><div class="ec-s">REF — SN references Crossfuze publicly</div></div>
+          <div class="ec"><div class="ec-n">7.20 SN positions Crossfuze proactively <span class="pill p-l5">L5</span><span class="pill p-sa">SA</span></div><div class="ec-s">REF — SN proactively recommends</div></div>
+        </div>
+
+        <!-- CS & Expansion -->
+        <div>
+          <div class="ss-lbl">CS & Expansion · 22 milestones · SA + DE + CR · CS</div>
+          <div class="ec"><div class="ec-n">8.1 Account ownership defined <span class="pill p-l1">L1</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — CS owner per account</div></div>
+          <div class="ec"><div class="ec-n">8.3 Expansion pathway documented <span class="pill p-l2">L2</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — triggers and pathway</div></div>
+          <div class="ec"><div class="ec-n">8.4 Managed services scope defined <span class="pill p-l2">L2</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — scope boundaries clear</div></div>
+          <div class="ec"><div class="ec-n">8.5 Recurring pricing model defined <span class="pill p-l2">L2</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — recurring model documented</div></div>
+          <div class="ec"><div class="ec-n">8.6 Contract length standards <span class="pill p-l2">L2</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — standard terms defined</div></div>
+          <div class="ec"><div class="ec-n">8.7 Renewal process defined <span class="pill p-l2">L2</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — renewal playbook</div></div>
+          <div class="ec"><div class="ec-n">8.8 Client health scoring defined <span class="pill p-l3">L3</span><span class="pill p-de">DE</span></div><div class="ec-s">DATA — health score model in place</div></div>
+          <div class="ec"><div class="ec-n">8.9 Churn risk indicators <span class="pill p-l3">L3</span><span class="pill p-de">DE</span></div><div class="ec-s">DATA — risk indicators tracked</div></div>
+          <div class="ec"><div class="ec-n">8.10 CSAT tied to renewal <span class="pill p-l3">L3</span><span class="pill p-de">DE</span></div><div class="ec-s">DATA — explicit threshold triggers action</div></div>
+          <div class="ec"><div class="ec-n">8.12 Expansion triggers identified <span class="pill p-l3">L3</span><span class="pill p-sa">SA</span></div><div class="ec-s">DATA — signals tracked in CRM</div></div>
+          <div class="ec"><div class="ec-n">8.13 NRR targets defined <span class="pill p-l3">L3</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — finance-approved in CRM</div></div>
+          <div class="ec"><div class="ec-n">8.14 Account planning cadence <span class="pill p-l4">L4</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — cadence tracked</div></div>
+          <div class="ec"><div class="ec-n">8.15 Executive sponsor model <span class="pill p-l4">L4</span><span class="pill p-cr">CR</span></div><div class="ec-s">DOC — exec sponsor assigned</div></div>
+          <div class="ec"><div class="ec-n">8.16 Install-base penetration tracked <span class="pill p-l4">L4</span><span class="pill p-sa">SA</span></div><div class="ec-s">DATA — penetration by account</div></div>
+          <div class="ec"><div class="ec-n">8.17 Expansion quota defined <span class="pill p-l4">L4</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — quota set and tracked</div></div>
+          <div class="ec"><div class="ec-n">8.18 Renewal forecasting tracked <span class="pill p-l4">L4</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — 90-day rolling in CRM</div></div>
+          <div class="ec"><div class="ec-n">8.19 Intervention playbooks <span class="pill p-l4">L4</span><span class="pill p-de">DE</span></div><div class="ec-s">DOC — at-risk playbook</div></div>
+          <div class="ec"><div class="ec-n">8.20 Expansion revenue tracked <span class="pill p-l4">L4</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — by account in CRM</div></div>
+          <div class="ec"><div class="ec-n">8.21 NRR tracked monthly <span class="must-tag">★</span><span class="pill p-l5">L5</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — monthly report · last 3 months min</div></div>
+          <div class="ec"><div class="ec-n">8.22 Expansion forecast accuracy <span class="pill p-l5">L5</span><span class="pill p-cr">CR</span></div><div class="ec-s">DATA — forecast vs actual tracked</div></div>
+          <div class="ec"><div class="ec-n">8.23 Predictive expansion indicators <span class="pill p-l5">L5</span><span class="pill p-sa">SA</span></div><div class="ec-s">DATA — predictive signals modelled</div></div>
+          <div class="ec"><div class="ec-n">8.24 Account roadmap — multi-year <span class="pill p-l5">L5</span><span class="pill p-sa">SA</span></div><div class="ec-s">DOC — multi-year account plans</div></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flow-row"><div class="fl"></div><div class="fh"></div><div class="fl-label">Assessors tick milestones against this checklist in the Scoring Session</div><div class="fl"></div><div class="fh"></div></div>
+
+<!-- ════════════════════════════════════════════
+     2. SCORING ENGINE
+════════════════════════════════════════════ -->
+<div class="lane t2" id="lane-sc">
+  <div class="lane-hdr" onclick="tl('sc')">
+    <div class="lane-accent"></div>
+    <div class="lane-hdr-inner">
+      <div class="lane-title">Scoring Engine</div>
+      <div class="lane-sub">— CMI (12 criteria) · Authority Score · MIS Model · Gap logic</div>
+      <div class="lane-meta"><div class="lane-cnt">3 models · 2 axes · 14 ★ must-haves</div><div class="lane-chev" id="chev-sc">›</div></div>
+    </div>
+  </div>
+  <div class="lane-body closed" id="body-sc">
+    <div class="lane-inner">
+      <div class="g g3">
+
+        <div>
+          <div class="ss-lbl">Strength Model — CMI · 12 criteria across 3 dimensions · Scored 1–5</div>
+          <div class="ec"><div class="ec-n">Strategic Alignment <span style="font-size:9px;font-weight:700;color:var(--red);">50% of CMI</span></div><div class="ec-s">Business Strategy Fit 40% · Market Validation 25% · SN Alignment 20% · Competitive Position 15%</div></div>
+          <div class="ec"><div class="ec-n">Commercial Readiness <span style="font-size:9px;font-weight:700;color:rgba(4,14,61,0.55);">25% of CMI</span></div><div class="ec-s">Sales Execution Capability 35% · GTM & Collateral Readiness 30% · Operational Readiness 20% · SN Commercial Partnership 15%</div></div>
+          <div class="ec"><div class="ec-n">Delivery Expertise <span style="font-size:9px;font-weight:700;color:rgba(4,14,61,0.55);">25% of CMI</span></div><div class="ec-s">Technical Capability 40% · Delivery Performance 30% · Practice Currency 20% · Continuous Improvement 10%</div></div>
+          <div class="formula">CMI = (SA × 0.50) + (CR × 0.25) + (DE × 0.25)<br>Output: 1.00 – 5.00 · Scored 1–5 per criterion per session<br>Strength does NOT determine claimed level — Authority governs</div>
+        </div>
+
+        <div>
+          <div class="ss-lbl">Authority Score · 164 milestones · Evidence-gated</div>
+          <div class="ec"><div class="ec-n">Formula</div><div class="ec-s">(SA×0.50)+(CR×0.25)+(DE×0.25) · scale 1–5 · Claimed Level = lowest dimension always</div></div>
+          <div class="ec"><div class="ec-n">Level thresholds</div><div class="ec-s">L2 = 60% · L3 = 70% · L4 = 80% · L5 = 90% of milestones complete per dimension</div></div>
+          <div class="ec"><div class="ec-n">★ hard-block</div><div class="ec-s">Outstanding must-have = progression blocked regardless of % score · no bypass · reviewer sign-off required</div></div>
+          <div class="ec"><div class="ec-n">Evidence quality</div><div class="ec-s">Verified = counts done · Draft + named owner + date = validator discretion · Verbal / assumed = not done</div></div>
+          <div class="ec"><div class="ec-n">Dimension split: SA 59 · CR 67 · DE 38</div><div class="ec-s">Total 164. Note: categories span multiple dimensions — use New Dimension column in master as authoritative source</div></div>
+        </div>
+
+        <div>
+          <div class="ss-lbl">MIS Model · Milestone Impact Score · Drives Asset Roadmap quarters</div>
+          <div class="ec"><div class="ec-n">Base points</div><div class="ec-s">★ must-have = 4 pts · Non-★ = 1 pt</div></div>
+          <div class="ec"><div class="ec-n">Dimension multiplier</div><div class="ec-s">SA = ×2.0 · CR = ×1.0 · DE = ×1.0 · Source: New Dimension column in Scoring_Master.xlsx</div></div>
+          <div class="ec"><div class="ec-n">Override bonus</div><div class="ec-s">+2 pts · manual · assessor-applied · blocked offerings only · YES/NO column in MIS Model tab</div></div>
+          <div class="formula">MIS = (Base pts × Dim multiplier) + Override<br>Q1: 8–10 · Q2: 4–7 · Q3: 2–3 · Q4: 0–1</div>
+          <div class="ec" style="margin-top:8px;"><div class="ec-n">Gap logic</div><div class="ec-s">High CMI + Low Authority = over-claiming. High CMI + High Authority = externally defensible. "Strength is the claim · Authority is the receipt."</div></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flow-row"><div class="fl"></div><div class="fh"></div><div class="fl-label">Scoring feeds level assignment and MIS — feeds maturity model and data tables</div><div class="fl"></div><div class="fh"></div></div>
+
+<!-- ════════════════════════════════════════════
+     3. MATURITY MODEL
+════════════════════════════════════════════ -->
+<div class="lane t3" id="lane-ma">
+  <div class="lane-hdr" onclick="tl('ma')">
+    <div class="lane-accent"></div>
+    <div class="lane-hdr-inner">
+      <div class="lane-title">Maturity Model</div>
+      <div class="lane-sub">— L1–L5 definitions · GTM pyramid · progression rules · thresholds</div>
+      <div class="lane-meta"><div class="lane-cnt">5 levels · 4 stages</div><div class="lane-chev" id="chev-ma">›</div></div>
+    </div>
+  </div>
+  <div class="lane-body closed" id="body-ma">
+    <div class="lane-inner">
+      <div class="g g3">
+        <div>
+          <div class="ss-lbl">Level definitions · applies to both GTM and Partner Framework</div>
+          <div class="ec"><div class="ec-n">L1 — Ad Hoc <span class="pill p-l1">0%</span></div><div class="ec-s">No repeatable process · activity driven by individuals not systems · no external claims</div></div>
+          <div class="ec"><div class="ec-n">L2 — Developing <span class="pill p-l2">60%</span></div><div class="ec-s">Basic processes exist · inconsistently applied · foundational assets in place</div></div>
+          <div class="ec"><div class="ec-n">L3 — Standardized <span class="pill p-l3">70%</span></div><div class="ec-s">Consistent process · externally defensible claims · minimum bar for customer-facing work</div></div>
+          <div class="ec"><div class="ec-n">L4 — Advanced <span class="pill p-l4">80%</span></div><div class="ec-s">Core differentiators active · data-driven · ready to compete on specialisation</div></div>
+          <div class="ec"><div class="ec-n">L5 — Best-In-Class <span class="pill p-l5">90%</span></div><div class="ec-s">1–2 owned market positions · SN-recognised · industry-validated</div></div>
+        </div>
+        <div>
+          <div class="ss-lbl">GTM pyramid — Union Square Consulting</div>
+          <div class="ec"><div class="ec-n">Fundamentals · L1 → L2</div><div class="ec-s">Basic assets · ICP · pricing model · methodology. Never skip — foundation must exist before moving up.</div></div>
+          <div class="ec"><div class="ec-n">Adoption · L2 → L3</div><div class="ec-s">Repeatable sales motion · external case studies · consistent delivery. Minimum bar for any GTM activity.</div></div>
+          <div class="ec"><div class="ec-n">Optimization · L3 → L4</div><div class="ec-s">Win rate tracked · SN alignment formalised · demand gen with data. Core differentiators unlock here.</div></div>
+          <div class="ec"><div class="ec-n">Acceleration · L4 → L5</div><div class="ec-s">1–2 owned market positions · co-sell agreement · NRR engine. Best-in-class standing.</div></div>
+        </div>
+        <div>
+          <div class="ss-lbl">Progression rules — non-negotiable</div>
+          <div class="ec"><div class="ec-n">Never accelerate from L1–L2</div><div class="ec-s">Fundamentals must be solid. No shortcuts to L3.</div></div>
+          <div class="ec"><div class="ec-n">L3 = minimum bar for external claims</div><div class="ec-s">Below L3 = internal only. No customer-facing claims on this offering.</div></div>
+          <div class="ec"><div class="ec-n">L4 = core differentiators</div><div class="ec-s">Win rate, SN overlay, demand gen data all required. Active competitive differentiator.</div></div>
+          <div class="ec"><div class="ec-n">L5 = 1–2 positions max</div><div class="ec-s">Only 1–2 offerings target L5 at any time. NPS, SN recognition, market ownership required.</div></div>
+          <div class="ec"><div class="ec-n">★ blocks any level gate</div><div class="ec-s">A single outstanding ★ must-have prevents progression regardless of milestone % score.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flow-row"><div class="fl"></div><div class="fh"></div><div class="fl-label">Session approval writes to data tables — scoring session is single source of truth</div><div class="fl"></div><div class="fh"></div></div>
+
+<!-- ════════════════════════════════════════════
+     4. DATA MODEL
+════════════════════════════════════════════ -->
+<div class="lane t4" id="lane-dm">
+  <div class="lane-hdr" onclick="tl('dm')">
+    <div class="lane-accent"></div>
+    <div class="lane-hdr-inner">
+      <div class="lane-title">Data Model</div>
+      <div class="lane-sub">— 4 tables · fields · types · sources · FK relationships</div>
+      <div class="lane-meta"><div class="lane-cnt">4 tables · 35 fields</div><div class="lane-chev" id="chev-dm">›</div></div>
+    </div>
+  </div>
+  <div class="lane-body closed" id="body-dm">
+    <div class="lane-inner">
+      <div class="g g4">
+        <div>
+          <div class="ss-lbl">Offering · Manual · Master record</div>
+          <div class="ec"><div class="ec-n">offering_id <span class="pill p-auto">PK</span></div><div class="ec-s">Text · primary key · e.g. smart-itsm</div></div>
+          <div class="ec"><div class="ec-n">offering_name</div><div class="ec-s">Text · display name · e.g. SMART ITSM</div></div>
+          <div class="ec"><div class="ec-n">offering_group</div><div class="ec-s">Choice · SMART / OOTBaaS / Managed</div></div>
+          <div class="ec"><div class="ec-n">claimed_level</div><div class="ec-s">Choice L1–L5 · set by offering owner</div></div>
+          <div class="ec"><div class="ec-n">authority_score</div><div class="ec-s">Decimal · calculated on session approval</div></div>
+          <div class="ec"><div class="ec-n">strength_cmi</div><div class="ec-s">Decimal · calculated from Strength scores</div></div>
+          <div class="ec"><div class="ec-n">is_blocked</div><div class="ec-s">Boolean · true if any ★ outstanding</div></div>
+          <div class="ec"><div class="ec-n">last_assessed</div><div class="ec-s">DateTime · date of last approved session</div></div>
+        </div>
+        <div>
+          <div class="ss-lbl">Scoring Session · Assessor input · Single source of truth</div>
+          <div class="ec"><div class="ec-n">offering_id <span class="pill p-manual">FK</span></div><div class="ec-s">→ Offering</div></div>
+          <div class="ec"><div class="ec-n">assessor_role</div><div class="ec-s">Choice · 7 roles (see Assessment Process)</div></div>
+          <div class="ec"><div class="ec-n">milestone_id</div><div class="ec-s">Text · e.g. 1.4 · 4.9 · 7.13</div></div>
+          <div class="ec"><div class="ec-n">milestone_ticked</div><div class="ec-s">Boolean · assessor marks complete</div></div>
+          <div class="ec"><div class="ec-n">evidence_type</div><div class="ec-s">Choice · DOC / DATA / REF / LINK / CERT / SCREEN</div></div>
+          <div class="ec"><div class="ec-n">strength_score</div><div class="ec-s">Integer 1–5 · per Strength criterion</div></div>
+          <div class="ec"><div class="ec-n">reviewer_approved</div><div class="ec-s">Boolean · per ★ must-have · reviewer only · Verified evidence required · no drafts</div></div>
+          <div class="ec"><div class="ec-n">session_approved</div><div class="ec-s">Boolean · final approval · triggers recalc chain</div></div>
+          <div class="ec"><div class="ec-n">quarter · approved_date</div><div class="ec-s">Q1–Q4 + year · DateTime</div></div>
+        </div>
+        <div>
+          <div class="ss-lbl">MIS Scores · Auto-calculated on session approval · Not editable</div>
+          <div class="ec"><div class="ec-n">milestone_id <span class="pill p-manual">FK</span></div><div class="ec-s">→ Scoring Session</div></div>
+          <div class="ec"><div class="ec-n">offering_id <span class="pill p-manual">FK</span></div><div class="ec-s">→ Offering</div></div>
+          <div class="ec"><div class="ec-n">is_must_have</div><div class="ec-s">Boolean · from Revised Must Haves col in master</div></div>
+          <div class="ec"><div class="ec-n">dimension</div><div class="ec-s">SA / CR / DE · from New Dimension col in master · authoritative</div></div>
+          <div class="ec"><div class="ec-n">dim_multiplier</div><div class="ec-s">Decimal · SA=2.0 · CR=1.0 · DE=1.0</div></div>
+          <div class="ec"><div class="ec-n">override_applied</div><div class="ec-s">Boolean · manual · blocked offerings only</div></div>
+          <div class="ec"><div class="ec-n">mis_score</div><div class="ec-s">Integer 0–10 · (base × dim) + override</div></div>
+          <div class="ec"><div class="ec-n">quarter_assigned</div><div class="ec-s">Auto from thresholds · 8-10=Q1 · 4-7=Q2 · 2-3=Q3 · 0-1=Q4</div></div>
+        </div>
+        <div>
+          <div class="ss-lbl">Asset Roadmap · Mixed — auto from scoring + manual operational</div>
+          <div class="ec"><div class="ec-n">milestone_id · mis_score · quarter <span class="pill p-auto">Auto</span></div><div class="ec-s">FK → MIS Scores · updates on re-approval</div></div>
+          <div class="ec"><div class="ec-n">asset_name <span class="pill p-manual">Manual</span></div><div class="ec-s">Set by asset owner role</div></div>
+          <div class="ec"><div class="ec-n">asset_owner_role <span class="pill p-manual">Manual</span></div><div class="ec-s">Role responsible for building</div></div>
+          <div class="ec"><div class="ec-n">input_owner <span class="pill p-manual">Manual</span></div><div class="ec-s">Role providing the dependency input</div></div>
+          <div class="ec"><div class="ec-n">input_description</div><div class="ec-s">From framework — evidence standard · not invented</div></div>
+          <div class="ec"><div class="ec-n">resource_status <span class="pill p-manual">Manual</span></div><div class="ec-s">Available / Prioritized / Unavailable</div></div>
+          <div class="ec"><div class="ec-n">input_status <span class="pill p-manual">Manual</span></div><div class="ec-s">Available / Prioritized / Not provided</div></div>
+          <div class="ec"><div class="ec-n">asset_status <span class="pill p-manual">Manual</span></div><div class="ec-s">Available / Prioritized / Unavailable</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flow-row"><div class="fl"></div><div class="fh"></div><div class="fl-label">Data tables feed all portal views — each page reads from one or more tables</div><div class="fl"></div><div class="fh"></div></div>
+
+<!-- ════════════════════════════════════════════
+     5. PORTAL VIEWS
+════════════════════════════════════════════ -->
+<div class="lane t5" id="lane-pv">
+  <div class="lane-hdr" onclick="tl('pv')">
+    <div class="lane-accent"></div>
+    <div class="lane-hdr-inner">
+      <div class="lane-title">Portal Views</div>
+      <div class="lane-sub">— 8 pages · reads · writes · UI patterns · file names · status</div>
+      <div class="lane-meta"><div class="lane-cnt">7 live · 1 planned</div><div class="lane-chev" id="chev-pv">›</div></div>
+    </div>
+  </div>
+  <div class="lane-body closed" id="body-pv">
+    <div class="lane-inner">
+      <div class="g g4">
+        <div>
+          <div class="ss-lbl">Hub · index.html · <span class="pill p-live">Live</span></div>
+          <div class="ec"><div class="ec-n">Purpose</div><div class="ec-s">Entry point · portfolio KPI view · all roles</div></div>
+          <div class="ec"><div class="ec-n">UI pattern</div><div class="ec-s">KPI strip · offering table with level badges · module cards · priority actions strip · sticky topbar nav</div></div>
+          <div class="ec"><div class="ec-n">Reads</div><div class="ec-s">Offering · MIS Scores · Scoring Session</div></div>
+          <div class="ec"><div class="ec-n">Writes</div><div class="ec-s">None — read-only</div></div>
+          <div style="margin-top:12px;" class="ss-lbl">Offering Detail · offering.html · <span class="pill p-live">Live</span></div>
+          <div class="ec"><div class="ec-n">Purpose</div><div class="ec-s">Per-offering · Authority vs Strength gap</div></div>
+          <div class="ec"><div class="ec-n">UI pattern</div><div class="ec-s">Offering switcher · Auth vs Strength bars by dimension · RAG category grid (8 categories) · L-claim indicator · priority actions</div></div>
+          <div class="ec"><div class="ec-n">Reads</div><div class="ec-s">Offering · Scoring Session · MIS Scores</div></div>
+        </div>
+        <div>
+          <div class="ss-lbl">Scoring Session · scoring.html · <span class="pill p-live">Live</span></div>
+          <div class="ec"><div class="ec-n">Purpose</div><div class="ec-s">Input tool · assessors + reviewer · quarterly</div></div>
+          <div class="ec"><div class="ec-n">Assessor view</div><div class="ec-s">Offering selector · 7 role tabs · authority checklist + evidence dropdown · Strength 1–5 buttons · Submit locks inputs</div></div>
+          <div class="ec"><div class="ec-n">Reviewer view</div><div class="ec-s">All ★ must-haves from submitted sections · Approve ✓ / Return ✗ per item · Final Approve only active when all ★ approved</div></div>
+          <div class="ec"><div class="ec-n">On approval fires</div><div class="ec-s">MIS recalc · Action Log update · Asset Roadmap quarter reassignment · Authority score update · is_blocked flag update</div></div>
+          <div style="margin-top:12px;" class="ss-lbl">Action Log · actions.html · <span class="pill p-live">Live</span></div>
+          <div class="ec"><div class="ec-n">Purpose</div><div class="ec-s">Cross-portfolio action tracking · blockers first</div></div>
+          <div class="ec"><div class="ec-n">UI pattern</div><div class="ec-s">KPI strip · filter tabs type + offering · table rows · status cycling Open → In Progress → Done</div></div>
+        </div>
+        <div>
+          <div class="ss-lbl">GTM Assets · gtm-assets.html · <span class="pill p-live">Live</span></div>
+          <div class="ec"><div class="ec-n">Purpose</div><div class="ec-s">Collateral inventory · status by offering</div></div>
+          <div class="ec"><div class="ec-n">UI pattern</div><div class="ec-s">Offering filter · asset rows with status pills · category grouping · summary totals</div></div>
+          <div class="ec"><div class="ec-n">Reads</div><div class="ec-s">Asset Roadmap · Offering</div></div>
+          <div style="margin-top:12px;" class="ss-lbl">Asset Roadmap · asset-roadmap.html · <span class="pill p-live">Live</span></div>
+          <div class="ec"><div class="ec-n">Purpose</div><div class="ec-s">MIS-driven production backlog</div></div>
+          <div class="ec"><div class="ec-n">UI pattern</div><div class="ec-s">Sticky header (KPI strip + quarter tabs) · role chips · SN-style list (P badge · ★ · name · offering · input status · asset status · MIS circle) · slide-in detail panel · Escape closes</div></div>
+          <div class="ec"><div class="ec-n">Panel labels</div><div class="ec-s">Asset built? · Needs from [owner] · Template ready? · Evidence needed · Provided by · Built by · MIS score circle</div></div>
+          <div class="ec"><div class="ec-n">Reads</div><div class="ec-s">Asset Roadmap (auto + operational fields)</div></div>
+        </div>
+        <div>
+          <div class="ss-lbl">AEO Module · aeo.html · <span class="pill p-live">Live</span></div>
+          <div class="ec"><div class="ec-n">Purpose</div><div class="ec-s">Answer Engine Optimisation maturity · L3 Standardized currently</div></div>
+          <div class="ec"><div class="ec-n">Current scores</div><div class="ec-s">Technical 3.5 · Content 2.8 · Authority 2.6 · Measurement 2.4</div></div>
+          <div class="ec"><div class="ec-n">Standalone</div><div class="ec-s">Independent module · feeds Hub module card</div></div>
+          <div style="margin-top:12px;" class="ss-lbl">Architecture · architecture.html · <span class="pill p-live">Live</span></div>
+          <div class="ec"><div class="ec-n">Purpose</div><div class="ec-s">This page — complete system reference · must be kept current as new pages are built</div></div>
+          <div style="margin-top:12px;" class="ss-lbl">Portfolio Overview · portfolio.html · <span class="pill p-plan">Planned</span></div>
+          <div class="ec" style="opacity:0.60;"><div class="ec-n">Purpose</div><div class="ec-s">Cross-offering heatmap · executive view · Auth vs Strength gap matrix · level progression summary</div></div>
+          <div class="ec" style="opacity:0.60;"><div class="ec-n">Reads</div><div class="ec-s">Offering · MIS Scores · Scoring Session</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flow-row"><div class="fl"></div><div class="fh"></div><div class="fl-label">Assessment process defines who fills what section and when — role-gated quarterly cadence</div><div class="fl"></div><div class="fh"></div></div>
+
+<!-- ════════════════════════════════════════════
+     6. ASSESSMENT PROCESS
+════════════════════════════════════════════ -->
+<div class="lane t6" id="lane-ap">
+  <div class="lane-hdr" onclick="tl('ap')">
+    <div class="lane-accent"></div>
+    <div class="lane-hdr-inner">
+      <div class="lane-title">Assessment Process</div>
+      <div class="lane-sub">— Workflow · role sections · approval chain · trigger sequence</div>
+      <div class="lane-meta"><div class="lane-cnt">7 roles · 4 steps · quarterly</div><div class="lane-chev" id="chev-ap">›</div></div>
+    </div>
+  </div>
+  <div class="lane-body closed" id="body-ap">
+    <div class="lane-inner">
+      <div class="g g3">
+        <div>
+          <div class="ss-lbl">Workflow steps — per offering per quarter</div>
+          <div class="ec"><div class="ec-n">Step 1 — Offering Owner kicks off</div><div class="ec-s">Selects offering · confirms quarter · opens session for assessors</div></div>
+          <div class="ec"><div class="ec-n">Step 2 — Each assessor completes their section</div><div class="ec-s">Sees only their assigned categories · ticks milestones · selects evidence type (DOC/DATA/REF/LINK/CERT/SCREEN) · scores Strength 1–5 · submits (locks inputs)</div></div>
+          <div class="ec"><div class="ec-n">Step 3 — Reviewer approves ★ must-haves</div><div class="ec-s">Reviews all 14 ★ must-haves from submitted sections · Verified evidence required · no drafts for ★ · Approve ✓ or Return ✗ per item · all must be approved to proceed</div></div>
+          <div class="ec"><div class="ec-n">Step 4 — Final approval fires trigger chain</div><div class="ec-s">MIS recalculates · Action Log updates · Asset Roadmap quarters shift · Authority scores update · Claimed level re-evaluates · is_blocked flag updates</div></div>
+        </div>
+        <div>
+          <div class="ss-lbl">Role → category mapping — each role sees only their section</div>
+          <div class="ec"><div class="ec-n">Sales / GTM</div><div class="ec-s">Sales Readiness only</div></div>
+          <div class="ec"><div class="ec-n">Commercial</div><div class="ec-s">Commercial Readiness only</div></div>
+          <div class="ec"><div class="ec-n">Delivery / Practice</div><div class="ec-s">Delivery Readiness + Reference & Proof</div></div>
+          <div class="ec"><div class="ec-n">Marketing</div><div class="ec-s">Demand & Marketing + Reference & Proof</div></div>
+          <div class="ec"><div class="ec-n">Alliance</div><div class="ec-s">Partner & SN Alignment only</div></div>
+          <div class="ec"><div class="ec-n">CS</div><div class="ec-s">CS & Expansion only</div></div>
+          <div class="ec"><div class="ec-n">Offering Owner</div><div class="ec-s">Market & Strategy only</div></div>
+          <div class="ec"><div class="ec-n">Key rule</div><div class="ec-s">No single role completes all 164 milestones · reviewer sees all submitted sections for ★ approval</div></div>
+        </div>
+        <div>
+          <div class="ss-lbl">Approval chain — fires on final approve</div>
+          <div class="ec"><div class="ec-n">MIS recalculation</div><div class="ec-s">All milestone MIS scores recalculate · quarter assignments shift</div></div>
+          <div class="ec"><div class="ec-n">Action Log update</div><div class="ec-s">Priority actions refresh from new MIS · new blockers surface automatically</div></div>
+          <div class="ec"><div class="ec-n">Asset Roadmap refresh</div><div class="ec-s">Quarter assignments update · Q1 items may shift if MIS drops</div></div>
+          <div class="ec"><div class="ec-n">Authority score update</div><div class="ec-s">Per-dimension and composite score recalculate · gap vs CMI updates</div></div>
+          <div class="ec"><div class="ec-n">Claimed level re-evaluation</div><div class="ec-s">Milestone % rechecked · ★ blocks re-evaluated · is_blocked flag updates on Offering record</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flow-row"><div class="fl"></div><div class="fh"></div><div class="fl-label">Phase 1 GitHub → Phase 2 SharePoint · same logic · swap localStorage for Dataverse API</div><div class="fl"></div><div class="fh"></div></div>
+
+<!-- ════════════════════════════════════════════
+     7. MIGRATION PATH
+════════════════════════════════════════════ -->
+<div class="lane t7" id="lane-mg">
+  <div class="lane-hdr" onclick="tl('mg')">
+    <div class="lane-accent"></div>
+    <div class="lane-hdr-inner">
+      <div class="lane-title">Migration Path</div>
+      <div class="lane-sub">— GitHub Pages (now) → SharePoint / Dataverse (target)</div>
+      <div class="lane-meta"><div class="lane-cnt">2 phases · 1 connector change</div><div class="lane-chev" id="chev-mg">›</div></div>
+    </div>
+  </div>
+  <div class="lane-body closed" id="body-mg">
+    <div class="lane-inner">
+      <div class="g g4">
+        <div>
+          <div class="ss-lbl">Phase 1 — GitHub Pages (Now)</div>
+          <div class="ec"><div class="ec-n">Hosting</div><div class="ec-s">GitHub Pages · static HTML · no build step · no backend</div></div>
+          <div class="ec"><div class="ec-n">Data / state</div><div class="ec-s">localStorage · demo data baked into JS · illustrative only</div></div>
+          <div class="ec"><div class="ec-n">Auth</div><div class="ec-s">None · open access · for demo and stakeholder review</div></div>
+          <div class="ec"><div class="ec-n">URL</div><div class="ec-s">crossfuze-lighthouse.github.io/ZOOM/</div></div>
+          <div class="ec"><div class="ec-n">Files</div><div class="ec-s">index · offering · scoring · actions · gtm-assets · asset-roadmap · architecture · aeo · .html</div></div>
+        </div>
+        <div>
+          <div class="ss-lbl">Phase 2 — SharePoint / Dataverse (Target)</div>
+          <div class="ec"><div class="ec-n">Hosting</div><div class="ec-s">SharePoint · same HTML/CSS/JS · no rewrite</div></div>
+          <div class="ec"><div class="ec-n">Data / state</div><div class="ec-s">Dataverse API replaces localStorage · 4 tables mirror data model</div></div>
+          <div class="ec"><div class="ec-n">Auth</div><div class="ec-s">Entra ID · role-based · assessors see only their section</div></div>
+          <div class="ec"><div class="ec-n">Key change</div><div class="ec-s">Replace localStorage.getItem/setItem with Dataverse fetch calls · all scoring logic unchanged</div></div>
+        </div>
+        <div>
+          <div class="ss-lbl">Dataverse table names</div>
+          <div class="ec"><div class="ec-n">lh_offering</div><div class="ec-s">Master offering records</div></div>
+          <div class="ec"><div class="ec-n">lh_scoring_session</div><div class="ec-s">Assessor inputs · single source of truth</div></div>
+          <div class="ec"><div class="ec-n">lh_mis_scores</div><div class="ec-s">Auto-calculated on approval · not editable</div></div>
+          <div class="ec"><div class="ec-n">lh_asset_roadmap</div><div class="ec-s">Auto fields from scoring + manual operational fields</div></div>
+        </div>
+        <div>
+          <div class="ss-lbl">Power Automate — trigger on session_approved = true</div>
+          <div class="ec"><div class="ec-n">Step 1</div><div class="ec-s">Recalculate MIS scores for all milestones → write to lh_mis_scores</div></div>
+          <div class="ec"><div class="ec-n">Step 2</div><div class="ec-s">Update quarter_assigned per milestone from new MIS thresholds</div></div>
+          <div class="ec"><div class="ec-n">Step 3</div><div class="ec-s">Recalculate authority_score and strength_cmi on lh_offering · update is_blocked</div></div>
+          <div class="ec"><div class="ec-n">Step 4</div><div class="ec-s">Portal views read fresh from Dataverse · no manual refresh needed</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-note">Project Lighthouse · Architecture v1.0 · Q1 2026 · All data from Scoring_Master.xlsx · Nothing invented · 8 authority categories · 12 strength criteria · 164 milestones · 14 ★ must-haves</div>
+
+</main>
+
+<script>
+var expanded = false;
+var LANES = ['fw','sc','ma','dm','pv','ap','mg'];
+
+function tl(id){
+  var body = document.getElementById('body-' + id);
+  var chev = document.getElementById('chev-' + id);
+  var isOpen = !body.classList.contains('closed');
+  if(isOpen){
+    body.style.maxHeight = body.scrollHeight + 'px';
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        body.style.maxHeight = '0';
+        setTimeout(function(){ body.classList.add('closed'); body.style.maxHeight=''; }, 360);
+      });
+    });
+    if(chev) chev.style.transform = 'rotate(0deg)';
+  } else {
+    body.classList.remove('closed');
+    body.style.maxHeight = '0';
+    requestAnimationFrame(function(){
+      body.style.maxHeight = body.scrollHeight + 'px';
+      setTimeout(function(){ body.style.maxHeight = 'none'; }, 370);
+    });
+    if(chev) chev.style.transform = 'rotate(90deg)';
+  }
+}
+
+function toggleAll(){
+  expanded = !expanded;
+  document.getElementById('expand-btn').textContent = expanded ? 'Collapse all' : 'Expand all';
+  LANES.forEach(function(id){
+    var body = document.getElementById('body-' + id);
+    var isOpen = !body.classList.contains('closed');
+    if(expanded && !isOpen) tl(id);
+    else if(!expanded && isOpen) tl(id);
+  });
+}
+
+function jump(id){
+  var lane = document.getElementById('lane-' + id);
+  var body = document.getElementById('body-' + id);
+  if(!lane) return;
+  if(body.classList.contains('closed')) tl(id);
+  setTimeout(function(){ lane.scrollIntoView({behavior:'smooth',block:'start'}); }, 80);
+}
+
+function tnav(group){
+  var sub  = document.getElementById('nav-sub-' + group);
+  var chev = document.getElementById('nav-chevron-' + group);
+  if(!sub) return;
+  var isOpen = sub.style.display !== 'none';
+  sub.style.display = isOpen ? 'none' : 'block';
+  if(chev) chev.className = 'nav-chevron' + (isOpen ? ' closed' : '');
+}
+</script>
+</body>
+</html>
+
