@@ -9,7 +9,7 @@
 <style>
 :root {
   --navy:    #040E3D;
-  --navy-2:  #071530;
+  --navy-2:  #040E3D;
   --teal:    #71F1F7;
   --green:   #8FFFDB;
   --red:     #F65275;
@@ -184,14 +184,15 @@ html, body {
 .filter-btn.f-green.active{background:rgba(143,255,219,0.10);border-color:rgba(143,255,219,0.28);color:var(--green);}
 .filter-sep{width:1px;height:18px;background:rgba(255,255,255,0.08);margin:0 2px;}
 /* ACTION ROWS */
-.action-row{display:grid;grid-template-columns:20px 1fr 110px 100px 120px 90px;align-items:center;gap:14px;padding:11px 12px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.action-row:hover{background:#F2F2F4;border-left-color:#2CB0CD;}
+.action-row{display:grid;grid-template-columns:20px 1fr 110px 100px 120px 90px;align-items:center;gap:14px;padding:11px 14px;background:white;border-bottom:1px solid rgba(4,14,61,0.06);border-left:3px solid transparent;transition:all 0.12s;}
 .action-row:last-child{border-bottom:none;}
 .p-dot{width:8px;height:8px;border-radius:50%;margin:0 auto;}
 .p-blocked{background:var(--red);box-shadow:0 0 6px rgba(246,82,117,0.50);}
 .p-must{background:var(--lav);}
 .p-gap{background:var(--green);}
-.a-title{font-size:12px;font-weight:600;color:rgba(255,255,255,0.90);margin-bottom:2px;}
-.a-desc{font-size:11px;color:rgba(255,255,255,0.38);line-height:1.4;}
+.a-title{font-size:12px;font-weight:600;color:rgba(4,14,61,0.85);margin-bottom:2px;}
+.a-desc{font-size:11px;color:rgba(4,14,61,0.42);line-height:1.4;}
 .a-tag{font-size:9px;font-weight:600;padding:3px 8px;border-radius:999px;white-space:nowrap;display:inline-block;}
 .tag-blocked{background:rgba(246,82,117,0.12);color:var(--red);border:1px solid rgba(246,82,117,0.24);}
 .tag-must{background:rgba(192,166,255,0.10);color:var(--lav);border:1px solid rgba(192,166,255,0.22);}
@@ -200,7 +201,7 @@ html, body {
 .ob-smart{background:rgba(113,241,247,0.08);color:var(--teal);border:1px solid rgba(113,241,247,0.18);}
 .ob-ootb{background:rgba(143,255,219,0.08);color:var(--green);border:1px solid rgba(143,255,219,0.18);}
 .ob-managed{background:rgba(192,166,255,0.08);color:var(--lav);border:1px solid rgba(192,166,255,0.18);}
-.a-owner{font-size:10px;color:rgba(255,255,255,0.40);font-weight:500;}
+.a-owner{font-size:10px;color:rgba(4,14,61,0.50);font-weight:500;}
 .a-status{font-size:9px;font-weight:600;padding:3px 9px;border-radius:999px;cursor:pointer;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.40);background:rgba(255,255,255,0.04);white-space:nowrap;}
 .a-status.open{color:var(--red);background:rgba(246,82,117,0.08);border-color:rgba(246,82,117,0.22);}
 .a-status.in-progress{color:var(--lav);background:rgba(192,166,255,0.08);border-color:rgba(192,166,255,0.20);}
@@ -214,12 +215,12 @@ html, body {
 .owner-count{font-size:9px;font-weight:600;padding:2px 7px;border-radius:999px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.40);}
 .owner-chev{margin-left:auto;font-size:10px;color:rgba(255,255,255,0.28);transition:transform 0.2s;}
 .owner-chev.open{transform:rotate(180deg);}
-.rm-row{display:grid;grid-template-columns:20px 1fr 90px 120px 160px 80px;align-items:center;gap:10px;padding:9px 20px;border-bottom:1px solid rgba(255,255,255,0.04);}
-.rm-row:last-child{border-bottom:none;}
-.rm-row:nth-child(even){background:rgba(255,255,255,0.015);}
+.rm-row{display:grid;grid-template-columns:20px 1fr 90px 120px 160px 80px;align-items:center;gap:10px;padding:9px 16px;background:white;border-bottom:1px solid rgba(4,14,61,0.06);border-left:3px solid transparent;transition:all 0.12s;cursor:pointer;}
+.rm-row:last-child{border-bottom:none;border-radius:0 0 14px 14px;}
+.rm-row:hover{background:#F2F2F4;border-left-color:rgba(4,14,61,0.18);}
 .rm-star{color:#FFD700;font-size:11px;text-align:center;}
 .rm-dot{width:7px;height:7px;border-radius:50%;}
-.rm-title{font-size:12px;font-weight:600;color:rgba(255,255,255,0.88);}
+.rm-title{font-size:12px;font-weight:600;color:rgba(4,14,61,0.85);}
 .rm-ref{font-size:10px;color:rgba(255,255,255,0.30);margin-top:1px;font-family:monospace;}
 .rm-impact{font-size:9px;font-weight:600;padding:2px 7px;border-radius:999px;white-space:nowrap;display:inline-block;}
 .impact-blocker{background:rgba(246,82,117,0.12);color:var(--red);border:1px solid rgba(246,82,117,0.22);}
@@ -240,6 +241,38 @@ html, body {
 .nav-group-toggle.active .nav-icon svg{stroke:var(--teal);}
 .nav-chevron{margin-left:auto;font-size:10px;color:rgba(255,255,255,0.30);transition:transform 0.2s;}
 .nav-chevron.closed{transform:rotate(-90deg);}
+
+
+.tbl-card{border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(4,14,61,0.08);margin-bottom:10px;background:white;}
+.tbl-head{display:grid;align-items:center;padding:10px 16px;background:var(--navy);gap:0;}
+.tbl-hcell{font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.30);}
+.tbl-row{display:grid;align-items:center;padding:0 16px;background:white;border-bottom:1px solid rgba(4,14,61,0.06);cursor:pointer;transition:all 0.12s;border-left:3px solid transparent;}
+.tbl-row:last-child{border-bottom:none;}
+.tbl-row:hover{background:#F2F2F4;border-left-color:rgba(4,14,61,0.18);}
+.tbl-row.selected{background:#F2F2F4;border-left-color:var(--navy);}
+.tbl-cell{font-size:12px;color:rgba(4,14,61,0.75);padding:12px 0;line-height:1.4;}
+.tbl-cell.bold{font-weight:600;color:rgba(4,14,61,0.88);}
+.tbl-cell.dim{color:rgba(4,14,61,0.40);font-size:11px;}
+.tbl-cell.mono{font-family:monospace;font-size:10px;color:rgba(4,14,61,0.55);}
+.tbl-section{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(4,14,61,0.40);padding:14px 0 8px;}
+
+/* ── SHARED TABLE STYLE ─────────────────────────────
+   Brand palette: Navy #040E3D · Teal #71F1F7
+   Green #8FFFDB · Red #F65275 · Purple #6400EC
+   Lavender #C0A6FF · Util #2CB0CD · Grey #F2F2F4
+───────────────────────────────────────────────── */
+.tbl-card{border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(4,14,61,0.08);margin-bottom:10px;background:white;}
+.tbl-head{display:grid;align-items:center;padding:10px 16px;background:#040E3D;gap:0;}
+.tbl-hcell{font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.30);}
+.tbl-row{display:grid;align-items:center;padding:0 16px;background:white;border-bottom:1px solid rgba(4,14,61,0.06);cursor:pointer;transition:all 0.12s;border-left:3px solid transparent;}
+.tbl-row:last-child{border-bottom:none;}
+.tbl-row:hover{background:#F2F2F4;border-left-color:rgba(4,14,61,0.20);}
+.tbl-row.selected{background:#F2F2F4;border-left-color:#040E3D;}
+.tbl-cell{font-size:12px;color:rgba(4,14,61,0.75);padding:12px 0;line-height:1.4;}
+.tbl-cell.bold{font-weight:600;color:rgba(4,14,61,0.88);}
+.tbl-cell.dim{color:rgba(4,14,61,0.40);font-size:11px;}
+.tbl-cell.mono{font-family:monospace;font-size:10px;color:rgba(4,14,61,0.55);}
+.tbl-section{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(4,14,61,0.40);padding:14px 0 8px;}
 </style>
 </head>
 <body>
@@ -390,16 +423,15 @@ html, body {
     <button class="filter-btn" onclick="applyFilter('managed-admin',this)">Managed Admin</button>
   </div>
 
-  <div class="card" style="padding:0;overflow:hidden;">
-    <div style="display:grid;grid-template-columns:20px 1fr 110px 100px 120px 90px;gap:14px;padding:12px 20px;border-bottom:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.025);">
+  <div class="tbl-card"><div style="display:grid;grid-template-columns:20px 1fr 110px 100px 120px 90px;gap:14px;padding:12px 20px;border-bottom:1px solid rgba(255,255,255,0.08);background:var(--navy);">
       <div></div>
-      <div style="font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">Action</div>
-      <div style="font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">Type</div>
-      <div style="font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">Offering</div>
-      <div style="font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">Owner</div>
-      <div style="font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.22);">Status</div>
+      <div style="font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.30);">Action</div>
+      <div style="font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.30);">Type</div>
+      <div style="font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.30);">Offering</div>
+      <div style="font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.30);">Owner</div>
+      <div style="font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.30);">Status</div>
     </div>
-    <div id="action-list" style="padding:0 8px;"></div>
+    <div id="action-list" style="background:white;border-radius:0 0 14px 14px;"</div>
   </div>
 
 </div><!-- end section-log -->
@@ -525,7 +557,7 @@ function updateKPIs() {
   document.getElementById('kpi-must').textContent    = must;
   document.getElementById('kpi-gap').textContent     = gap;
   document.getElementById('kpi-open').textContent    = open;
-  document.getElementById('open-count-badge').textContent = open;
+  var ocb = document.getElementById('open-count-badge'); if(ocb) ocb.textContent = open;
 }
 
 /* ═══════════════════════════════════════════════
