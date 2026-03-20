@@ -103,9 +103,9 @@ html,body{background:var(--main-bg)!important;color:rgba(255,255,255,0.9);font-f
 
 /* ASSET DETAIL ROWS */
 .asset-rows{border-radius:10px;overflow:hidden;margin-bottom:10px;border:1px solid rgba(255,255,255,0.06);}
-.asset-row{display:grid;grid-template-columns:200px repeat(5,1fr);align-items:center;padding:9px 14px;border-bottom:1px solid rgba(255,255,255,0.05);}
+.asset-row{display:grid;align-items:center;padding:10px 16px;background:white;border-bottom:1px solid rgba(4,14,61,0.06);border-left:3px solid transparent;transition:all 0.12s;}
 .asset-row:last-child{border-bottom:none;}
-.asset-row:nth-child(even){background:rgba(255,255,255,0.02);}
+
 .ar-name{font-size:11px;font-weight:600;color:rgba(255,255,255,0.80);}
 .ar-type{font-size:9px;color:rgba(255,255,255,0.28);margin-top:1px;}
 .ar-cell{display:flex;justify-content:center;align-items:center;}
@@ -144,6 +144,38 @@ html,body{background:var(--main-bg)!important;color:rgba(255,255,255,0.9);font-f
 .nav-sub-item:hover{color:rgba(255,255,255,0.72);background:rgba(255,255,255,0.03);}
 .nav-sub-item.active{color:var(--teal);border-left-color:rgba(113,241,247,0.35);}
 .nav-sub-dot{width:4px;height:4px;border-radius:50%;background:currentColor;flex-shrink:0;}
+
+
+.tbl-card{border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(4,14,61,0.08);margin-bottom:10px;background:white;}
+.tbl-head{display:grid;align-items:center;padding:10px 16px;background:var(--navy);gap:0;}
+.tbl-hcell{font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.30);}
+.tbl-row{display:grid;align-items:center;padding:0 16px;background:white;border-bottom:1px solid rgba(4,14,61,0.06);cursor:pointer;transition:all 0.12s;border-left:3px solid transparent;}
+.tbl-row:last-child{border-bottom:none;}
+.tbl-row:hover{background:#F2F2F4;border-left-color:rgba(4,14,61,0.18);}
+.tbl-row.selected{background:#F2F2F4;border-left-color:var(--navy);}
+.tbl-cell{font-size:12px;color:rgba(4,14,61,0.75);padding:12px 0;line-height:1.4;}
+.tbl-cell.bold{font-weight:600;color:rgba(4,14,61,0.88);}
+.tbl-cell.dim{color:rgba(4,14,61,0.40);font-size:11px;}
+.tbl-cell.mono{font-family:monospace;font-size:10px;color:rgba(4,14,61,0.55);}
+.tbl-section{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(4,14,61,0.40);padding:14px 0 8px;}
+
+/* ── SHARED TABLE STYLE ─────────────────────────────
+   Brand palette: Navy #040E3D · Teal #71F1F7
+   Green #8FFFDB · Red #F65275 · Purple #6400EC
+   Lavender #C0A6FF · Util #2CB0CD · Grey #F2F2F4
+───────────────────────────────────────────────── */
+.tbl-card{border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(4,14,61,0.08);margin-bottom:10px;background:white;}
+.tbl-head{display:grid;align-items:center;padding:10px 16px;background:#040E3D;gap:0;}
+.tbl-hcell{font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.30);}
+.tbl-row{display:grid;align-items:center;padding:0 16px;background:white;border-bottom:1px solid rgba(4,14,61,0.06);cursor:pointer;transition:all 0.12s;border-left:3px solid transparent;}
+.tbl-row:last-child{border-bottom:none;}
+.tbl-row:hover{background:#F2F2F4;border-left-color:rgba(4,14,61,0.20);}
+.tbl-row.selected{background:#F2F2F4;border-left-color:#040E3D;}
+.tbl-cell{font-size:12px;color:rgba(4,14,61,0.75);padding:12px 0;line-height:1.4;}
+.tbl-cell.bold{font-weight:600;color:rgba(4,14,61,0.88);}
+.tbl-cell.dim{color:rgba(4,14,61,0.40);font-size:11px;}
+.tbl-cell.mono{font-family:monospace;font-size:10px;color:rgba(4,14,61,0.55);}
+.tbl-section{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(4,14,61,0.40);padding:14px 0 8px;}
 </style>
 </head>
 <body>
@@ -345,13 +377,13 @@ html,body{background:var(--main-bg)!important;color:rgba(255,255,255,0.9);font-f
   <div class="card" style="padding:0;overflow:hidden;">
 
     <!-- Column headers -->
-    <div style="display:grid;grid-template-columns:220px repeat(5,1fr);padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);">
-      <div style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.25);">Asset</div>
-      <div style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.25);text-align:center;">SMART ITSM</div>
-      <div style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.25);text-align:center;">SMART CSM</div>
-      <div style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.25);text-align:center;">SMART HRSD</div>
-      <div style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.25);text-align:center;">OOTBaaS ITSM</div>
-      <div style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.25);text-align:center;">Managed Admin</div>
+    <div style="display:grid;grid-template-columns:220px repeat(5,1fr);padding:10px 16px;border-bottom:none;background:#040E3D;">
+      <div style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.30);">Asset</div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.30);text-align:center;">SMART ITSM</div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.30);text-align:center;">SMART CSM</div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.30);text-align:center;">SMART HRSD</div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.30);text-align:center;">OOTBaaS ITSM</div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.30);text-align:center;">Managed Admin</div>
     </div>
 
     <!-- Category: Sales & GTM -->
@@ -417,10 +449,10 @@ function renderTable() {
 
   cats.forEach(cat => {
     const catAssets = ASSETS.filter(a => a.cat === cat);
-    html += `<div style="border-bottom:1px solid rgba(255,255,255,0.07);">`;
+    html += `<div style="border-bottom:1px solid rgba(4,14,61,0.06);background:white;">`;
     // Category label row
-    html += `<div style="padding:10px 16px 4px;background:rgba(255,255,255,0.025);">
-      <span style="font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.28);">${cat}</span>
+    html += `<div style="padding:10px 16px 4px;background:#F2F2F4;">
+      <span style="font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(4,14,61,0.45);">${cat}</span>
     </div>`;
 
     catAssets.forEach((asset, i) => {
@@ -435,10 +467,10 @@ function renderTable() {
         ? 'grid-template-columns:220px repeat(5,1fr)'
         : 'grid-template-columns:220px 1fr';
 
-      html += `<div style="display:grid;${gridCols};align-items:center;padding:9px 16px;border-bottom:1px solid rgba(255,255,255,0.04);${i%2===1?'background:rgba(255,255,255,0.015)':''}">
+      html += `<div style="display:grid;${gridCols};align-items:center;padding:9px 16px;border-bottom:1px solid rgba(4,14,61,0.06);background:white;">
         <div>
-          <div style="font-size:12px;font-weight:500;color:rgba(255,255,255,0.82);">${asset.name}</div>
-          <div style="font-size:10px;color:rgba(255,255,255,0.28);margin-top:1px;">${asset.type}</div>
+          <div style="font-size:12px;font-weight:500;color:rgba(4,14,61,0.85);">${asset.name}</div>
+          <div style="font-size:10px;color:rgba(4,14,61,0.42);margin-top:1px;">${asset.type}</div>
         </div>
         ${cols}
       </div>`;
