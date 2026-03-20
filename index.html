@@ -9,7 +9,7 @@
 <style>
 :root {
   --navy:    #040E3D;
-  --navy-2:  #071530;
+  --navy-2:  #040E3D;
   --teal:    #71F1F7;
   --green:   #8FFFDB;
   --red:     #F65275;
@@ -104,10 +104,11 @@ html, body {
 .kpi-sub { margin-top:auto; padding-top:5px; font-size:10px; color:rgba(255,255,255,0.32); }
 
 /* Table */
-.offering-row { display:grid; grid-template-columns:1fr 108px 62px 62px 140px 80px; align-items:center; gap:12px; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
+.offering-row { display:grid; grid-template-columns:1fr 108px 62px 62px 140px 80px; align-items:center; gap:12px; padding:9px 16px; background:white; border-bottom:1px solid rgba(4,14,61,0.06); border-left:3px solid transparent; transition:all 0.12s; }
 .offering-row:last-child { border-bottom:none; }
-.offering-name  { font-size:13px; font-weight:600; color:rgba(255,255,255,0.92); }
-.offering-group { font-size:10px; color:rgba(255,255,255,0.30); margin-top:2px; }
+.offering-row:hover { background:#F2F2F4; border-left-color:#2CB0CD; }
+.offering-name  { font-size:13px; font-weight:600; color:rgba(4,14,61,0.85); }
+.offering-group { font-size:10px; color:rgba(4,14,61,0.40); margin-top:2px; }
 
 /* Badges */
 .level-badge { display:inline-flex; align-items:center; font-size:10px; font-weight:600; padding:3px 9px; border-radius:999px; white-space:nowrap; }
@@ -117,7 +118,7 @@ html, body {
 .l4 { background:rgba(113,241,247,0.10); color:var(--teal);  border:1px solid rgba(113,241,247,0.24); }
 .l5 { background:rgba(192,166,255,0.10); color:var(--lav);   border:1px solid rgba(192,166,255,0.24); }
 .score-val   { font-size:15px; font-weight:600; text-align:center; line-height:1; letter-spacing:-0.02em; }
-.score-label { font-size:8px; font-weight:600; text-transform:uppercase; letter-spacing:0.12em; color:rgba(255,255,255,0.25); text-align:center; margin-top:2px; }
+.score-label { font-size:8px; font-weight:600; text-transform:uppercase; letter-spacing:0.12em; ; text-align:center; margin-top:2px; }
 
 /* Bar + gap */
 .bar-track { height:5px; border-radius:999px; background:rgba(255,255,255,0.08); overflow:hidden; }
@@ -177,6 +178,38 @@ html, body {
 .nav-sub-item:hover{color:rgba(255,255,255,0.72);background:rgba(255,255,255,0.03);}
 .nav-sub-item.active{color:var(--teal);border-left-color:rgba(113,241,247,0.35);}
 .nav-sub-dot{width:4px;height:4px;border-radius:50%;background:currentColor;flex-shrink:0;}
+
+
+.tbl-card{border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(4,14,61,0.08);margin-bottom:10px;background:white;}
+.tbl-head{display:grid;align-items:center;padding:10px 16px;background:var(--navy);gap:0;}
+.tbl-hcell{font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.30);}
+.tbl-row{display:grid;align-items:center;padding:0 16px;background:white;border-bottom:1px solid rgba(4,14,61,0.06);cursor:pointer;transition:all 0.12s;border-left:3px solid transparent;}
+.tbl-row:last-child{border-bottom:none;}
+.tbl-row:hover{background:#F2F2F4;border-left-color:rgba(4,14,61,0.18);}
+.tbl-row.selected{background:#F2F2F4;border-left-color:var(--navy);}
+.tbl-cell{font-size:12px;color:rgba(4,14,61,0.75);padding:12px 0;line-height:1.4;}
+.tbl-cell.bold{font-weight:600;color:rgba(4,14,61,0.88);}
+.tbl-cell.dim{color:rgba(4,14,61,0.40);font-size:11px;}
+.tbl-cell.mono{font-family:monospace;font-size:10px;color:rgba(4,14,61,0.55);}
+.tbl-section{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(4,14,61,0.40);padding:14px 0 8px;}
+
+/* ── SHARED TABLE STYLE ─────────────────────────────
+   Brand palette: Navy #040E3D · Teal #71F1F7
+   Green #8FFFDB · Red #F65275 · Purple #6400EC
+   Lavender #C0A6FF · Util #2CB0CD · Grey #F2F2F4
+───────────────────────────────────────────────── */
+.tbl-card{border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(4,14,61,0.08);margin-bottom:10px;background:white;}
+.tbl-head{display:grid;align-items:center;padding:10px 16px;background:#040E3D;gap:0;}
+.tbl-hcell{font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.30);}
+.tbl-row{display:grid;align-items:center;padding:0 16px;background:white;border-bottom:1px solid rgba(4,14,61,0.06);cursor:pointer;transition:all 0.12s;border-left:3px solid transparent;}
+.tbl-row:last-child{border-bottom:none;}
+.tbl-row:hover{background:#F2F2F4;border-left-color:rgba(4,14,61,0.20);}
+.tbl-row.selected{background:#F2F2F4;border-left-color:#040E3D;}
+.tbl-cell{font-size:12px;color:rgba(4,14,61,0.75);padding:12px 0;line-height:1.4;}
+.tbl-cell.bold{font-weight:600;color:rgba(4,14,61,0.88);}
+.tbl-cell.dim{color:rgba(4,14,61,0.40);font-size:11px;}
+.tbl-cell.mono{font-family:monospace;font-size:10px;color:rgba(4,14,61,0.55);}
+.tbl-section{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(4,14,61,0.40);padding:14px 0 8px;}
 </style>
 </head>
 <body>
@@ -384,15 +417,15 @@ html, body {
 
 
   <!-- PORTFOLIO TABLE -->
-  <div class="card" style="margin-bottom:14px;">
-    <div class="card-title">Offering portfolio — maturity snapshot</div>
-    <div style="display:grid;grid-template-columns:1fr 108px 62px 62px 140px 80px;gap:12px;padding:0 0 8px;border-bottom:1px solid rgba(255,255,255,0.07);margin-bottom:2px;">
-      <div style="font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.20);">Offering</div>
-      <div style="font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.20);text-align:center;">Claimed Level</div>
-      <div style="font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.20);text-align:center;">Authority</div>
-      <div style="font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.20);text-align:center;">CMI</div>
-      <div style="font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.20);">Progress</div>
-      <div style="font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.20);text-align:center;">Gap</div>
+  <div class="tbl-card">
+    <div style="padding:12px 16px;background:white;border-bottom:1px solid rgba(4,14,61,0.07);"><span style="font-size:11px;font-weight:700;color:rgba(4,14,61,0.70);">Offering portfolio — maturity snapshot</span></div>
+    <div class="tbl-head" style="grid-template-columns:1fr 108px 62px 62px 140px 80px;gap:12px;">
+      <div class="tbl-hcell">Offering</div>
+      <div class="tbl-hcell" style="text-align:center;">Claimed Level</div>
+      <div class="tbl-hcell" style="text-align:center;">Authority</div>
+      <div class="tbl-hcell" style="text-align:center;">CMI</div>
+      <div class="tbl-hcell" style="">Progress</div>
+      <div class="tbl-hcell" style="text-align:center;">Gap</div>
     </div>
     <div class="offering-row">
       <div><div class="offering-name">SMART ITSM</div><div class="offering-group">SMART · GTM Lead</div></div>
