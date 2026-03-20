@@ -81,9 +81,9 @@ html,body{background:var(--main-bg)!important;color:rgba(255,255,255,0.9);font-f
 /* LIST */
 #list-body{padding:0 28px 48px;}
 .list-card{border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(4,14,61,0.08);margin-bottom:6px;}
-.list-thead{display:grid;grid-template-columns:40px 24px 1fr 130px 110px 100px 28px;align-items:center;gap:0;padding:9px 16px;background:var(--navy);}
+.list-thead{display:grid;grid-template-columns:40px 24px 1fr 130px 110px 100px 36px 28px;align-items:center;gap:0;padding:9px 16px;background:var(--navy);}
 .lth{font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.28);}
-.list-row{display:grid;grid-template-columns:40px 24px 1fr 130px 110px 100px 28px;align-items:center;gap:0;padding:0 16px;background:white;border-bottom:1px solid rgba(4,14,61,0.06);cursor:pointer;transition:all 0.12s;border-left:3px solid transparent;}
+.list-row{display:grid;grid-template-columns:40px 24px 1fr 130px 110px 100px 36px 28px;align-items:center;gap:0;padding:0 16px;background:white;border-bottom:1px solid rgba(4,14,61,0.06);cursor:pointer;transition:all 0.12s;border-left:3px solid transparent;}
 .list-row:last-child{border-bottom:none;}
 .list-row:hover{background:#F5F7FB;border-left-color:rgba(4,14,61,0.18);}
 .list-row.selected{background:#EDF2FF;border-left-color:var(--navy);}
@@ -152,6 +152,15 @@ html,body{background:var(--main-bg)!important;color:rgba(255,255,255,0.9);font-f
 .done-btn:hover{background:var(--navy);color:white;border-color:var(--navy);}
 .empty{padding:40px;text-align:center;color:rgba(4,14,61,0.35);font-size:13px;background:white;border-radius:14px;}
 .demo-watermark{position:fixed;bottom:14px;left:calc(var(--sidebar-w) + 16px);font-size:9px;color:rgba(4,14,61,0.32);letter-spacing:0.06em;pointer-events:none;z-index:99;}
+
+/* MIS SCORE CIRCLES */
+.mis-circle{border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;line-height:1;}
+.mis-sm{width:28px;height:28px;font-size:10px;}
+.mis-lg{width:56px;height:56px;font-size:18px;}
+.mis-q1{background:rgba(246,82,117,0.14);color:#DC2626;border:2px solid rgba(246,82,117,0.30);}
+.mis-q2{background:rgba(109,40,217,0.12);color:#6D28D9;border:2px solid rgba(109,40,217,0.25);}
+.mis-q3{background:rgba(8,145,178,0.12);color:#0891B2;border:2px solid rgba(8,145,178,0.25);}
+.mis-q4{background:rgba(4,14,61,0.06);color:rgba(4,14,61,0.38);border:2px solid rgba(4,14,61,0.12);}
 </style>
 </head>
 <body>
@@ -199,8 +208,9 @@ html,body{background:var(--main-bg)!important;color:rgba(255,255,255,0.9);font-f
 
 <!-- DETAIL PANEL -->
 <div id="detail-panel">
-  <div class="pnl-top">
+  <div class="pnl-top" style="gap:12px;">
     <div class="pnl-crumb" id="pnl-crumb">Asset detail</div>
+    <div id="pnl-mis-circle" class="mis-circle mis-lg mis-q1" style="margin-left:auto;margin-right:8px;">8</div>
     <button class="pnl-close" onclick="closePanel()">✕</button>
   </div>
   <div class="pnl-body" id="pnl-body"></div>
@@ -248,6 +258,14 @@ html,body{background:var(--main-bg)!important;color:rgba(255,255,255,0.9);font-f
 <div class="demo-watermark">Demo data — illustrative only · Project Lighthouse v1.0</div>
 
 <script>
+
+function misCls(score){
+  if(score >= 8) return 'mis-q1';
+  if(score >= 4) return 'mis-q2';
+  if(score >= 2) return 'mis-q3';
+  return 'mis-q4';
+}
+
 var DATA = [
   {id:'a1', q:'Q1 2026',p:'P1',star:true, name:'OOTBaaS ITSM — Sales Deck',         cat:'Sales Readiness',         ms:'1.4★',  impact:'Blocks L2 claim',              off:'OOTBaaS ITSM',  oc:'oc-ootb',    role:'Sales/GTM',      res:{t:'Sales deck template',s:'available'},    inp:{t:'Offering scope, fixed price point and 6-week delivery statement finalised in shared library (1.4★)',o:'Offering Owner',s:'unavailable'}, ast:'unavailable', mis:10, dim:'Commercial Readiness · CR × 1.0 + override +2', dep:''},
   {id:'a2', q:'Q1 2026',p:'P1',star:false,name:'OOTBaaS ITSM — One Pager',           cat:'Sales Readiness',         ms:'1.1',   impact:'Blocks L2 claim',              off:'OOTBaaS ITSM',  oc:'oc-ootb',    role:'Marketing',      res:{t:'One pager template',s:'available'},      inp:{t:'Approved SOW template in active use on live deals (2.6★)',o:'Offering Owner',s:'unavailable'},                                          ast:'unavailable', mis:6,  dim:'Commercial Readiness · CR × 1.0 + override +2', dep:''},
@@ -289,6 +307,9 @@ function row(d, isDeprior){
   }
   h += '</div>';
   h += '<div class="lr-ast">' + sp(d.ast) + '</div>';
+  h += '<div style="display:flex;justify-content:center;align-items:center;padding:13px 0;">';
+  h += '<div class="mis-circle mis-sm ' + misCls(d.mis) + '">' + d.mis + '</div>';
+  h += '</div>';
   h += '<div class="lr-arr">›</div>';
   h += '</div>';
   return h;
@@ -310,7 +331,7 @@ function render(){
   var listHtml = '';
   if(active.length){
     listHtml += '<div class="list-card">';
-    listHtml += '<div class="list-thead"><div class="lth">Priority</div><div class="lth"></div><div class="lth">Asset / Milestone</div><div class="lth">Offering</div><div class="lth">Input status</div><div class="lth">Asset</div><div></div></div>';
+    listHtml += '<div class="list-thead"><div class="lth">Priority</div><div class="lth"></div><div class="lth">Asset / Milestone</div><div class="lth">Offering</div><div class="lth">Input status</div><div class="lth">Asset</div><div class="lth" style="text-align:center;">MIS</div><div></div></div>';
     listHtml += active.map(function(d){ return row(d, false); }).join('');
     listHtml += '</div>';
   } else {
@@ -325,7 +346,7 @@ function render(){
   listHtml += '</div>';
   if(depOpen && deprior.length){
     listHtml += '<div class="list-card">';
-    listHtml += '<div class="list-thead"><div class="lth">Priority</div><div class="lth"></div><div class="lth">Asset / Milestone</div><div class="lth">Offering</div><div class="lth">Input status</div><div class="lth">Asset</div><div></div></div>';
+    listHtml += '<div class="list-thead"><div class="lth">Priority</div><div class="lth"></div><div class="lth">Asset / Milestone</div><div class="lth">Offering</div><div class="lth">Input status</div><div class="lth">Asset</div><div class="lth" style="text-align:center;">MIS</div><div></div></div>';
     listHtml += deprior.map(function(d){ return row(d, true); }).join('');
     listHtml += '</div>';
   }
@@ -362,42 +383,45 @@ function openPanel(id){
   h += '<div class="pnl-dot"></div>';
   h += isReady ? 'Ready to start — input available or prioritized' : 'Blocked — input not yet provided';
   h += '</div>';
-  h += '<div class="pnl-row" style="margin-top:10px;"><div class="pnl-row-lbl">Asset</div>' + sp(d.ast) + '</div>';
-  h += '<div class="pnl-row"><div class="pnl-row-lbl">Input</div>';
+  h += '<div class="pnl-row" style="margin-top:10px;"><div class="pnl-row-lbl">Asset built?</div>' + sp(d.ast) + '</div>';
+  h += '<div class="pnl-row"><div class="pnl-row-lbl">Needs from ' + d.inp.o + '</div>';
   if(d.inp.s === 'unavailable'){
-    h += '<span class="sp sp-u">Not provided</span>';
+    h += '<span class="sp sp-u">Not yet provided</span>';
+  } else if(d.inp.s === 'prioritized'){
+    h += '<span class="sp sp-p">In progress</span>';
   } else {
-    h += sp(d.inp.s);
+    h += '<span class="sp sp-a">Received</span>';
   }
   h += '</div>';
-  h += '<div class="pnl-row"><div class="pnl-row-lbl">Resource</div>' + sp(d.res.s) + '</div>';
+  h += '<div class="pnl-row"><div class="pnl-row-lbl">Template ready?</div>' + sp(d.res.s) + '</div>';
   h += '</div>';
 
   // Resource
   h += '<div class="pnl-sec">';
   h += '<div class="pnl-sec-title">Resource</div>';
-  h += '<div class="pnl-row"><div class="pnl-row-lbl">Available</div><div class="pnl-row-val">' + d.res.t + '</div></div>';
+  h += '<div class="pnl-row"><div class="pnl-row-lbl">What Marketing has</div><div class="pnl-row-val">' + d.res.t + '</div></div>';
   h += '</div>';
 
   // Input needed
   h += '<div class="pnl-sec">';
   h += '<div class="pnl-sec-title">Input needed</div>';
-  h += '<div class="pnl-row"><div class="pnl-row-lbl">What</div><div class="pnl-row-val">' + d.inp.t + '</div></div>';
-  h += '<div class="pnl-row"><div class="pnl-row-lbl">From</div><div class="pnl-row-val">' + d.inp.o + '</div></div>';
-  h += '<div class="pnl-row"><div class="pnl-row-lbl">Asset owner</div><div class="pnl-row-val">' + d.role + '</div></div>';
+  h += '<div class="pnl-row"><div class="pnl-row-lbl">Evidence needed</div><div class="pnl-row-val">' + d.inp.t + '</div></div>';
+  h += '<div class="pnl-row"><div class="pnl-row-lbl">Provided by</div><div class="pnl-row-val">' + d.inp.o + '</div></div>';
+  h += '<div class="pnl-row"><div class="pnl-row-lbl">Built by</div><div class="pnl-row-val">' + d.role + '</div></div>';
   h += '</div>';
 
   // MIS
   h += '<div class="pnl-sec">';
   h += '<div class="pnl-sec-title">Priority score</div>';
-  h += '<div class="mis-block">';
-  h += '<div class="mis-num">' + d.mis + '</div>';
-  h += '<div><div class="mis-info-lbl">MIS Score</div><div class="mis-info-dim">' + d.dim + '</div></div>';
-  h += '</div>';
+  h += '<div class="pnl-row"><div class="pnl-row-lbl">Score</div><div class="pnl-row-val" style="font-weight:700;">' + d.mis + ' / 10</div></div>';
+  h += '<div class="pnl-row"><div class="pnl-row-lbl">Dimension</div><div class="pnl-row-val">' + d.dim + '</div></div>';
   if(d.dep) h += '<div style="margin-top:10px;font-size:11px;color:rgba(4,14,61,0.45);font-style:italic;">' + d.dep + '</div>';
   h += '</div>';
 
   document.getElementById('pnl-crumb').textContent = d.q + ' · ' + d.p;
+  var mc = document.getElementById('pnl-mis-circle');
+  mc.textContent = d.mis;
+  mc.className = 'mis-circle mis-lg ' + misCls(d.mis);
   document.getElementById('pnl-body').innerHTML = h;
   document.getElementById('detail-panel').classList.add('open');
   document.getElementById('main').classList.add('panel-open');
