@@ -187,6 +187,38 @@ html,body{background:var(--main-bg)!important;color:rgba(255,255,255,0.9);font-f
 .nav-sub-item:hover{color:rgba(255,255,255,0.72);background:rgba(255,255,255,0.03);}
 .nav-sub-item.active{color:var(--teal);border-left-color:rgba(113,241,247,0.35);}
 .nav-sub-dot{width:4px;height:4px;border-radius:50%;background:currentColor;flex-shrink:0;}
+
+
+.tbl-card{border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(4,14,61,0.08);margin-bottom:10px;background:white;}
+.tbl-head{display:grid;align-items:center;padding:10px 16px;background:var(--navy);gap:0;}
+.tbl-hcell{font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.30);}
+.tbl-row{display:grid;align-items:center;padding:0 16px;background:white;border-bottom:1px solid rgba(4,14,61,0.06);cursor:pointer;transition:all 0.12s;border-left:3px solid transparent;}
+.tbl-row:last-child{border-bottom:none;}
+.tbl-row:hover{background:#F2F2F4;border-left-color:rgba(4,14,61,0.18);}
+.tbl-row.selected{background:#F2F2F4;border-left-color:var(--navy);}
+.tbl-cell{font-size:12px;color:rgba(4,14,61,0.75);padding:12px 0;line-height:1.4;}
+.tbl-cell.bold{font-weight:600;color:rgba(4,14,61,0.88);}
+.tbl-cell.dim{color:rgba(4,14,61,0.40);font-size:11px;}
+.tbl-cell.mono{font-family:monospace;font-size:10px;color:rgba(4,14,61,0.55);}
+.tbl-section{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(4,14,61,0.40);padding:14px 0 8px;}
+
+/* ── SHARED TABLE STYLE ─────────────────────────────
+   Brand palette: Navy #040E3D · Teal #71F1F7
+   Green #8FFFDB · Red #F65275 · Purple #6400EC
+   Lavender #C0A6FF · Util #2CB0CD · Grey #F2F2F4
+───────────────────────────────────────────────── */
+.tbl-card{border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(4,14,61,0.08);margin-bottom:10px;background:white;}
+.tbl-head{display:grid;align-items:center;padding:10px 16px;background:#040E3D;gap:0;}
+.tbl-hcell{font-size:9px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.30);}
+.tbl-row{display:grid;align-items:center;padding:0 16px;background:white;border-bottom:1px solid rgba(4,14,61,0.06);cursor:pointer;transition:all 0.12s;border-left:3px solid transparent;}
+.tbl-row:last-child{border-bottom:none;}
+.tbl-row:hover{background:#F2F2F4;border-left-color:rgba(4,14,61,0.20);}
+.tbl-row.selected{background:#F2F2F4;border-left-color:#040E3D;}
+.tbl-cell{font-size:12px;color:rgba(4,14,61,0.75);padding:12px 0;line-height:1.4;}
+.tbl-cell.bold{font-weight:600;color:rgba(4,14,61,0.88);}
+.tbl-cell.dim{color:rgba(4,14,61,0.40);font-size:11px;}
+.tbl-cell.mono{font-family:monospace;font-size:10px;color:rgba(4,14,61,0.55);}
+.tbl-section{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:rgba(4,14,61,0.40);padding:14px 0 8px;}
 </style>
 </head>
 <body>
